@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "${description}",
+  "authors": [
+    "BlockNeko-11"
+  ],
+  "contributors": [
+  ],
+  "contact": {
+    "homepage": "${home_page}",
+    "sources": "${sources_page}"
+  },
+  "license": "LGPL-v3",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.blockneko11.sunshinecore.fabric.SunshineCoreFabric"
+    ],
+    "client": [
+      "io.github.blockneko11.sunshinecore.client.fabric.SunshineCoreClientFabric"
+    ]
+  },
+  "mixins": [
+    "mixins.sunshinecore.json",
+    "mixins.sunshinecore.fabric.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": "${minecraft_dependency}"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "testmod",
+  "version": "1.0.0",
+  "name": "Test Mod",
+  "description": "Test Mod",
+  "authors": [
+    "Me!"
+  ],
+  "contact": {
+    "homepage": "https://example.com"
+  },
+  "license": "Unlicensed",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.testmod.fabric.TestModFabric"
+    ]
+  },
+  "mixins": [
+    "testmod.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": "*",
+    "sunshinecore": "*"
+  }
+}

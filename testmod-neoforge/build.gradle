@@ -1,0 +1,55 @@
+apply plugin: "com.github.johnrengelman.shadow"
+
+architectury {
+    platformSetupLoomIde()
+    neoForge {
+        platformPackage = "forge"
+    }
+}
+
+def generatedResources = file("src/generated")
+
+sourceSets {
+    main {
+        resources.srcDir generatedResources
+    }
+}
+
+loom {
+    neoForge {}
+
+    runs {
+        data {
+            data()
+            programArgs "--all", "--mod", "examplemod"
+            programArgs "--output", generatedResources.absolutePath
+//            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
+        }
+    }
+}
+
+configurations {
+    common
+    shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentNeoForge.extendsFrom common
+}
+
+repositories {
+    maven {
+        url = "https://maven.neoforged.net/releases/"
+    }
+}
+
+dependencies {
+    // forge "net.minecraftforge:forge:${rootProject.minecraft_version}-${rootProject.forge_version}"
+    neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
+
+    // Remove the next line if you don't want to depend on the API
+    // modImplementation "dev.architectury:architectury-forge:${rootProject.architectury_version}"
+
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    common(project(path: ":testmod-common", configuration: "namedElements")) { transitive false }
+    implementation project(path: ":neoforge", configuration: "namedElements")
+}

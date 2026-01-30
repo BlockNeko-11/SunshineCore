@@ -1,0 +1,99 @@
+plugins {
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "1.11-SNAPSHOT" apply false
+    id "com.github.johnrengelman.shadow" version "8.1.1" apply false
+}
+
+architectury {
+    minecraft = rootProject.minecraft_version
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+
+    version = rootProject.minecraft_version + "-" + rootProject.mod_version
+    group = rootProject.maven_group
+
+    repositories {
+        // Add repositories to retrieve artifacts from in here.
+        // You should only use this when depending on other mods because
+        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
+        // for more information about repositories.
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile) {
+        it.options.encoding = "UTF-8"
+        it.options.release = 21
+        it.options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    }
+
+    compileJava.dependsOn clean
+
+    java {
+        withSourcesJar()
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+}
+
+subprojects {
+    apply plugin: "dev.architectury.loom"
+    apply plugin: "maven-publish"
+
+    base {
+        archivesName = rootProject.archives_base_name + "-" + project.name
+    }
+
+    loom {
+        silentMojangMappingsLicense()
+        setEnableTransitiveAccessWideners true
+        setEnableModProvidedJavadoc true
+    }
+
+    repositories {
+        maven {
+            url = "https://maven.architectury.dev/"
+        }
+        maven {
+            url = "https://maven.shedaniel.me/"
+        }
+        maven {
+            url = "https://api.modrinth.com/maven"
+            content {
+                includeGroup "maven.modrinth"
+            }
+        }
+        maven {
+            url = "https://maven.parchmentmc.org"
+        }
+        maven {
+            url = "https://jitpack.io/"
+        }
+    }
+
+    dependencies {
+        minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+        mappings loom.layered() {
+            officialMojangMappings()
+            parchment("org.parchmentmc.data:parchment-${rootProject.minecraft_version}:${rootProject.parchment_version}@zip")
+        }
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                artifactId = base.archivesName.get()
+            }
+        }
+
+        // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+        repositories {
+            // Add repositories to publish to here.
+            mavenLocal()
+        }
+    }
+}
