@@ -11,7 +11,7 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     // modImplementation "dev.architectury:architectury:${rootProject.architectury_version}"
 
-    // implementation "net.jodah:typetools:${rootProject.type_tools_version}"
+    implementation "net.jodah:typetools:${rootProject.type_tools_version}"
 
     implementation project(path: ":common", configuration: "namedElements")
 }

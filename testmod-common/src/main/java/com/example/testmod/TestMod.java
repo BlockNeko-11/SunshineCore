@@ -2,6 +2,7 @@ package com.example.testmod;
 
 import com.example.testmod.registry.TestRegistry;
 import io.github.blockneko11.sunshinecore.SunshineCore;
+import io.github.blockneko11.sunshinecore.event.level.ServerLevelLifecycleEvent;
 import io.github.blockneko11.sunshinecore.util.Platform;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,5 +21,10 @@ public final class TestMod {
         LOGGER.info("Test Mod version: {}", Platform.getMod(MOD_ID).getVersion());
 
         TestRegistry.init();
+        SunshineCore.SC_EVENT_BUS.registerListener(TestMod::onLevelLoad);
+    }
+
+    private static void onLevelLoad(ServerLevelLifecycleEvent.Load e) {
+        LOGGER.info("Level loaded: {}", e.getLevel().dimension().location());
     }
 }
