@@ -24,7 +24,7 @@ public final class TestMod {
         LOGGER.info("Test Mod version: {}", Platform.getMod(MOD_ID).getVersion());
 
         TestRegistry.init();
-        SunshineCore.SC_EVENT_BUS.registerListener(TestMod::onLevelLoad);
+        SunshineCore.SC_EVENT_BUS.register(TestMod::onLevelLoad);
 
         CommandRegistry.registerCommand((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("test")

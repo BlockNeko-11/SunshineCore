@@ -11,6 +11,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
+/**
+ * Event bus API, which is used for developers to subscribe cross-loader events (See {@link Event}).
+ * Reference to <a href="https://github.com/neoforged/Bus">NeoForge's event bus</a>, under the LGPL-2.1 license.
+ */
 public class EventBus {
     public static final Logger LOGGER = LoggerFactory.getLogger(EventBus.class);
 
@@ -23,7 +27,7 @@ public class EventBus {
         this.handler = handler;
     }
 
-    public void registerClass(Class<?> clazz) {
+    public void register(Class<?> clazz) {
         for (Method m : clazz.getDeclaredMethods()) {
             int mod = m.getModifiers();
             if (!Modifier.isStatic(mod)) {
@@ -56,15 +60,15 @@ public class EventBus {
         }
 
         SubscribeEvent annotation = m.getAnnotation(SubscribeEvent.class);
-        this.register((Class<? extends Event>) eventType, new EventSubscriber.MethodSubscriber<>(m, annotation.priority()));
+        this.register0((Class<? extends Event>) eventType, new EventSubscriber.MethodSubscriber<>(m, annotation.priority()));
     }
 
-    public <T extends Event> void registerListener(Consumer<T> listener) {
-        this.registerListener(listener, 0);
+    public <T extends Event> void register(Consumer<T> listener) {
+        this.register(listener, 0);
     }
 
-    public <T extends Event> void registerListener(Consumer<T> listener, int priority) {
-        this.registerListener(this.getEventType(listener), listener, priority);
+    public <T extends Event> void register(Consumer<T> listener, int priority) {
+        this.register(this.getEventType(listener), listener, priority);
     }
 
     private <T extends Event> Class<T> getEventType(Consumer<T> listener) {
@@ -76,15 +80,15 @@ public class EventBus {
         return (Class<T>) eventType;
     }
 
-    public <T extends Event> void registerListener(Class<T> eventType, Consumer<T> listener) {
-        this.registerListener(eventType, listener, 0);
+    public <T extends Event> void register(Class<T> eventType, Consumer<T> listener) {
+        this.register(eventType, listener, 0);
     }
 
-    public <T extends Event> void registerListener(Class<T> eventType, Consumer<T> listener, int priority) {
-        this.register(eventType, new EventSubscriber.ConsumerSubscriber<>(listener, priority));
+    public <T extends Event> void register(Class<T> eventType, Consumer<T> listener, int priority) {
+        this.register0(eventType, new EventSubscriber.ConsumerSubscriber<>(listener, priority));
     }
 
-    private <T extends Event> void register(Class<T> eventType, EventSubscriber<T> listener) {
+    private <T extends Event> void register0(Class<T> eventType, EventSubscriber<T> listener) {
         EventSubscribers<T> list = (EventSubscribers<T>) this.listeners.computeIfAbsent(
                 eventType,
                 $ -> new EventSubscribers<>());
