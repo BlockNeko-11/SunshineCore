@@ -11,7 +11,7 @@ import java.util.List;
 public final class CommandRegistryImpl {
     private static final List<CommandRegister> REGISTERS = new ArrayList<>();
 
-    public static void register(CommandRegister register) {
+    public static void registerCommand(CommandRegister register) {
         REGISTERS.add(register);
     }
 

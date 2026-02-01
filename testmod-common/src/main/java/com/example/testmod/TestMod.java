@@ -26,7 +26,7 @@ public final class TestMod {
         TestRegistry.init();
         SunshineCore.SC_EVENT_BUS.registerListener(TestMod::onLevelLoad);
 
-        CommandRegistry.register((dispatcher, registryAccess, environment) -> {
+        CommandRegistry.registerCommand((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("test")
                     .executes(ctx -> {
                         ctx.getSource().sendSuccess(() -> Component.literal("Hello"), true);
