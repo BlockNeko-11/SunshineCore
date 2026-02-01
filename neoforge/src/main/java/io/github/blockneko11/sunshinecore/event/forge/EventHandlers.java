@@ -3,6 +3,7 @@ package io.github.blockneko11.sunshinecore.event.forge;
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.event.ServerLifecycleEvent;
 import io.github.blockneko11.sunshinecore.event.level.ServerLevelLifecycleEvent;
+import io.github.blockneko11.sunshinecore.event.level.player.PlayerEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -11,6 +12,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 public final class EventHandlers {
@@ -97,5 +99,17 @@ public final class EventHandlers {
             return;
         }
         SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.PostTick((ServerLevel) level));
+    }
+
+    // Player
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onPlayerTickPre(PlayerTickEvent.Pre e) {
+        SunshineCore.SC_EVENT_BUS.post(new PlayerEvent.PreTick(e.getEntity()));
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onPlayerTickPost(PlayerTickEvent.Post e) {
+        SunshineCore.SC_EVENT_BUS.post(new PlayerEvent.PostTick(e.getEntity()));
     }
 }
