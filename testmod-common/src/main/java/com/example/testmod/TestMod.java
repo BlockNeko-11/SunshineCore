@@ -2,8 +2,11 @@ package com.example.testmod;
 
 import com.example.testmod.registry.TestRegistry;
 import io.github.blockneko11.sunshinecore.SunshineCore;
+import io.github.blockneko11.sunshinecore.command.CommandRegistry;
 import io.github.blockneko11.sunshinecore.event.level.ServerLevelLifecycleEvent;
 import io.github.blockneko11.sunshinecore.util.Platform;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +25,14 @@ public final class TestMod {
 
         TestRegistry.init();
         SunshineCore.SC_EVENT_BUS.registerListener(TestMod::onLevelLoad);
+
+        CommandRegistry.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("test")
+                    .executes(ctx -> {
+                        ctx.getSource().sendSuccess(() -> Component.literal("Hello"), true);
+                        return 1;
+                    }));
+        });
     }
 
     private static void onLevelLoad(ServerLevelLifecycleEvent.Load e) {

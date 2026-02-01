@@ -2,6 +2,7 @@ package io.github.blockneko11.sunshinecore.forge;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.client.SunshineCoreClient;
+import io.github.blockneko11.sunshinecore.command.forge.CommandRegistryImpl;
 import io.github.blockneko11.sunshinecore.event.forge.ClientEventHandlers;
 import io.github.blockneko11.sunshinecore.event.forge.EventHandlers;
 import net.neoforged.api.distmarker.Dist;
@@ -14,6 +15,7 @@ public final class SunshineCoreNeoForge {
     public SunshineCoreNeoForge(IEventBus bus, Dist dist) {
         SunshineCore.init();
         NeoForge.EVENT_BUS.register(EventHandlers.class);
+        NeoForge.EVENT_BUS.register(CommandRegistryImpl.class);
 
         if (dist.isClient()) {
             SunshineCoreClient.initClient();
