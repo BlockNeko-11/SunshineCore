@@ -4,6 +4,9 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 
 import java.nio.file.Path;
 
+/**
+ * Cross-loader utilities.
+ */
 public final class Platform {
     @ExpectPlatform
     public static Loader getLoader() {

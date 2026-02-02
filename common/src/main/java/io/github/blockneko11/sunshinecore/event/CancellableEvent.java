@@ -1,5 +1,8 @@
 package io.github.blockneko11.sunshinecore.event;
 
+/**
+ * The base event class with cancellation support.
+ */
 public abstract class CancellableEvent extends Event {
     private boolean cancelled;
 
