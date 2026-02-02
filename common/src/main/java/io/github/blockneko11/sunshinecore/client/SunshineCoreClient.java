@@ -7,4 +7,7 @@ import net.fabricmc.api.Environment;
 public final class SunshineCoreClient {
     public static void initClient() {
     }
+
+    private SunshineCoreClient() {
+    }
 }

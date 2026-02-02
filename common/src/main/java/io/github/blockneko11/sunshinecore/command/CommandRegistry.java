@@ -16,4 +16,7 @@ public final class CommandRegistry {
             void registerArgumentType(Class<? extends A> clazz, ArgumentTypeInfo<A, T> serializer) {
         ArgumentTypeInfos.BY_CLASS.put(clazz, serializer);
     }
+
+    private CommandRegistry() {
+    }
 }

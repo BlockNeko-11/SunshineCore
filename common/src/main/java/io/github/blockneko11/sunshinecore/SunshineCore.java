@@ -9,4 +9,7 @@ public final class SunshineCore {
     public static void init() {
 
     }
+
+    private SunshineCore() {
+    }
 }

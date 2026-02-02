@@ -39,4 +39,7 @@ public final class Platform {
     public static Path getConfigDir() {
         throw new AssertionError();
     }
+
+    private Platform() {
+    }
 }
