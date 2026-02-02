@@ -6,6 +6,6 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
 @FunctionalInterface
-public interface CommandRegister {
-    void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext registryAccess, Commands.CommandSelection environment);
+public interface CommandRegister<S> {
+    void register(CommandDispatcher<S> dispatcher, CommandBuildContext registryAccess, boolean isDedicated);
 }
