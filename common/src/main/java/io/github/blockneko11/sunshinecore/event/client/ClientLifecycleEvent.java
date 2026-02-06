@@ -1,10 +1,13 @@
-package io.github.blockneko11.sunshinecore.event.client.lifecycle;
+package io.github.blockneko11.sunshinecore.event.client;
 
 import io.github.blockneko11.sunshinecore.event.Event;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 
+/**
+ * Game's lifecycle event on the client side.
+ */
 @Environment(EnvType.CLIENT)
 public abstract class ClientLifecycleEvent extends Event {
     protected final Minecraft client;

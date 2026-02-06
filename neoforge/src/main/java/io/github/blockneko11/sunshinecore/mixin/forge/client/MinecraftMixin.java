@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.mixin.forge.client;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.event.client.lifecycle.ClientLifecycleEvent;
+import io.github.blockneko11.sunshinecore.event.client.ClientLifecycleEvent;
 import net.minecraft.client.Minecraft;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;

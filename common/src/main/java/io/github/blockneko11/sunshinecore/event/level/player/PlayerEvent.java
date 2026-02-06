@@ -3,6 +3,10 @@ package io.github.blockneko11.sunshinecore.event.level.player;
 import io.github.blockneko11.sunshinecore.event.Event;
 import net.minecraft.world.entity.player.Player;
 
+/**
+ * Player events.
+ * @param <T> the player type (e.g. client or server)
+ */
 public abstract class PlayerEvent<T extends Player> extends Event {
     protected final T player;
 

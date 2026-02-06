@@ -22,6 +22,9 @@
     ],
     "client": [
       "io.github.blockneko11.sunshinecore.client.fabric.SunshineCoreClientFabric"
+    ],
+    "server": [
+      "io.github.blockneko11.sunshinecore.server.fabric.SunshineCoreServerFabric"
     ]
   },
   "mixins": [

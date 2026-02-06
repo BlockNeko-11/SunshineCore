@@ -2,6 +2,7 @@ package io.github.blockneko11.sunshinecore.event.forge;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.event.ServerLifecycleEvent;
+import io.github.blockneko11.sunshinecore.event.SetupEvent;
 import io.github.blockneko11.sunshinecore.event.level.ServerLevelLifecycleEvent;
 import io.github.blockneko11.sunshinecore.event.level.player.PlayerEvent;
 import net.minecraft.server.level.ServerLevel;
@@ -9,6 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
@@ -16,7 +18,6 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 public final class EventHandlers {
-
     // Server Lifecycle
 
     @SubscribeEvent(priority = EventPriority.HIGH)

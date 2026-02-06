@@ -2,6 +2,9 @@ package io.github.blockneko11.sunshinecore.event.level;
 
 import net.minecraft.server.level.ServerLevel;
 
+/**
+ * Level's lifecycle event on the server side.
+ */
 public abstract class ServerLevelLifecycleEvent extends LevelEvent<ServerLevel> {
     public ServerLevelLifecycleEvent(ServerLevel level) {
         super(level);

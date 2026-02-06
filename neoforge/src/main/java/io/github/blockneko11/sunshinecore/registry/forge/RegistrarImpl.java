@@ -1,12 +1,10 @@
 package io.github.blockneko11.sunshinecore.registry.forge;
 
-import io.github.blockneko11.sunshinecore.registry.CreativeModeTabSupplier;
 import io.github.blockneko11.sunshinecore.registry.Registrar;
+import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
 import io.github.blockneko11.sunshinecore.util.forge.ModEventBuses;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -29,23 +27,14 @@ public class RegistrarImpl extends Registrar {
     }
 
     @Override
-    public <R, T extends R> Supplier<T> register(Registry<R> registry, String id, Supplier<T> entry) {
+    public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry) {
         ResourceLocation registryId = registry.key().location();
         DeferredRegister<R> register = (DeferredRegister<R>) this.registers.computeIfAbsent(
                 registryId,
                 key -> DeferredRegister.create(key, this.modId));
 
-        return register.register(id, entry);
-    }
-
-    public CreativeModeTabSupplier registerTab(String id, Supplier<CreativeModeTab> tab) {
-        ResourceLocation registryId = Registries.CREATIVE_MODE_TAB.location();
-        DeferredRegister<CreativeModeTab> register = (DeferredRegister<CreativeModeTab>) this.registers.computeIfAbsent(
-                registryId,
-                key -> DeferredRegister.create(key, this.modId));
-
-        DeferredHolder<CreativeModeTab, CreativeModeTab> holder = register.register(id, tab);
-        return new CreativeModeTabSupplier(holder, holder.getKey());
+        DeferredHolder<R, T> holder = register.register(id, entry);
+        return new RegistryHolder<>(holder, holder.getKey(), holder.getId());
     }
 
     @Override

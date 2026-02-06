@@ -3,7 +3,7 @@ package io.github.blockneko11.sunshinecore.registry;
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -39,7 +39,6 @@ public abstract class Registrar {
 
     /**
      * Register an object to the game.
-     * <h1>NOTE: To register a {@link CreativeModeTab}, please use {@link #registerTab(String, Supplier)} instead.</h1>
      * @param registry a {@link Registry} instance. See {@link BuiltInRegistries}
      * @param id the in-game id of the object
      * @param entry the object to register
@@ -47,7 +46,7 @@ public abstract class Registrar {
      * @param <R> the type of the registry
      * @param <T> the type of the object
      */
-    public abstract <R, T extends R> Supplier<T> register(Registry<R> registry, String id, Supplier<T> entry);
+    public abstract <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry);
 
     public final Supplier<Item> simpleItem(String id) {
         return this.simpleItem(id, UnaryOperator.identity());
@@ -57,6 +56,14 @@ public abstract class Registrar {
         return this.register(BuiltInRegistries.ITEM, id, () -> new Item(operator.apply(new Item.Properties())));
     }
 
+    public final <T extends Block> Supplier<Item> blockItem(String id, Supplier<T> block) {
+        return this.blockItem(id, block, UnaryOperator.identity());
+    }
+
+    public final <T extends Block> Supplier<Item> blockItem(String id, Supplier<T> block, UnaryOperator<Item.Properties> operator) {
+        return this.register(BuiltInRegistries.ITEM, id, () -> new BlockItem(block.get(), operator.apply(new Item.Properties())));
+    }
+
     public final Supplier<Block> simpleBlock(String id) {
         return this.simpleBlock(id, UnaryOperator.identity());
     }
@@ -64,14 +71,6 @@ public abstract class Registrar {
     public final Supplier<Block> simpleBlock(String id, UnaryOperator<Block.Properties> operator) {
         return this.register(BuiltInRegistries.BLOCK, id, () -> new Block(operator.apply(Block.Properties.of())));
     }
-
-    /**
-     * Register a {@link CreativeModeTab} to the game.
-     * @param id the in-game id of the tab
-     * @param tab the tab to register
-     * @return a {@link CreativeModeTabSupplier} instance of the registered tab
-     */
-    public abstract CreativeModeTabSupplier registerTab(String id, Supplier<CreativeModeTab> tab);
 
     /**
      * Register all objects to the game. Just call it once in your mod's entrypoint.

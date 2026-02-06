@@ -5,6 +5,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 
+/**
+ * Level's lifecycle event on the client side.
+ */
 @Environment(EnvType.CLIENT)
 public abstract class ClientLevelLifecycleEvent extends LevelEvent<ClientLevel> {
     public ClientLevelLifecycleEvent(ClientLevel level) {

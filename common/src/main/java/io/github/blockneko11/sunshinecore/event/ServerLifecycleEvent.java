@@ -2,6 +2,9 @@ package io.github.blockneko11.sunshinecore.event;
 
 import net.minecraft.server.MinecraftServer;
 
+/**
+ * Game's lifecycle event on the server side.
+ */
 public abstract class ServerLifecycleEvent extends Event {
     protected final MinecraftServer server;
 
