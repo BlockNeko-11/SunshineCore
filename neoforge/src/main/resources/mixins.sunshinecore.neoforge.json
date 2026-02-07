@@ -7,9 +7,11 @@
     "client.MinecraftMixin"
   ],
   "mixins": [
-    "AxeItemMixin",
-    "HoeItemMixin",
-    "ShovelItemMixin"
+    "block.ComposterBlockMixin",
+    "block.FireBlockMixin",
+    "item.AxeItemMixin",
+    "item.HoeItemMixin",
+    "item.ShovelItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

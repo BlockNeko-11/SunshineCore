@@ -7,4 +7,7 @@ public final class StreamUtil {
     public static <T> Stream<T> toStream(Iterable<T> it) {
         return StreamSupport.stream(it.spliterator(), false);
     }
+
+    private StreamUtil() {
+    }
 }

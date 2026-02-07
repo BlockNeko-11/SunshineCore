@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
- * Item interaction registry API, which is used for registering item interactions.
+ * Item interaction registry API, which is used for registering interactions for some specific items.
  * Now it's just only for tools (e.g. axe, shovel, hoe).
  * <h1>NOTE: Please call these methods in the event subscriber of {@link SetupEvent}.</h1>
  */

@@ -1,8 +1,13 @@
-package io.github.blockneko11.sunshinecore.mixin.forge;
+package io.github.blockneko11.sunshinecore.mixin.forge.item;
 
 import com.mojang.datafixers.util.Pair;
 import io.github.blockneko11.sunshinecore.item.forge.ItemInteractionRegistryImpl;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -35,12 +40,9 @@ public abstract class HoeItemMixin {
     )
     private void modifyState$registerTillables(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
         Level level = context.getLevel();
-        if (level.isClientSide()) {
-            cir.setReturnValue(InteractionResult.SUCCESS);
-            return;
-        }
-
-        Block base = level.getBlockState(context.getClickedPos()).getBlock();
+        BlockPos pos = context.getClickedPos();
+        Player player = context.getPlayer();
+        Block base = level.getBlockState(pos).getBlock();
         Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = ItemInteractionRegistryImpl.TILLABLES.get(base);
 
         if (pair == null) {
@@ -49,7 +51,16 @@ public abstract class HoeItemMixin {
         }
 
         if (pair.getFirst().test(context)) {
+            level.playSound(player, pos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+            if (level.isClientSide()) {
+                cir.setReturnValue(InteractionResult.SUCCESS);
+                return;
+            }
+
             pair.getSecond().accept(context);
+            if (player != null) {
+                context.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
+            }
             cir.setReturnValue(InteractionResult.CONSUME);
             return;
         }

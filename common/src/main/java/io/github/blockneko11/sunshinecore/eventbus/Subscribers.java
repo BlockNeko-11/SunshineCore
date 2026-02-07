@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class EventSubscribers<T extends Event> {
-    private final List<EventSubscriber<T>> delegate = Collections.synchronizedList(new ArrayList<>());
+class Subscribers<T extends Event> {
+    private final List<Subscriber<T>> delegate = Collections.synchronizedList(new ArrayList<>());
 
-    void add(EventSubscriber<T> listener) {
+    void add(Subscriber<T> listener) {
         this.delegate.add(listener);
     }
 
-    void remove(EventSubscriber<T> listener) {
+    void remove(Subscriber<T> listener) {
         this.delegate.remove(listener);
     }
 
     void post(T event, ExceptionHandler handler) {
-        this.delegate.sort(EventSubscriber::compare);
+        this.delegate.sort(Subscriber::compare);
         this.delegate.forEach(listener -> listener.handle(event, handler));
     }
 }

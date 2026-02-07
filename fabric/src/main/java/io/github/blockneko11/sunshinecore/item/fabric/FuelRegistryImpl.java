@@ -3,10 +3,10 @@ package io.github.blockneko11.sunshinecore.item.fabric;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 
 import java.util.Collection;
 
+@Deprecated
 public final class FuelRegistryImpl {
     public static void register(int burnTick, Collection<Item> items) {
         items.forEach(i -> {
@@ -20,9 +20,5 @@ public final class FuelRegistryImpl {
 
     public static void register(int burnTick, TagKey<Item> tag) {
         FuelRegistry.INSTANCE.add(tag, burnTick);
-    }
-
-    public static int get(ItemStack stack) {
-        return FuelRegistry.INSTANCE.get(stack.getItem());
     }
 }

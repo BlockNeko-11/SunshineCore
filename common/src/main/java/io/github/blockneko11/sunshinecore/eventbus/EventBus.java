@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 public class EventBus {
     public static final Logger LOGGER = LoggerFactory.getLogger(EventBus.class);
 
-    private final Map<Class<? extends Event>, EventSubscribers<?>> listeners = new ConcurrentHashMap<>();
+    private final Map<Class<? extends Event>, Subscribers<?>> listeners = new ConcurrentHashMap<>();
     private ExceptionHandler handler = (type, ex) -> {
         LOGGER.error("An exception has caught when posting event {}. Detail message: ", type.getCanonicalName(), ex);
     };
@@ -34,7 +34,7 @@ public class EventBus {
                 throw new IllegalArgumentException("Event listener should be static");
             }
 
-            if (!m.isAnnotationPresent(SubscribeEvent.class)) {
+            if (!m.isAnnotationPresent(EventSubscriber.class)) {
                 continue;
             }
 
@@ -59,8 +59,8 @@ public class EventBus {
             throw new IllegalArgumentException("The first parameter of event listener should not be abstract events");
         }
 
-        SubscribeEvent annotation = m.getAnnotation(SubscribeEvent.class);
-        this.register0((Class<? extends Event>) eventType, new EventSubscriber.MethodSubscriber<>(m, annotation.priority()));
+        EventSubscriber annotation = m.getAnnotation(EventSubscriber.class);
+        this.register0((Class<? extends Event>) eventType, new Subscriber.MethodSubscriber<>(m, annotation.priority()));
     }
 
     public <T extends Event> void register(Consumer<T> listener) {
@@ -85,19 +85,19 @@ public class EventBus {
     }
 
     public <T extends Event> void register(Class<T> eventType, Consumer<T> listener, int priority) {
-        this.register0(eventType, new EventSubscriber.ConsumerSubscriber<>(listener, priority));
+        this.register0(eventType, new Subscriber.ConsumerSubscriber<>(listener, priority));
     }
 
-    private <T extends Event> void register0(Class<T> eventType, EventSubscriber<T> listener) {
-        EventSubscribers<T> list = (EventSubscribers<T>) this.listeners.computeIfAbsent(
+    private <T extends Event> void register0(Class<T> eventType, Subscriber<T> listener) {
+        Subscribers<T> list = (Subscribers<T>) this.listeners.computeIfAbsent(
                 eventType,
-                $ -> new EventSubscribers<>());
+                $ -> new Subscribers<>());
 
         list.add(listener);
     }
 
     public <T extends Event> void post(T event) {
-        EventSubscribers<T> list = (EventSubscribers<T>) this.listeners.get(event.getClass());
+        Subscribers<T> list = (Subscribers<T>) this.listeners.get(event.getClass());
         if (list == null) {
             return;
         }

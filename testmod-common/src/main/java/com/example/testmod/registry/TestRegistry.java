@@ -2,6 +2,7 @@ package com.example.testmod.registry;
 
 import com.example.testmod.TestMod;
 import io.github.blockneko11.sunshinecore.SunshineCore;
+import io.github.blockneko11.sunshinecore.block.BlockInteractionRegistry;
 import io.github.blockneko11.sunshinecore.event.SetupEvent;
 import io.github.blockneko11.sunshinecore.item.CreativeModeTabRegistry;
 import io.github.blockneko11.sunshinecore.item.ItemInteractionRegistry;
@@ -40,6 +41,9 @@ public final class TestRegistry {
             ItemInteractionRegistry.registerTillable(TEST_BLOCK.get(),
                     HoeItem::onlyIfAirAbove,
                     ctx -> Block.popResourceFromFace(ctx.getLevel(), ctx.getClickedPos(), ctx.getClickedFace(), new ItemStack(Items.REDSTONE)));
+
+            BlockInteractionRegistry.registerFuel(50, TEST_BLOCK_ITEM.get());
+            BlockInteractionRegistry.registerComposting(0.4f, TEST_BLOCK_ITEM.get());
         });
     }
 }

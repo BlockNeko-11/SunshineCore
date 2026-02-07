@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public final class FuelRegistryImpl {
     private static final Map<Item, Integer> FUELS = new HashMap<>();
 
@@ -32,10 +33,6 @@ public final class FuelRegistryImpl {
                 StreamUtil.toStream(BuiltInRegistries.ITEM.getTagOrEmpty(tag))
                 .map(Holder::value)
                 .toList());
-    }
-
-    public static int get(ItemStack stack) {
-        return stack.getBurnTime(null);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)

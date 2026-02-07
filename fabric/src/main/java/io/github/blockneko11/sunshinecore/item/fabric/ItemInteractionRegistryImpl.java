@@ -1,7 +1,5 @@
 package io.github.blockneko11.sunshinecore.item.fabric;
 
-import io.github.blockneko11.sunshinecore.block.FlattenableBlock;
-import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
 import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.fabricmc.fabric.api.registry.TillableBlockRegistry;

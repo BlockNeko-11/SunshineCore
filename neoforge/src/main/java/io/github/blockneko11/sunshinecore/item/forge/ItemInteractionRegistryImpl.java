@@ -1,6 +1,9 @@
 package io.github.blockneko11.sunshinecore.item.forge;
 
 import com.mojang.datafixers.util.Pair;
+import io.github.blockneko11.sunshinecore.mixin.forge.item.AxeItemMixin;
+import io.github.blockneko11.sunshinecore.mixin.forge.item.ShovelItemMixin;
+import io.github.blockneko11.sunshinecore.util.CollectionUtil;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,8 +15,6 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public final class ItemInteractionRegistryImpl {
-    public static final Map<Block, Block> STRIPPABLES = new HashMap<>();
-    public static final Map<Block, BlockState> FLATTENABLES = new HashMap<>();
     public static final Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> TILLABLES = new HashMap<>();
 
     public static void registerStrippable(Block before, Block after) {
@@ -25,61 +26,27 @@ public final class ItemInteractionRegistryImpl {
             throw new IllegalArgumentException("block after stripping requires a \"axis\" property");
         }
 
-        STRIPPABLES.put(before, after);
+        CollectionUtil.toMutable(AxeItemMixin::getStrippables, AxeItemMixin::setStrippables);
+        AxeItemMixin.getStrippables().put(before, after);
     }
 
     public static void registerFlattenable(Block before, BlockState after) {
-        FLATTENABLES.put(before, after);
+        CollectionUtil.toMutable(ShovelItemMixin::getFlattenables, ShovelItemMixin::setFlattenables);
+        ShovelItemMixin.getFlattenables().put(before, after);
     }
 
+    // TODO: Use Forge's event
     public static void registerTillable(Block input, Predicate<UseOnContext> predicate, Consumer<UseOnContext> action) {
         TILLABLES.put(input, Pair.of(predicate, action));
     }
 
-//    public static void onBlockToolModification(BlockEvent.BlockToolModificationEvent e) {
-//        UseOnContext context = e.getContext();
-//        ItemAbility ability = e.getItemAbility();
-//        ItemStack held = e.getHeldItemStack();
-//        BlockState beforeState = e.getState();
-//        Block before = beforeState.getBlock();
-//        LevelAccessor level = e.getLevel();
-//
-//        if (level.isClientSide()) {
-//            return;
-//        }
-//
-//        if (ability == ItemAbilities.AXE_STRIP &&
-//                held.canPerformAction(ItemAbilities.AXE_STRIP)) {
-//            Block after = STRIPPABLES.get(before);
-//
-//            if (after != null) {
-//                Direction.Axis axis = beforeState.getValue(BlockStateProperties.AXIS);
-//                e.setFinalState(after.defaultBlockState().setValue(BlockStateProperties.AXIS, axis));
-//            }
-//
-//            return;
-//        }
-//
-//        if (ability == ItemAbilities.SHOVEL_FLATTEN &&
-//                held.canPerformAction(ItemAbilities.SHOVEL_FLATTEN)) {
-//            BlockState afterState = FLATTENABLES.get(before);
-//
-//            if (afterState != null) {
-//                e.setFinalState(afterState);
-//            }
-//
-//            return;
-//        }
-//
 //        if (ability == ItemAbilities.HOE_TILL &&
 //                held.canPerformAction(ItemAbilities.HOE_TILL)) {
-//            Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> tillable = TILLABLES.get(before);
+//            Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> tillable = TILLABLES.get(block);
 //
 //            if (tillable != null && tillable.getFirst().test(context)) {
 //                tillable.getSecond().accept(context);
 //            }
-//
-//            return;
 //        }
 //    }
 }
