@@ -4,6 +4,7 @@ import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.block.forge.BlockInteractionRegistryImpl;
 import io.github.blockneko11.sunshinecore.client.SunshineCoreClient;
 import io.github.blockneko11.sunshinecore.command.forge.CommandRegistryImpl;
+import io.github.blockneko11.sunshinecore.entity.villager.forge.VillagerInteractionRegistryImpl;
 import io.github.blockneko11.sunshinecore.event.SetupEvent;
 import io.github.blockneko11.sunshinecore.event.forge.ClientEventHandlers;
 import io.github.blockneko11.sunshinecore.event.forge.EventHandlers;
@@ -25,6 +26,7 @@ public final class SunshineCoreNeoForge {
         bus.register(CreativeModeTabRegistryImpl.class);
 //        NeoForge.EVENT_BUS.register(FuelRegistryImpl.class);
         NeoForge.EVENT_BUS.register(BlockInteractionRegistryImpl.class);
+        NeoForge.EVENT_BUS.register(VillagerInteractionRegistryImpl.class);
 
         if (dist.isClient()) {
             SunshineCoreClient.initClient();
