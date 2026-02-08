@@ -57,7 +57,7 @@ jobs:
         if: github.repository_owner == 'BlockNeko-11' && contains(github.event.head_commit.message, '[release]') == true && startsWith(github.ref, 'refs/heads/upstream') == false
         uses: softprops/action-gh-release@v2
         with:
-          name: "${{ steps.prop_info.outputs.mod_version }} for mc${{ steps.prop_info.outputs.minecraft_version }}"
+          name: "${{ steps.prop_info.outputs.mod_version }} for Minecraft ${{ steps.prop_info.outputs.minecraft_version }}"
           tag_name: "${{ steps.prop_info.outputs.minecraft_version }}-${{ steps.prop_info.outputs.mod_version }}"
           files: |
             fabric/build/libs
