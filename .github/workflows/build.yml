@@ -60,8 +60,8 @@ jobs:
           name: "${{ steps.prop_info.outputs.mod_version }} for Minecraft ${{ steps.prop_info.outputs.minecraft_version }}"
           tag_name: "${{ steps.prop_info.outputs.minecraft_version }}-${{ steps.prop_info.outputs.mod_version }}"
           files: |
-            fabric/build/libs
-            neoforge/build/libs
+            fabric/build/libs/*.jar
+            neoforge/build/libs/*.jar
           target_commitish: ${{ github.event.ref }}
           generate_release_notes: true
           token: ${{ secrets.RELEASE_TOKEN }}

@@ -12,8 +12,10 @@ include("common")
 include("fabric")
 include("neoforge")
 
-include("testmod-common")
-include("testmod-fabric")
-include("testmod-neoforge")
+if (System.getenv("CI") != "true") {
+    include("testmod-common")
+    include("testmod-fabric")
+    include("testmod-neoforge")
+}
 
 rootProject.name = "SunshineCore"
