@@ -10,6 +10,7 @@ import io.github.blockneko11.sunshinecore.registry.Registrar;
 import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 
@@ -20,9 +21,11 @@ public final class TestRegistry {
 
     public static final Supplier<Block> TEST_BLOCK = REGISTRAR.simpleBlock("test_block");
     public static final Supplier<Block> TEST_BLOCK_FLATTENED = REGISTRAR.simpleBlock("test_block_flattened");
+    public static final TagKey<Block> TEST_BLOCKS = REGISTRAR.tag(BuiltInRegistries.BLOCK, "test_blocks");
 
     public static final Supplier<Item> TEST_BLOCK_ITEM = REGISTRAR.blockItem("test_block", TEST_BLOCK);
     public static final Supplier<Item> TEST_BLOCK_FLATTENED_ITEM = REGISTRAR.blockItem("test_block_flattened", TEST_BLOCK_FLATTENED);
+    public static final TagKey<Item> TEST_BLOCK_ITEMS = REGISTRAR.tag(BuiltInRegistries.ITEM, "test_block_items");
 
     public static final RegistryHolder<CreativeModeTab, CreativeModeTab> TEST_TAB = REGISTRAR.register(
             BuiltInRegistries.CREATIVE_MODE_TAB, "test_tab", () -> CreativeModeTabRegistry.create(

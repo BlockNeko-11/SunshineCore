@@ -51,6 +51,7 @@ bin/
 # fabric
 
 run/
+generated/
 
 # java
 

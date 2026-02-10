@@ -7,18 +7,17 @@ import net.minecraft.tags.TagEntry;
 import net.minecraft.tags.TagKey;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class STagBuilder<T> extends TagBuilder {
-    private final Function<T, ResourceKey<T>> toRegKeyFunction;
+    private final Function<T, ResourceKey<T>> toResourceKey;
 
     private boolean replace = false;
 
-    public STagBuilder(Function<T, ResourceKey<T>> toRegKeyFunction) {
+    public STagBuilder(Function<T, ResourceKey<T>> toResourceKey) {
         super();
-        this.toRegKeyFunction = toRegKeyFunction;
+        this.toResourceKey = toResourceKey;
     }
 
     public STagBuilder<T> replace(boolean replace) {
@@ -33,47 +32,21 @@ public class STagBuilder<T> extends TagBuilder {
     // add
 
     public STagBuilder<T> add(T entry) {
-        return this.add(this.toRegKeyFunction.apply(entry));
+        return this.add(this.toResourceKey.apply(entry));
     }
 
     public STagBuilder<T> add(Supplier<T> supplier) {
         return this.add(supplier.get());
     }
 
-    @SafeVarargs
-    public final STagBuilder<T> add(T... entries) {
-        Arrays.stream(entries)
-                .map(this.toRegKeyFunction)
-                .forEach(this::add);
-
-        return this;
-    }
-
     public STagBuilder<T> add(ResourceKey<T> key) {
         return this.addElement(key.location());
-    }
-
-    @SafeVarargs
-    public final STagBuilder<T> add(ResourceKey<T>... keys) {
-        for (ResourceKey<T> ResourceKey : keys) {
-            this.add(ResourceKey);
-        }
-
-        return this;
     }
 
     @NotNull
     @Override
     public STagBuilder<T> addElement(ResourceLocation id) {
         super.addElement(id);
-        return this;
-    }
-
-    public STagBuilder<T> addElement(ResourceLocation... ids) {
-        for (ResourceLocation id : ids) {
-            this.addElement(id);
-        }
-
         return this;
     }
 

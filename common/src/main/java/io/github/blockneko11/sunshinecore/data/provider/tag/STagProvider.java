@@ -61,30 +61,29 @@ public abstract class STagProvider<T> implements DataProvider {
     @Override
     public CompletableFuture<?> run(CachedOutput writer) {
         return this.lookupProvider.thenApply(lookup -> {
-                    this.tagBuilders.clear();
-                    this.addTag(lookup);
-                    return lookup;
-                })
-                .thenCompose(lookup -> {
-                    HolderLookup.RegistryLookup<T> wrapper = lookup.lookupOrThrow(this.registryRef);
-                    return CompletableFuture.allOf(this.tagBuilders.entrySet()
-                            .stream()
-                            .map(entry -> {
-                                ResourceLocation tagId = entry.getKey();
-                                STagBuilder<T> builder = entry.getValue();
-                                List<TagEntry> entries = new ArrayList<>(builder.build()); // List#copyOf() returns an immutable list
-                                List<TagEntry> hasNotExist = entries.stream().filter(tagEntry -> !tagEntry.verifyIfPresent(id -> wrapper.get(ResourceKey.create(this.registryRef, tagId)).isPresent(), this.tagBuilders::containsKey)).toList();
+            this.tagBuilders.clear();
+            this.addTag(lookup);
+            return lookup;
+        }).thenCompose(lookup -> {
+            HolderLookup.RegistryLookup<T> wrapper = lookup.lookupOrThrow(this.registryRef);
+            return CompletableFuture.allOf(this.tagBuilders.entrySet()
+                    .stream()
+                    .map(e -> this.writeTag(writer, wrapper, e.getKey(), e.getValue()))
+                    .toArray(CompletableFuture<?>[]::new));
+        });
+    }
 
-                                if (!hasNotExist.isEmpty()) {
-                                    throw new IllegalArgumentException(String.format(Locale.ROOT, "Couldn't define tag %s as it is missing following references: %s", tagId, entries.stream().map(Objects::toString).collect(Collectors.joining(","))));
-                                }
+    private CompletableFuture<?> writeTag(CachedOutput writer, HolderLookup.RegistryLookup<T> wrapper, ResourceLocation tagId, STagBuilder<T> builder) {
+        List<TagEntry> entries = new ArrayList<>(builder.build()); // List#copyOf() returns an immutable list
+        List<TagEntry> hasNotExist = entries.stream().filter(tagEntry -> !tagEntry.verifyIfPresent(id -> wrapper.get(ResourceKey.create(this.registryRef, id)).isPresent(), this.tagBuilders::containsKey)).toList();
 
-                                return DataProvider.saveStable(writer,
-                                        TagFile.CODEC.encodeStart(JsonOps.INSTANCE, new TagFile(entries, builder.isReplace())).getOrThrow(),
-                                        this.output.createPathProvider(PackOutput.Target.DATA_PACK, Registries.tagsDirPath(this.registryRef)).json(tagId));
-                            })
-                            .toArray(CompletableFuture<?>[]::new));
-                });
+        if (!hasNotExist.isEmpty()) {
+            throw new IllegalArgumentException(String.format(Locale.ROOT, "Couldn't define tag %s as it is missing following references: %s", tagId, entries.stream().map(Objects::toString).collect(Collectors.joining(","))));
+        }
+
+        return DataProvider.saveStable(writer,
+                TagFile.CODEC.encodeStart(JsonOps.INSTANCE, new TagFile(entries, builder.isReplace())).getOrThrow(),
+                this.output.createPathProvider(PackOutput.Target.DATA_PACK, Registries.tagsDirPath(this.registryRef)).json(tagId));
     }
 
     protected STagBuilder<T> getTagBuilder(TagKey<T> tag) {
@@ -94,17 +93,17 @@ public abstract class STagProvider<T> implements DataProvider {
     @NotNull
     @Override
     public String getName() {
-        return "Sunshine Core Tag Provider";
+        return "Sunshine Core Tag Provider for " + this.registryRef.location();
     }
 
-    public static abstract class BlockTagProvider extends STagProvider<Block> {
-        public BlockTagProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    public static abstract class BlockProvider extends STagProvider<Block> {
+        public BlockProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
             super(modId, validate, output, lookupProvider, Registries.BLOCK);
         }
     }
 
-    public static abstract class ItemTagProvider extends STagProvider<Item> {
-        public ItemTagProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    public static abstract class ItemProvider extends STagProvider<Item> {
+        public ItemProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
             super(modId, validate, output, lookupProvider, Registries.ITEM);
         }
 
@@ -124,8 +123,8 @@ public abstract class STagProvider<T> implements DataProvider {
 //        }
     }
 
-    public static abstract class FluidTagProvider extends STagProvider<Fluid> {
-        public FluidTagProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    public static abstract class FluidProvider extends STagProvider<Fluid> {
+        public FluidProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
             super(modId, validate, output, lookupProvider, Registries.FLUID);
         }
 
@@ -135,8 +134,8 @@ public abstract class STagProvider<T> implements DataProvider {
         }
     }
 
-    public static abstract class BlockEntityTypeTagProvider extends STagProvider<BlockEntityType<?>> {
-        public BlockEntityTypeTagProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    public static abstract class BlockEntityTypeProvider extends STagProvider<BlockEntityType<?>> {
+        public BlockEntityTypeProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
             super(modId, validate, output, lookupProvider, Registries.BLOCK_ENTITY_TYPE);
         }
 
@@ -146,8 +145,8 @@ public abstract class STagProvider<T> implements DataProvider {
         }
     }
 
-    public static abstract class EntityTypeTagProvider extends STagProvider<EntityType<?>> {
-        public EntityTypeTagProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+    public static abstract class EntityTypeProvider extends STagProvider<EntityType<?>> {
+        public EntityTypeProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
             super(modId, validate, output, lookupProvider, Registries.ENTITY_TYPE);
         }
 

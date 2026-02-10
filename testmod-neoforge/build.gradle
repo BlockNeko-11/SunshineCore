@@ -21,7 +21,7 @@ loom {
     runs {
         data {
             data()
-            programArgs "--all", "--mod", "examplemod"
+            programArgs "--all", "--mod", "testmod"
             programArgs "--output", generatedResources.absolutePath
 //            property "forge.logging.markers", "SCAN,REGISTRIES,REGISTRYDUMP"
         }

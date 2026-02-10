@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.mixin.fabric;
+package io.github.blockneko11.sunshinecore.mixin.fabric.level;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.event.level.ServerLevelLifecycleEvent;

@@ -42,6 +42,9 @@ public abstract class SBlockLootTableProvider extends BlockLootSubProvider imple
     }
 
     @Override
+    protected abstract void generate();
+
+    @Override
     public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> exporter) {
         this.generate();
         for (Map.Entry<ResourceKey<LootTable>, LootTable.Builder> entry : this.map.entrySet()) {
@@ -80,32 +83,34 @@ public abstract class SBlockLootTableProvider extends BlockLootSubProvider imple
     @NotNull
     @Override
     public CompletableFuture<?> run(CachedOutput writer) {
+        return this.lookupProvider.thenCompose(lookup -> this.run(writer, lookup));
+    }
+
+    private CompletableFuture<?> run(CachedOutput writer, HolderLookup.Provider lookup) {
         Map<ResourceLocation, LootTable> builders = new HashMap<>();
-        return this.lookupProvider.thenCompose(lookup -> {
-            this.generate((key, builder) -> {
-                ResourceLocation id = key.location();
-                if (builders.containsKey(id)) {
-                    throw new IllegalStateException("Duplicate loot table definition for " + key);
-                }
+        this.generate((key, builder) -> {
+            ResourceLocation id = key.location();
+            if (builders.containsKey(id)) {
+                throw new IllegalStateException("Duplicate loot table definition for " + key);
+            }
 
-                builders.put(id, builder.setParamSet(LootContextParamSets.BLOCK).build());
-            });
-
-            CompletableFuture<?>[] futures = builders.entrySet()
-                    .stream()
-                    .map(e -> {
-                        JsonObject json = (JsonObject) LootTable.DIRECT_CODEC.encodeStart(lookup.createSerializationContext(JsonOps.INSTANCE), e.getValue()).getOrThrow();
-                        return DataProvider.saveStable(writer, json,
-                                this.output.createPathProvider(PackOutput.Target.DATA_PACK, "loot_tables").json(e.getKey()));
-                    }).toArray(CompletableFuture<?>[]::new);
-
-            return CompletableFuture.allOf(futures);
+            builders.put(id, builder.setParamSet(LootContextParamSets.BLOCK).build());
         });
+
+        CompletableFuture<?>[] futures = builders.entrySet()
+                .stream()
+                .map(e -> {
+                    JsonObject json = (JsonObject) LootTable.DIRECT_CODEC.encodeStart(lookup.createSerializationContext(JsonOps.INSTANCE), e.getValue()).getOrThrow();
+                    return DataProvider.saveStable(writer, json,
+                            this.output.createPathProvider(PackOutput.Target.DATA_PACK, "loot_tables").json(e.getKey()));
+                }).toArray(CompletableFuture<?>[]::new);
+
+        return CompletableFuture.allOf(futures);
     }
 
     @NotNull
     @Override
     public final String getName() {
-        return "Sunshine Core Block Loot Table Provider";
+        return "Sunshine Core Loot Table Provider for Block";
     }
 }

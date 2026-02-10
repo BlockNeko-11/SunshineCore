@@ -1,8 +1,10 @@
 package io.github.blockneko11.sunshinecore.registry;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import io.github.blockneko11.sunshinecore.universal.SIdentifier;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -70,6 +72,10 @@ public abstract class Registrar {
 
     public final Supplier<Block> simpleBlock(String id, UnaryOperator<Block.Properties> operator) {
         return this.register(BuiltInRegistries.BLOCK, id, () -> new Block(operator.apply(Block.Properties.of())));
+    }
+
+    public final <T> TagKey<T> tag(Registry<T> registry, String id) {
+        return TagKey.create(registry.key(), SIdentifier.id(this.modId, id));
     }
 
     /**

@@ -9,6 +9,7 @@
   "mixins": [
     "block.ComposterBlockMixin",
     "block.FireBlockMixin",
+    "data.DatagenModLoaderMixin",
     "item.AxeItemMixin",
     "item.HoeItemMixin",
     "item.ShovelItemMixin"

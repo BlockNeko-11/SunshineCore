@@ -1,8 +1,11 @@
 package com.example.testmod;
 
+import com.example.testmod.data.TestTagProvider;
+import com.example.testmod.data.TestTranslationProvider;
 import com.example.testmod.registry.TestRegistry;
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.command.CommandRegistry;
+import io.github.blockneko11.sunshinecore.data.SDataGeneration;
 import io.github.blockneko11.sunshinecore.event.level.ServerLevelLifecycleEvent;
 import io.github.blockneko11.sunshinecore.util.Platform;
 import net.minecraft.commands.Commands;
@@ -37,5 +40,13 @@ public final class TestMod {
 
     private static void onLevelLoad(ServerLevelLifecycleEvent.Load e) {
         LOGGER.info("Level loaded: {}", e.getLevel().dimension().location());
+    }
+
+    public static void initDataGen(SDataGeneration gen) {
+        gen.addProvider(TestTagProvider.Block::new);
+        gen.addProvider(TestTagProvider.Item::new);
+        gen.addProvider(TestTranslationProvider::new);
+
+        gen.run();
     }
 }

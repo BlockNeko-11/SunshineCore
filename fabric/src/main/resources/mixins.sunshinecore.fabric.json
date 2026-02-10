@@ -8,8 +8,9 @@
   ],
   "mixins": [
     "DedicatedServerMixin",
-    "PlayerMixin",
-    "ServerLevelMixin"
+    "data.FabricDataGenHelperMixin",
+    "entity.PlayerMixin",
+    "level.ServerLevelMixin"
   ],
   "injectors": {
     "defaultRequire": 1

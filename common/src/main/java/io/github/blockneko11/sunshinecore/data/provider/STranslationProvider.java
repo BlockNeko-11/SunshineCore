@@ -42,15 +42,14 @@ public abstract class STranslationProvider implements DataProvider {
 
         JsonObject json = new JsonObject();
         translations.forEach(json::addProperty);
-        return DataProvider.saveStable(writer, json,
-                this.output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "lang")
-                        .json(SIdentifier.id(this.modId, this.language)));
+        return DataProvider.saveStable(writer, json, this.output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "lang")
+                .json(SIdentifier.id(this.modId, this.language)));
     }
 
     @NotNull
     @Override
     public final String getName() {
-        return "Sunshine Core Translation Provider";
+        return "Sunshine Core Translation Provider for " + this.language;
     }
 
     public static abstract class EN_US extends STranslationProvider {
