@@ -83,7 +83,7 @@ public abstract class STagProvider<T> implements DataProvider {
 
         return DataProvider.saveStable(writer,
                 TagFile.CODEC.encodeStart(JsonOps.INSTANCE, new TagFile(entries, builder.isReplace())).getOrThrow(),
-                this.output.createPathProvider(PackOutput.Target.DATA_PACK, Registries.tagsDirPath(this.registryRef)).json(tagId));
+                this.output.createRegistryTagsPathProvider(this.registryRef).json(tagId));
     }
 
     protected STagBuilder<T> getTagBuilder(TagKey<T> tag) {

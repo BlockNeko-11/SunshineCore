@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.data.provider;
+package io.github.blockneko11.sunshinecore.data.provider.loot;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;

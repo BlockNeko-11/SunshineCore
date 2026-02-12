@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.data.provider;
+package io.github.blockneko11.sunshinecore.data.provider.misc;
 
 import com.google.gson.JsonObject;
 import io.github.blockneko11.sunshinecore.universal.SIdentifier;

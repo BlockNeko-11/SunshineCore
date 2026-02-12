@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.mixin.data;
 
-import io.github.blockneko11.sunshinecore.data.provider.SModelProvider;
+import io.github.blockneko11.sunshinecore.data.provider.model.SModelProvider;
 import net.minecraft.data.models.ModelProvider;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

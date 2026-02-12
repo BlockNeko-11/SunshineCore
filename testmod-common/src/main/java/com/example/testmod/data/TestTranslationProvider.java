@@ -1,7 +1,7 @@
 package com.example.testmod.data;
 
 import com.example.testmod.registry.TestRegistry;
-import io.github.blockneko11.sunshinecore.data.provider.STranslationProvider;
+import io.github.blockneko11.sunshinecore.data.provider.misc.STranslationProvider;
 import net.minecraft.data.PackOutput;
 
 public final class TestTranslationProvider extends STranslationProvider.EN_US {

@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.data.provider;
+package io.github.blockneko11.sunshinecore.data.provider.model;
 
 import com.google.gson.JsonElement;
 import net.minecraft.core.registries.BuiltInRegistries;
