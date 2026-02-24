@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.util;
+package io.github.blockneko11.sunshinecore.util.loader;
 
 public interface Mod {
     String getId();

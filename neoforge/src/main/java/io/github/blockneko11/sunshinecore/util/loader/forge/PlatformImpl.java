@@ -1,8 +1,8 @@
-package io.github.blockneko11.sunshinecore.util.forge;
+package io.github.blockneko11.sunshinecore.util.loader.forge;
 
-import io.github.blockneko11.sunshinecore.util.Loader;
-import io.github.blockneko11.sunshinecore.util.Mod;
-import io.github.blockneko11.sunshinecore.util.Side;
+import io.github.blockneko11.sunshinecore.util.loader.Loader;
+import io.github.blockneko11.sunshinecore.util.loader.Mod;
+import io.github.blockneko11.sunshinecore.util.loader.Side;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLPaths;

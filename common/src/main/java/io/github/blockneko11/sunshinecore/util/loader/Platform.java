@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.util;
+package io.github.blockneko11.sunshinecore.util.loader;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
 

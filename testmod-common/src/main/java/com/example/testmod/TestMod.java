@@ -7,7 +7,7 @@ import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.command.CommandRegistry;
 import io.github.blockneko11.sunshinecore.data.SDataGeneration;
 import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvent;
-import io.github.blockneko11.sunshinecore.util.Platform;
+import io.github.blockneko11.sunshinecore.util.loader.Platform;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import org.slf4j.Logger;

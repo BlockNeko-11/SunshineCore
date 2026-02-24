@@ -1,6 +1,6 @@
-package io.github.blockneko11.sunshinecore.util.fabric;
+package io.github.blockneko11.sunshinecore.util.loader.fabric;
 
-import io.github.blockneko11.sunshinecore.util.Mod;
+import io.github.blockneko11.sunshinecore.util.loader.Mod;
 import net.fabricmc.loader.api.ModContainer;
 
 final class ModImpl implements Mod {
