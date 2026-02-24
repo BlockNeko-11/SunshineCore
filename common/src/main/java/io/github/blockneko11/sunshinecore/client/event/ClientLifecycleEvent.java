@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.event.client;
+package io.github.blockneko11.sunshinecore.client.event;
 
 import io.github.blockneko11.sunshinecore.event.Event;
 import net.fabricmc.api.EnvType;

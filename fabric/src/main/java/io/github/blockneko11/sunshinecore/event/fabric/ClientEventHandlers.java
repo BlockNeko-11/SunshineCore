@@ -1,8 +1,8 @@
 package io.github.blockneko11.sunshinecore.event.fabric;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.event.client.level.ClientLevelLifecycleEvent;
-import io.github.blockneko11.sunshinecore.event.client.ClientLifecycleEvent;
+import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelLifecycleEvent;
+import io.github.blockneko11.sunshinecore.client.event.ClientLifecycleEvent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;

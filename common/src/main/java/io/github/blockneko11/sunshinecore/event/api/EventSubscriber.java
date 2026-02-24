@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.eventbus;
+package io.github.blockneko11.sunshinecore.event.api;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

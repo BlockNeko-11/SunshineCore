@@ -1,8 +1,8 @@
 package io.github.blockneko11.sunshinecore.event.forge;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.event.client.level.ClientLevelLifecycleEvent;
-import io.github.blockneko11.sunshinecore.event.client.ClientLifecycleEvent;
+import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelLifecycleEvent;
+import io.github.blockneko11.sunshinecore.client.event.ClientLifecycleEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.level.Level;

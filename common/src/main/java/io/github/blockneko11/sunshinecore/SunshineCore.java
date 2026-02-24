@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore;
 
-import io.github.blockneko11.sunshinecore.eventbus.EventBus;
+import io.github.blockneko11.sunshinecore.event.api.EventBus;
 
 public final class SunshineCore {
     public static final String MOD_ID = "sunshinecore";

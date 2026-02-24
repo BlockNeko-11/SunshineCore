@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.mixin.fabric.client;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.event.client.level.ClientLevelLifecycleEvent;
+import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelLifecycleEvent;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.renderer.LevelRenderer;
