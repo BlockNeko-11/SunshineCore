@@ -14,6 +14,6 @@ public final class SunshineCoreClientFabric implements ClientModInitializer {
     public void onInitializeClient() {
         SunshineCoreClient.initClient();
         ClientEventHandlers.initClient();
-        SunshineCore.SC_EVENT_BUS.post(new SetupEvent());
+        SunshineCore.BUS.post(new SetupEvent());
     }
 }

@@ -13,45 +13,45 @@ public final class EventHandlers {
         // Server Lifecycle
 
         ServerLifecycleEvents.SERVER_STARTING.register(s -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.BeforeStart(s));
+            SunshineCore.BUS.post(new ServerLifecycleEvent.BeforeStart(s));
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register(s -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.Started(s));
+            SunshineCore.BUS.post(new ServerLifecycleEvent.Started(s));
         });
 
         ServerLifecycleEvents.SERVER_STOPPING.register(s -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.Stopping(s));
+            SunshineCore.BUS.post(new ServerLifecycleEvent.Stopping(s));
         });
 
         ServerLifecycleEvents.SERVER_STOPPED.register(s -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.Stopped(s));
+            SunshineCore.BUS.post(new ServerLifecycleEvent.Stopped(s));
         });
 
         ServerTickEvents.START_SERVER_TICK.register(s -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.PreTick(s));
+            SunshineCore.BUS.post(new ServerLifecycleEvent.PreTick(s));
         });
 
         ServerTickEvents.END_SERVER_TICK.register(s -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.PostTick(s));
+            SunshineCore.BUS.post(new ServerLifecycleEvent.PostTick(s));
         });
 
         // Server Level Lifecycle
 
         ServerWorldEvents.LOAD.register((s, l) -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.Load(l));
+            SunshineCore.BUS.post(new ServerLevelLifecycleEvent.Load(l));
         });
 
         ServerWorldEvents.UNLOAD.register((s, l) -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.Unload(l));
+            SunshineCore.BUS.post(new ServerLevelLifecycleEvent.Unload(l));
         });
 
         ServerTickEvents.START_WORLD_TICK.register(l -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.PreTick(l));
+            SunshineCore.BUS.post(new ServerLevelLifecycleEvent.PreTick(l));
         });
 
         ServerTickEvents.END_WORLD_TICK.register(l -> {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.PostTick(l));
+            SunshineCore.BUS.post(new ServerLevelLifecycleEvent.PostTick(l));
         });
     }
 }

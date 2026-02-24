@@ -15,13 +15,18 @@ import java.util.function.Consumer;
  * Event bus API, which is used for developers to subscribe cross-loader events (See {@link Event}).
  * Reference to <a href="https://github.com/neoforged/Bus">NeoForge's event bus</a>, under the LGPL-2.1 license.
  */
-public class EventBus {
-    public static final Logger LOGGER = LoggerFactory.getLogger(EventBus.class);
+public abstract class EventBus {
+    private final Logger log;
 
     private final Map<Class<? extends Event>, Subscribers<?>> listeners = new ConcurrentHashMap<>();
-    private ExceptionHandler handler = (type, ex) -> {
-        LOGGER.error("An exception has caught when posting event {}. Detail message: ", type.getCanonicalName(), ex);
-    };
+    private ExceptionHandler handler;
+
+    protected EventBus(String busName) {
+        this.log = LoggerFactory.getLogger(busName);
+        this.handler = (type, ex) -> {
+            this.log.error("An exception has caught when posting event {}. Detail message: ", type.getCanonicalName(), ex);
+        };
+    }
 
     public void setHandler(ExceptionHandler handler) {
         this.handler = handler;

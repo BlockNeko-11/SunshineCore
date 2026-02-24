@@ -21,6 +21,6 @@ public abstract class ClientLevelMixin {
             at = @At("RETURN")
     )
     private void onConstruct$clientLevelLoad(ClientPacketListener connection, ClientLevel.ClientLevelData clientLevelData, ResourceKey dimension, Holder dimensionType, int viewDistance, int serverSimulationDistance, Supplier profiler, LevelRenderer levelRenderer, boolean isDebug, long biomeZoomSeed, CallbackInfo ci) {
-        SunshineCore.SC_EVENT_BUS.post(new ClientLevelLifecycleEvent.Load((ClientLevel) (Object) this));
+        SunshineCore.BUS.post(new ClientLevelLifecycleEvent.Load((ClientLevel) (Object) this));
     }
 }

@@ -15,7 +15,7 @@ public abstract class PlayerMixin {
             at = @At("HEAD")
     )
     private void playerTickPre(CallbackInfo ci) {
-        SunshineCore.SC_EVENT_BUS.post(new PlayerEvent.PreTick((Player) (Object) this));
+        SunshineCore.BUS.post(new PlayerEvent.PreTick((Player) (Object) this));
     }
 
     @Inject(
@@ -23,6 +23,6 @@ public abstract class PlayerMixin {
             at = @At("RETURN")
     )
     private void playerTickPost(CallbackInfo ci) {
-        SunshineCore.SC_EVENT_BUS.post(new PlayerEvent.PostTick((Player) (Object) this));
+        SunshineCore.BUS.post(new PlayerEvent.PostTick((Player) (Object) this));
     }
 }

@@ -2,7 +2,6 @@ package io.github.blockneko11.sunshinecore.event.forge;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.event.ServerLifecycleEvent;
-import io.github.blockneko11.sunshinecore.event.SetupEvent;
 import io.github.blockneko11.sunshinecore.event.level.ServerLevelLifecycleEvent;
 import io.github.blockneko11.sunshinecore.event.level.player.PlayerEvent;
 import net.minecraft.server.level.ServerLevel;
@@ -10,7 +9,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
@@ -22,37 +20,37 @@ public final class EventHandlers {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerAboutToStart(ServerAboutToStartEvent e) {
-        SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.BeforeStart(e.getServer()));
+        SunshineCore.BUS.post(new ServerLifecycleEvent.BeforeStart(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStarting(ServerStartingEvent e) {
-        SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.Starting(e.getServer()));
+        SunshineCore.BUS.post(new ServerLifecycleEvent.Starting(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStarted(ServerStartedEvent e) {
-        SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.Started(e.getServer()));
+        SunshineCore.BUS.post(new ServerLifecycleEvent.Started(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStopping(ServerStoppingEvent e) {
-        SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.Stopping(e.getServer()));
+        SunshineCore.BUS.post(new ServerLifecycleEvent.Stopping(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStopped(ServerStoppedEvent e) {
-        SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.Stopped(e.getServer()));
+        SunshineCore.BUS.post(new ServerLifecycleEvent.Stopped(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerTickPre(ServerTickEvent.Pre e) {
-        SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.PreTick(e.getServer()));
+        SunshineCore.BUS.post(new ServerLifecycleEvent.PreTick(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerTickPost(ServerTickEvent.Post e) {
-        SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.PostTick(e.getServer()));
+        SunshineCore.BUS.post(new ServerLifecycleEvent.PostTick(e.getServer()));
     }
 
     // Server Level Lifecycle
@@ -63,7 +61,7 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.Load((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.Load((ServerLevel) level));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -72,7 +70,7 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.Unload((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.Unload((ServerLevel) level));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -81,7 +79,7 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.Save((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.Save((ServerLevel) level));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -90,7 +88,7 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.PreTick((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.PreTick((ServerLevel) level));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -99,18 +97,18 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.PostTick((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.PostTick((ServerLevel) level));
     }
 
     // Player
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onPlayerTickPre(PlayerTickEvent.Pre e) {
-        SunshineCore.SC_EVENT_BUS.post(new PlayerEvent.PreTick(e.getEntity()));
+        SunshineCore.BUS.post(new PlayerEvent.PreTick(e.getEntity()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onPlayerTickPost(PlayerTickEvent.Post e) {
-        SunshineCore.SC_EVENT_BUS.post(new PlayerEvent.PostTick(e.getEntity()));
+        SunshineCore.BUS.post(new PlayerEvent.PostTick(e.getEntity()));
     }
 }

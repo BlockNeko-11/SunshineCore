@@ -35,6 +35,6 @@ public final class SunshineCoreNeoForge {
     }
 
     private void onCommonSetup(FMLCommonSetupEvent e) {
-        SunshineCore.SC_EVENT_BUS.post(new SetupEvent());
+        SunshineCore.BUS.post(new SetupEvent());
     }
 }

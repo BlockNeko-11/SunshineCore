@@ -33,6 +33,10 @@ dependencies {
 
     implementation(include("net.jodah:typetools:${rootProject.type_tools_version}"))
 
+    // implementation(include("com.github.BlockNeko-11.UnifiedConfig:unified-config-core:${rootProject.unified_config_version}"))
+    // implementation(include("com.github.BlockNeko-11.UnifiedConfig:unified-config-gson:${rootProject.unified_config_version}"))
+    // implementation(include("com.github.BlockNeko-11.UnifiedConfig:unified-config-snakeyaml:${rootProject.unified_config_version}"))
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 }

@@ -15,29 +15,29 @@ public class ClientEventHandlers {
         // Client Lifecycle
 
         ClientLifecycleEvents.CLIENT_STARTED.register(c -> {
-            SunshineCore.SC_EVENT_BUS.post(new ClientLifecycleEvent.Started(c));
+            SunshineCore.BUS.post(new ClientLifecycleEvent.Started(c));
         });
 
         ClientLifecycleEvents.CLIENT_STOPPING.register(c -> {
-            SunshineCore.SC_EVENT_BUS.post(new ClientLifecycleEvent.Stopping(c));
+            SunshineCore.BUS.post(new ClientLifecycleEvent.Stopping(c));
         });
 
         ClientTickEvents.START_CLIENT_TICK.register(c -> {
-            SunshineCore.SC_EVENT_BUS.post(new ClientLifecycleEvent.PreTick(c));
+            SunshineCore.BUS.post(new ClientLifecycleEvent.PreTick(c));
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(c -> {
-            SunshineCore.SC_EVENT_BUS.post(new ClientLifecycleEvent.PostTick(c));
+            SunshineCore.BUS.post(new ClientLifecycleEvent.PostTick(c));
         });
 
         // Client Level Lifecycle
 
         ClientTickEvents.START_WORLD_TICK.register(l -> {
-            SunshineCore.SC_EVENT_BUS.post(new ClientLevelLifecycleEvent.PreTick(l));
+            SunshineCore.BUS.post(new ClientLevelLifecycleEvent.PreTick(l));
         });
 
         ClientTickEvents.END_WORLD_TICK.register(l -> {
-            SunshineCore.SC_EVENT_BUS.post(new ClientLevelLifecycleEvent.PostTick(l));
+            SunshineCore.BUS.post(new ClientLevelLifecycleEvent.PostTick(l));
         });
     }
 }

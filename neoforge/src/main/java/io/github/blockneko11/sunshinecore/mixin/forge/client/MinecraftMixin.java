@@ -22,7 +22,7 @@ public abstract class MinecraftMixin {
             )
     )
     private void onRun$clientStarted(CallbackInfo ci) {
-        SunshineCore.SC_EVENT_BUS.post(new ClientLifecycleEvent.Started((Minecraft) (Object) this));
+        SunshineCore.BUS.post(new ClientLifecycleEvent.Started((Minecraft) (Object) this));
     }
 
     @Inject(
@@ -35,6 +35,6 @@ public abstract class MinecraftMixin {
             )
     )
     private void onDestroy$clientStopping(CallbackInfo ci) {
-        SunshineCore.SC_EVENT_BUS.post(new ClientLifecycleEvent.Stopping((Minecraft) (Object) this));
+        SunshineCore.BUS.post(new ClientLifecycleEvent.Stopping((Minecraft) (Object) this));
     }
 }

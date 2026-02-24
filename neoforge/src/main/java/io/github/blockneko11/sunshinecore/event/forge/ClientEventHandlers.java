@@ -19,12 +19,12 @@ public final class ClientEventHandlers {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onClientTickPre(ClientTickEvent.Pre e) {
-        SunshineCore.SC_EVENT_BUS.post(new ClientLifecycleEvent.PreTick(Minecraft.getInstance()));
+        SunshineCore.BUS.post(new ClientLifecycleEvent.PreTick(Minecraft.getInstance()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onClientTickPost(ClientTickEvent.Post e) {
-        SunshineCore.SC_EVENT_BUS.post(new ClientLifecycleEvent.PostTick(Minecraft.getInstance()));
+        SunshineCore.BUS.post(new ClientLifecycleEvent.PostTick(Minecraft.getInstance()));
     }
 
     // Client Level Lifecycle
@@ -33,7 +33,7 @@ public final class ClientEventHandlers {
     public static void onClientLevelLoad(LevelEvent.Load e) {
         LevelAccessor level = e.getLevel();
         if (level.isClientSide()) {
-            SunshineCore.SC_EVENT_BUS.post(new ClientLevelLifecycleEvent.Load((ClientLevel) level));
+            SunshineCore.BUS.post(new ClientLevelLifecycleEvent.Load((ClientLevel) level));
         }
     }
 
@@ -41,7 +41,7 @@ public final class ClientEventHandlers {
     public static void onClientLevelTickPre(LevelTickEvent.Pre e) {
         Level level = e.getLevel();
         if (level.isClientSide()) {
-            SunshineCore.SC_EVENT_BUS.post(new ClientLevelLifecycleEvent.PreTick((ClientLevel) level));
+            SunshineCore.BUS.post(new ClientLevelLifecycleEvent.PreTick((ClientLevel) level));
         }
     }
 
@@ -49,7 +49,7 @@ public final class ClientEventHandlers {
     public static void onClientLevelTickPost(LevelTickEvent.Post e) {
         Level level = e.getLevel();
         if (level.isClientSide()) {
-            SunshineCore.SC_EVENT_BUS.post(new ClientLevelLifecycleEvent.PostTick((ClientLevel) level));
+            SunshineCore.BUS.post(new ClientLevelLifecycleEvent.PostTick((ClientLevel) level));
         }
     }
 }

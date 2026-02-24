@@ -20,6 +20,6 @@ public abstract class ServerLevelMixin {
             )
     )
     private void serverLevelSave(ProgressListener progress, boolean flush, boolean skipSave, CallbackInfo ci) {
-        SunshineCore.SC_EVENT_BUS.post(new ServerLevelLifecycleEvent.Save((ServerLevel) (Object) this));
+        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.Save((ServerLevel) (Object) this));
     }
 }

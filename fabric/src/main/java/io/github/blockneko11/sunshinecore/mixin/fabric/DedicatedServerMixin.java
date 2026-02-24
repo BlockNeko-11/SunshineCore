@@ -17,7 +17,7 @@ public abstract class DedicatedServerMixin {
     )
     private void initServer$serverStarting(CallbackInfoReturnable<Boolean> cir) {
         if (cir.getReturnValueZ()) {
-            SunshineCore.SC_EVENT_BUS.post(new ServerLifecycleEvent.Starting((MinecraftServer) (Object) this));
+            SunshineCore.BUS.post(new ServerLifecycleEvent.Starting((MinecraftServer) (Object) this));
         }
     }
 }

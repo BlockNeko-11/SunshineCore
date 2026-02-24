@@ -39,7 +39,7 @@ public final class TestRegistry {
             output.accept(TEST_BLOCK_FLATTENED_ITEM.get());
         });
 
-        SunshineCore.SC_EVENT_BUS.register(SetupEvent.class, e -> {
+        SunshineCore.BUS.register(SetupEvent.class, e -> {
             ItemInteractionRegistry.registerFlattenable(TEST_BLOCK.get(), TEST_BLOCK_FLATTENED.get().defaultBlockState());
             ItemInteractionRegistry.registerTillable(TEST_BLOCK.get(),
                     HoeItem::onlyIfAirAbove,

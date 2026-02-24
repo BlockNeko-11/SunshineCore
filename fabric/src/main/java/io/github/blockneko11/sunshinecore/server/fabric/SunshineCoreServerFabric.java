@@ -7,6 +7,6 @@ import net.fabricmc.api.DedicatedServerModInitializer;
 public final class SunshineCoreServerFabric implements DedicatedServerModInitializer {
     @Override
     public void onInitializeServer() {
-        SunshineCore.SC_EVENT_BUS.post(new SetupEvent());
+        SunshineCore.BUS.post(new SetupEvent());
     }
 }
