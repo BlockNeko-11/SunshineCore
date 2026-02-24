@@ -32,6 +32,7 @@ public final class SunshineCoreNeoForge {
         if (dist.isClient()) {
             SunshineCoreClient.initClient();
             NeoForge.EVENT_BUS.register(ClientEventHandlers.class);
+            bus.register(MenuRegistryImpl.class);
         }
     }
 
