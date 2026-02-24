@@ -19,11 +19,11 @@ public final class ItemInteractionRegistryImpl {
 
     public static void registerStrippable(Block before, Block after) {
         if (!before.getStateDefinition().getProperties().contains(BlockStateProperties.AXIS)) {
-            throw new IllegalArgumentException("block before stripping requires a \"axis\" property");
+            throw new IllegalArgumentException("block " + before.builtInRegistryHolder().getRegisteredName() + " requires a \"axis\" property");
         }
 
         if (!after.getStateDefinition().getProperties().contains(BlockStateProperties.AXIS)) {
-            throw new IllegalArgumentException("block after stripping requires a \"axis\" property");
+            throw new IllegalArgumentException("block " + after.builtInRegistryHolder().getRegisteredName() + " requires a \"axis\" property");
         }
 
         CollectionUtil.toMutable(AxeItemMixin::getStrippables, AxeItemMixin::setStrippables);
