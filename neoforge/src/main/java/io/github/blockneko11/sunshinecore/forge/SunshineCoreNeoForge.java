@@ -10,7 +10,6 @@ import io.github.blockneko11.sunshinecore.event.SetupEvent;
 import io.github.blockneko11.sunshinecore.event.forge.ClientEventHandlers;
 import io.github.blockneko11.sunshinecore.event.forge.EventHandlers;
 import io.github.blockneko11.sunshinecore.item.tab.forge.CreativeModeTabHelperImpl;
-//import io.github.blockneko11.sunshinecore.item.forge.FuelRegistryImpl;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -25,7 +24,6 @@ public final class SunshineCoreNeoForge {
         bus.addListener(this::onCommonSetup);
         NeoForge.EVENT_BUS.register(CommandRegistryImpl.class);
         bus.register(CreativeModeTabHelperImpl.class);
-//        NeoForge.EVENT_BUS.register(FuelRegistryImpl.class);
         NeoForge.EVENT_BUS.register(BlockInteractionRegistryImpl.class);
         NeoForge.EVENT_BUS.register(VillagerInteractionRegistryImpl.class);
 
