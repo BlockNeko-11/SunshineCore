@@ -1,6 +1,6 @@
-package io.github.blockneko11.sunshinecore.item.forge;
+package io.github.blockneko11.sunshinecore.item.tab.forge;
 
-import io.github.blockneko11.sunshinecore.item.CreativeModTabModifier;
+import io.github.blockneko11.sunshinecore.item.tab.CreativeModTabModifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.EventPriority;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public final class CreativeModeTabRegistryImpl {
+public final class CreativeModeTabHelperImpl {
     private static final List<Consumer<BuildCreativeModeTabContentsEvent>> MODIFIERS = new ArrayList<>();
 
     public static CreativeModeTab.Builder createBuilder() {

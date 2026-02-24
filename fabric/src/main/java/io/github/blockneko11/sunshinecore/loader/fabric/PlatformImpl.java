@@ -1,8 +1,8 @@
-package io.github.blockneko11.sunshinecore.util.loader.fabric;
+package io.github.blockneko11.sunshinecore.loader.fabric;
 
-import io.github.blockneko11.sunshinecore.util.loader.Loader;
-import io.github.blockneko11.sunshinecore.util.loader.Mod;
-import io.github.blockneko11.sunshinecore.util.loader.Side;
+import io.github.blockneko11.sunshinecore.loader.Loader;
+import io.github.blockneko11.sunshinecore.loader.Mod;
+import io.github.blockneko11.sunshinecore.loader.Side;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Path;

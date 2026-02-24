@@ -4,7 +4,7 @@ import com.example.testmod.TestMod;
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.block.BlockInteractionRegistry;
 import io.github.blockneko11.sunshinecore.event.SetupEvent;
-import io.github.blockneko11.sunshinecore.item.CreativeModeTabRegistry;
+import io.github.blockneko11.sunshinecore.item.tab.CreativeModeTabHelper;
 import io.github.blockneko11.sunshinecore.item.ItemInteractionRegistry;
 import io.github.blockneko11.sunshinecore.registry.Registrar;
 import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
@@ -28,13 +28,13 @@ public final class TestRegistry {
     public static final TagKey<Item> TEST_BLOCK_ITEMS = REGISTRAR.tag(BuiltInRegistries.ITEM, "test_block_items");
 
     public static final RegistryHolder<CreativeModeTab, CreativeModeTab> TEST_TAB = REGISTRAR.register(
-            BuiltInRegistries.CREATIVE_MODE_TAB, "test_tab", () -> CreativeModeTabRegistry.create(
+            BuiltInRegistries.CREATIVE_MODE_TAB, "test_tab", () -> CreativeModeTabHelper.create(
                     Component.literal("Test Tab"), () -> new ItemStack(TEST_BLOCK_ITEM.get())));
 
     public static void init() {
         REGISTRAR.register();
 
-        CreativeModeTabRegistry.modify(TEST_TAB.getKey(), (output, isOP) -> {
+        CreativeModeTabHelper.modify(TEST_TAB.getKey(), (output, isOP) -> {
             output.accept(TEST_BLOCK_ITEM.get());
             output.accept(TEST_BLOCK_FLATTENED_ITEM.get());
         });

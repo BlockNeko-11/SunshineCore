@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.item;
+package io.github.blockneko11.sunshinecore.item.tab;
 
 import net.minecraft.world.item.CreativeModeTab;
 

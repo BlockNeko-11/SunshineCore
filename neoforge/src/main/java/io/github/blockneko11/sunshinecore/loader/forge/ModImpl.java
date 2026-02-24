@@ -1,6 +1,6 @@
-package io.github.blockneko11.sunshinecore.util.loader.forge;
+package io.github.blockneko11.sunshinecore.loader.forge;
 
-import io.github.blockneko11.sunshinecore.util.loader.Mod;
+import io.github.blockneko11.sunshinecore.loader.Mod;
 import net.neoforged.fml.ModContainer;
 
 class ModImpl implements Mod {

@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.item;
+package io.github.blockneko11.sunshinecore.item.tab;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public final class CreativeModeTabRegistry {
+public final class CreativeModeTabHelper {
     public static CreativeModeTab create(Component title, Supplier<ItemStack> icon) {
         return create(builder -> builder.title(title).icon(icon));
     }
@@ -39,6 +39,6 @@ public final class CreativeModeTabRegistry {
         throw new AssertionError();
     }
 
-    private CreativeModeTabRegistry() {
+    private CreativeModeTabHelper() {
     }
 }

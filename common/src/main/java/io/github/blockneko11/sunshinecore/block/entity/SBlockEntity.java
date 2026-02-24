@@ -10,7 +10,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class SBlockEntity extends BlockEntity {
@@ -28,10 +27,6 @@ public abstract class SBlockEntity extends BlockEntity {
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
     }
 
-    @ApiStatus.Experimental
-    public void loadFromPacket(CompoundTag tag) {
-    }
-
     @Nullable
     @Override
     public Packet<ClientGamePacketListener> getUpdatePacket() {
@@ -40,12 +35,7 @@ public abstract class SBlockEntity extends BlockEntity {
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        CompoundTag nbt = super.getUpdateTag(registries);
-        this.saveToPacket(nbt, registries);
-        return nbt;
-    }
-
-    public void saveToPacket(CompoundTag tag, HolderLookup.Provider registries) {
+        return super.saveWithoutMetadata(registries);
     }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
