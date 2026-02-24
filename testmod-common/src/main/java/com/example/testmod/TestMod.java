@@ -6,7 +6,7 @@ import com.example.testmod.registry.TestRegistry;
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.command.CommandRegistry;
 import io.github.blockneko11.sunshinecore.data.SDataGeneration;
-import io.github.blockneko11.sunshinecore.event.level.ServerLevelLifecycleEvent;
+import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvent;
 import io.github.blockneko11.sunshinecore.util.Platform;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
@@ -38,7 +38,7 @@ public final class TestMod {
         });
     }
 
-    private static void onLevelLoad(ServerLevelLifecycleEvent.Load e) {
+    private static void onLevelLoad(ServerLevelEvent.Load e) {
         LOGGER.info("Level loaded: {}", e.getLevel().dimension().location());
     }
 

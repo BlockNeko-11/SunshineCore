@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.item;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import io.github.blockneko11.sunshinecore.block.FlattenableBlock;
+import io.github.blockneko11.sunshinecore.block.extension.FlattenableBlock;
 import io.github.blockneko11.sunshinecore.event.SetupEvent;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;

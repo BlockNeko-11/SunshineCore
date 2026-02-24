@@ -39,7 +39,7 @@ public abstract class EventBus {
                 throw new IllegalArgumentException("Event listener should be static");
             }
 
-            if (!m.isAnnotationPresent(EventSubscriber.class)) {
+            if (!m.isAnnotationPresent(Subscribe.class)) {
                 continue;
             }
 
@@ -64,7 +64,7 @@ public abstract class EventBus {
             throw new IllegalArgumentException("The first parameter of event listener should not be abstract events");
         }
 
-        EventSubscriber annotation = m.getAnnotation(EventSubscriber.class);
+        Subscribe annotation = m.getAnnotation(Subscribe.class);
         this.register0((Class<? extends Event>) eventType, new Subscriber.MethodSubscriber<>(m, annotation.priority()));
     }
 

@@ -1,8 +1,8 @@
 package io.github.blockneko11.sunshinecore.event.forge;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.event.ServerLifecycleEvent;
-import io.github.blockneko11.sunshinecore.event.level.ServerLevelLifecycleEvent;
+import io.github.blockneko11.sunshinecore.event.ServerEvent;
+import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvent;
 import io.github.blockneko11.sunshinecore.event.level.player.PlayerEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
@@ -20,37 +20,37 @@ public final class EventHandlers {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerAboutToStart(ServerAboutToStartEvent e) {
-        SunshineCore.BUS.post(new ServerLifecycleEvent.BeforeStart(e.getServer()));
+        SunshineCore.BUS.post(new ServerEvent.BeforeStart(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStarting(ServerStartingEvent e) {
-        SunshineCore.BUS.post(new ServerLifecycleEvent.Starting(e.getServer()));
+        SunshineCore.BUS.post(new ServerEvent.Starting(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStarted(ServerStartedEvent e) {
-        SunshineCore.BUS.post(new ServerLifecycleEvent.Started(e.getServer()));
+        SunshineCore.BUS.post(new ServerEvent.Started(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStopping(ServerStoppingEvent e) {
-        SunshineCore.BUS.post(new ServerLifecycleEvent.Stopping(e.getServer()));
+        SunshineCore.BUS.post(new ServerEvent.Stopping(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStopped(ServerStoppedEvent e) {
-        SunshineCore.BUS.post(new ServerLifecycleEvent.Stopped(e.getServer()));
+        SunshineCore.BUS.post(new ServerEvent.Stopped(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerTickPre(ServerTickEvent.Pre e) {
-        SunshineCore.BUS.post(new ServerLifecycleEvent.PreTick(e.getServer()));
+        SunshineCore.BUS.post(new ServerEvent.PreTick(e.getServer()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerTickPost(ServerTickEvent.Post e) {
-        SunshineCore.BUS.post(new ServerLifecycleEvent.PostTick(e.getServer()));
+        SunshineCore.BUS.post(new ServerEvent.PostTick(e.getServer()));
     }
 
     // Server Level Lifecycle
@@ -61,7 +61,7 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.Load((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelEvent.Load((ServerLevel) level));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -70,7 +70,7 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.Unload((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelEvent.Unload((ServerLevel) level));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -79,7 +79,7 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.Save((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelEvent.Save((ServerLevel) level));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -88,7 +88,7 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.PreTick((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelEvent.PreTick((ServerLevel) level));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -97,7 +97,7 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelLifecycleEvent.PostTick((ServerLevel) level));
+        SunshineCore.BUS.post(new ServerLevelEvent.PostTick((ServerLevel) level));
     }
 
     // Player

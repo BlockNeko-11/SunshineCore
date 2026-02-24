@@ -1,8 +1,8 @@
 package io.github.blockneko11.sunshinecore.event.forge;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelLifecycleEvent;
-import io.github.blockneko11.sunshinecore.client.event.ClientLifecycleEvent;
+import io.github.blockneko11.sunshinecore.client.event.ClientEvent;
+import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.level.Level;
@@ -19,12 +19,12 @@ public final class ClientEventHandlers {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onClientTickPre(ClientTickEvent.Pre e) {
-        SunshineCore.BUS.post(new ClientLifecycleEvent.PreTick(Minecraft.getInstance()));
+        SunshineCore.BUS.post(new ClientEvent.PreTick(Minecraft.getInstance()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onClientTickPost(ClientTickEvent.Post e) {
-        SunshineCore.BUS.post(new ClientLifecycleEvent.PostTick(Minecraft.getInstance()));
+        SunshineCore.BUS.post(new ClientEvent.PostTick(Minecraft.getInstance()));
     }
 
     // Client Level Lifecycle
@@ -33,7 +33,7 @@ public final class ClientEventHandlers {
     public static void onClientLevelLoad(LevelEvent.Load e) {
         LevelAccessor level = e.getLevel();
         if (level.isClientSide()) {
-            SunshineCore.BUS.post(new ClientLevelLifecycleEvent.Load((ClientLevel) level));
+            SunshineCore.BUS.post(new ClientLevelEvent.Load((ClientLevel) level));
         }
     }
 
@@ -41,7 +41,7 @@ public final class ClientEventHandlers {
     public static void onClientLevelTickPre(LevelTickEvent.Pre e) {
         Level level = e.getLevel();
         if (level.isClientSide()) {
-            SunshineCore.BUS.post(new ClientLevelLifecycleEvent.PreTick((ClientLevel) level));
+            SunshineCore.BUS.post(new ClientLevelEvent.PreTick((ClientLevel) level));
         }
     }
 
@@ -49,7 +49,7 @@ public final class ClientEventHandlers {
     public static void onClientLevelTickPost(LevelTickEvent.Post e) {
         Level level = e.getLevel();
         if (level.isClientSide()) {
-            SunshineCore.BUS.post(new ClientLevelLifecycleEvent.PostTick((ClientLevel) level));
+            SunshineCore.BUS.post(new ClientLevelEvent.PostTick((ClientLevel) level));
         }
     }
 }

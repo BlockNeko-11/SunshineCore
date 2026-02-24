@@ -9,10 +9,10 @@ import net.minecraft.client.Minecraft;
  * Game's lifecycle event on the client side.
  */
 @Environment(EnvType.CLIENT)
-public abstract class ClientLifecycleEvent extends Event {
+public abstract class ClientEvent extends Event {
     protected final Minecraft client;
 
-    public ClientLifecycleEvent(Minecraft client) {
+    public ClientEvent(Minecraft client) {
         this.client = client;
     }
 
@@ -20,25 +20,25 @@ public abstract class ClientLifecycleEvent extends Event {
         return this.client;
     }
 
-    public static final class Started extends ClientLifecycleEvent {
+    public static final class Started extends ClientEvent {
         public Started(Minecraft client) {
             super(client);
         }
     }
 
-    public static final class Stopping extends ClientLifecycleEvent {
+    public static final class Stopping extends ClientEvent {
         public Stopping(Minecraft client) {
             super(client);
         }
     }
 
-    public static final class PreTick extends ClientLifecycleEvent {
+    public static final class PreTick extends ClientEvent {
         public PreTick(Minecraft client) {
             super(client);
         }
     }
 
-    public static final class PostTick extends ClientLifecycleEvent {
+    public static final class PostTick extends ClientEvent {
         public PostTick(Minecraft client) {
             super(client);
         }

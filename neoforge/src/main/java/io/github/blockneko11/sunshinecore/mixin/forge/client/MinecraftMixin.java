@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.mixin.forge.client;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.client.event.ClientLifecycleEvent;
+import io.github.blockneko11.sunshinecore.client.event.ClientEvent;
 import net.minecraft.client.Minecraft;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -22,7 +22,7 @@ public abstract class MinecraftMixin {
             )
     )
     private void onRun$clientStarted(CallbackInfo ci) {
-        SunshineCore.BUS.post(new ClientLifecycleEvent.Started((Minecraft) (Object) this));
+        SunshineCore.BUS.post(new ClientEvent.Started((Minecraft) (Object) this));
     }
 
     @Inject(
@@ -35,6 +35,6 @@ public abstract class MinecraftMixin {
             )
     )
     private void onDestroy$clientStopping(CallbackInfo ci) {
-        SunshineCore.BUS.post(new ClientLifecycleEvent.Stopping((Minecraft) (Object) this));
+        SunshineCore.BUS.post(new ClientEvent.Stopping((Minecraft) (Object) this));
     }
 }

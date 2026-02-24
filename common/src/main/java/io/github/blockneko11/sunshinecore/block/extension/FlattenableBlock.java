@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.block;
+package io.github.blockneko11.sunshinecore.block.extension;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
