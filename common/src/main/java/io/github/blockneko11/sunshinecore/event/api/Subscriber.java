@@ -5,6 +5,7 @@ import io.github.blockneko11.sunshinecore.event.Event;
 import java.lang.reflect.Method;
 import java.util.function.Consumer;
 
+@Deprecated(since = "1.3.0")
 abstract class Subscriber<T extends Event> {
     private final int priority;
 

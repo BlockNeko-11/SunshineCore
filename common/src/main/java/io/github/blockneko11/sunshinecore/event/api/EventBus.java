@@ -15,6 +15,7 @@ import java.util.function.Consumer;
  * Event bus API, which is used for developers to subscribe cross-loader events (See {@link Event}).
  * Reference to <a href="https://github.com/neoforged/Bus">NeoForge's event bus</a>, under the LGPL-2.1 license.
  */
+@Deprecated(since = "1.3.0")
 public abstract class EventBus {
     private final Logger log;
 

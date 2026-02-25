@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 /**
  * Annotation used to mark a method as an event subscriber.
  */
+@Deprecated(since = "1.3.0")
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Subscribe {

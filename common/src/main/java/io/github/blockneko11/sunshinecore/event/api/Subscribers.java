@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Deprecated(since = "1.3.0")
 class Subscribers<T extends Event> {
     private final List<Subscriber<T>> delegate = Collections.synchronizedList(new ArrayList<>());
 
