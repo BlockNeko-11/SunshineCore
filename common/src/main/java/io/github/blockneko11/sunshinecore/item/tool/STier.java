@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.item;
+package io.github.blockneko11.sunshinecore.item.tool;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Tier;
