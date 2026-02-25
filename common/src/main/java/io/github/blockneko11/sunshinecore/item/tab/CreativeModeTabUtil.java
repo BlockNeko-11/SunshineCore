@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public final class CreativeModeTabHelper {
+public final class CreativeModeTabUtil {
     public static CreativeModeTab create(Component title, Supplier<ItemStack> icon) {
         return create(builder -> builder.title(title).icon(icon));
     }
@@ -39,6 +39,6 @@ public final class CreativeModeTabHelper {
         throw new AssertionError();
     }
 
-    private CreativeModeTabHelper() {
+    private CreativeModeTabUtil() {
     }
 }

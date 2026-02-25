@@ -2,7 +2,7 @@ package io.github.blockneko11.sunshinecore.registry.fabric;
 
 import io.github.blockneko11.sunshinecore.registry.Registrar;
 import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
-import io.github.blockneko11.sunshinecore.universal.SIdentifier;
+import io.github.blockneko11.sunshinecore.universal.IdentifierUtil;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -20,7 +20,7 @@ public class RegistrarImpl extends Registrar {
 
     @Override
     public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry) {
-        ResourceLocation identifier = SIdentifier.id(this.modId, id);
+        ResourceLocation identifier = IdentifierUtil.id(this.modId, id);
         ResourceKey<R> key = ResourceKey.create(registry.key(), identifier);
         T registered = Registry.register(registry, key, entry.get());
         return new RegistryHolder<>(() -> registered, key, identifier);

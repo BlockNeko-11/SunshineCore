@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.data.provider.misc;
 
 import com.google.gson.JsonObject;
-import io.github.blockneko11.sunshinecore.universal.SIdentifier;
+import io.github.blockneko11.sunshinecore.universal.IdentifierUtil;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -43,7 +43,7 @@ public abstract class STranslationProvider implements DataProvider {
         JsonObject json = new JsonObject();
         translations.forEach(json::addProperty);
         return DataProvider.saveStable(writer, json, this.output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "lang")
-                .json(SIdentifier.id(this.modId, this.language)));
+                .json(IdentifierUtil.id(this.modId, this.language)));
     }
 
     @NotNull

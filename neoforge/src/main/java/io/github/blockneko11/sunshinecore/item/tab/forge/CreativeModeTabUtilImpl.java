@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public final class CreativeModeTabHelperImpl {
+public final class CreativeModeTabUtilImpl {
     private static final List<Consumer<BuildCreativeModeTabContentsEvent>> MODIFIERS = new ArrayList<>();
 
     public static CreativeModeTab.Builder createBuilder() {

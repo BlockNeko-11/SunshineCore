@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public final class ArmorMaterialHelper {
+public final class ArmorMaterialUtil {
     public static ArmorMaterial create(ResourceLocation texture, boolean dyeable, int[] defense, int enchantmentValue, Supplier<SoundEvent> equipSound, float toughness, float knockbackResistance) {
         if (defense.length != 5) {
             throw new IllegalArgumentException("Expected 5 values for defense, got " + defense.length);
@@ -29,7 +29,7 @@ public final class ArmorMaterialHelper {
         return new ArmorMaterial(defenseMap, enchantmentValue, sound, () -> null, layers, toughness, knockbackResistance);
     }
 
-    private ArmorMaterialHelper() {
+    private ArmorMaterialUtil() {
 
     }
 }

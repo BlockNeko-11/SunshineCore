@@ -9,7 +9,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 
-public final class MenuHelper {
+public final class MenuUtil {
     public static void openSimple(ServerPlayer player, MenuProvider provider) {
         player.openMenu(provider);
     }
@@ -28,7 +28,7 @@ public final class MenuHelper {
         throw new AssertionError();
     }
 
-    private MenuHelper() {
+    private MenuUtil() {
     }
 
     @FunctionalInterface

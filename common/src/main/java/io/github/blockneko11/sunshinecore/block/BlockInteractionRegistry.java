@@ -23,7 +23,7 @@ public final class BlockInteractionRegistry {
     }
 
 //    public static void registerFlammable(int burn, int spread, TagKey<Block> tag) {
-//        registerFlammable(burn, spread, RegistryHelper.getEntries(BuiltInRegistries.BLOCK, tag));
+//        registerFlammable(burn, spread, RegistryUtil.getEntries(BuiltInRegistries.BLOCK, tag));
 //    }
 
     public static void registerComposting(float chance, Item... items) {
@@ -36,7 +36,7 @@ public final class BlockInteractionRegistry {
     }
 
 //    public static void registerComposting(float chance, TagKey<Item> tag) {
-//        registerComposting(chance, RegistryHelper.getEntries(BuiltInRegistries.ITEM, tag));
+//        registerComposting(chance, RegistryUtil.getEntries(BuiltInRegistries.ITEM, tag));
 //    }
 
     public static void registerFuel(int burnTick, Item... items) {
@@ -49,7 +49,7 @@ public final class BlockInteractionRegistry {
     }
 
 //    public static void registerFuel(int burnTick, TagKey<Item> tag) {
-//        registerFuel(burnTick, RegistryHelper.getEntries(BuiltInRegistries.ITEM, tag));
+//        registerFuel(burnTick, RegistryUtil.getEntries(BuiltInRegistries.ITEM, tag));
 //    }
 
     private BlockInteractionRegistry() {

@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 
-public final class CreativeModeTabHelperImpl {
+public final class CreativeModeTabUtilImpl {
     public static CreativeModeTab.Builder createBuilder() {
         return FabricItemGroup.builder();
     }

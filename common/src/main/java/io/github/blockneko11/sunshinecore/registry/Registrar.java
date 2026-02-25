@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.registry;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import io.github.blockneko11.sunshinecore.universal.SIdentifier;
+import io.github.blockneko11.sunshinecore.universal.IdentifierUtil;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
@@ -75,7 +75,7 @@ public abstract class Registrar {
     }
 
     public final <T> TagKey<T> tag(Registry<T> registry, String id) {
-        return TagKey.create(registry.key(), SIdentifier.id(this.modId, id));
+        return TagKey.create(registry.key(), IdentifierUtil.id(this.modId, id));
     }
 
     /**
