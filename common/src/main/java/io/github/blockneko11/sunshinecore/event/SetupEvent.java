@@ -7,5 +7,6 @@ package io.github.blockneko11.sunshinecore.event;
  *     <li>In Forge / NeoForge, equivalent to {@code FMLCommonSetupEvent}.
  * </ul>
  */
+@Deprecated(since = "1.3.0")
 public final class SetupEvent extends Event {
 }

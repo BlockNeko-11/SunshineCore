@@ -6,10 +6,11 @@ import com.example.testmod.registry.TestRegistry;
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.command.CommandRegistry;
 import io.github.blockneko11.sunshinecore.data.SDataGeneration;
-import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvent;
+import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvents;
 import io.github.blockneko11.sunshinecore.loader.Platform;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +28,7 @@ public final class TestMod {
         LOGGER.info("Test Mod version: {}", Platform.getMod(MOD_ID).getVersion());
 
         TestRegistry.init();
-        SunshineCore.BUS.register(TestMod::onLevelLoad);
+        ServerLevelEvents.LOAD.register(TestMod::onLevelLoad);
 
         CommandRegistry.registerCommand((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("test")
@@ -38,8 +39,8 @@ public final class TestMod {
         });
     }
 
-    private static void onLevelLoad(ServerLevelEvent.Load e) {
-        LOGGER.info("Level loaded: {}", e.getLevel().dimension().location());
+    private static void onLevelLoad(ServerLevel level) {
+        LOGGER.info("Level loaded: {}", level.dimension().location());
     }
 
     public static void initDataGen(SDataGeneration gen) {

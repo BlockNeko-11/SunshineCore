@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.block;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import io.github.blockneko11.sunshinecore.event.SetupEvent;
+import io.github.blockneko11.sunshinecore.event.CommonEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -10,7 +10,7 @@ import java.util.Collection;
 
 /**
  * Block interaction registry API, which is used for registering interactions for some specific blocks.
- * <h1>NOTE: Please call these methods in the event subscriber of {@link SetupEvent}.</h1>
+ * <h1>NOTE: Please use these methods with {@link CommonEvents#SETUP}.</h1>
  */
 public final class BlockInteractionRegistry {
     public static void registerFlammable(int flameAbility, int spreadSpeed, Block... blocks) {

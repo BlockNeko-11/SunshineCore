@@ -1,8 +1,7 @@
 package io.github.blockneko11.sunshinecore.event.fabric;
 
-import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelEvent;
-import io.github.blockneko11.sunshinecore.client.event.ClientEvent;
+import io.github.blockneko11.sunshinecore.client.event.ClientEvents;
+import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
@@ -15,29 +14,29 @@ public class ClientEventHandlers {
         // Client Lifecycle
 
         ClientLifecycleEvents.CLIENT_STARTED.register(c -> {
-            SunshineCore.BUS.post(new ClientEvent.Started(c));
+            ClientEvents.STARTED.invoker().handle(c);
         });
 
         ClientLifecycleEvents.CLIENT_STOPPING.register(c -> {
-            SunshineCore.BUS.post(new ClientEvent.Stopping(c));
+            ClientEvents.STOPPING.invoker().handle(c);
         });
 
         ClientTickEvents.START_CLIENT_TICK.register(c -> {
-            SunshineCore.BUS.post(new ClientEvent.PreTick(c));
+            ClientEvents.PRE_TICK.invoker().handle(c);
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(c -> {
-            SunshineCore.BUS.post(new ClientEvent.PostTick(c));
+            ClientEvents.POST_TICK.invoker().handle(c);
         });
 
         // Client Level Lifecycle
 
         ClientTickEvents.START_WORLD_TICK.register(l -> {
-            SunshineCore.BUS.post(new ClientLevelEvent.PreTick(l));
+            ClientLevelEvents.PRE_TICK.invoker().handle(l);
         });
 
         ClientTickEvents.END_WORLD_TICK.register(l -> {
-            SunshineCore.BUS.post(new ClientLevelEvent.PostTick(l));
+            ClientLevelEvents.POST_TICK.invoker().handle(l);
         });
     }
 }

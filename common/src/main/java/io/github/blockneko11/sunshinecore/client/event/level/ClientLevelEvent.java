@@ -1,6 +1,5 @@
 package io.github.blockneko11.sunshinecore.client.event.level;
 
-import io.github.blockneko11.sunshinecore.event.level.LevelEvent;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -8,10 +7,10 @@ import net.minecraft.client.multiplayer.ClientLevel;
 /**
  * Level's lifecycle event on the client side.
  */
+@Deprecated(since = "1.3.0")
 @Environment(EnvType.CLIENT)
-public abstract class ClientLevelEvent extends LevelEvent<ClientLevel> {
+public abstract class ClientLevelEvent {
     public ClientLevelEvent(ClientLevel level) {
-        super(level);
     }
 
     public static final class Load extends ClientLevelEvent {

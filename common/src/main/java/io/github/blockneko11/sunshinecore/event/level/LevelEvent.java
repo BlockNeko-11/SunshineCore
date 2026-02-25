@@ -1,20 +1,20 @@
 package io.github.blockneko11.sunshinecore.event.level;
 
-import io.github.blockneko11.sunshinecore.event.Event;
+import io.github.blockneko11.sunshinecore.event.api.Event;
 import net.minecraft.world.level.Level;
 
 /**
  * Level event.
- * @param <T>
+ * @param <T> the type of level (e.g. client-sided, server-sided)
  */
-public abstract class LevelEvent<T extends Level> extends Event {
-    protected final T level;
+public interface LevelEvent<T extends Level> {
+    void handle(T level);
 
-    public LevelEvent(T level) {
-        this.level = level;
-    }
-
-    public T getLevel() {
-        return this.level;
+    static <T extends Level> Event<LevelEvent<T>> create() {
+        return Event.create(invokers -> level -> {
+            for (LevelEvent<T> handler : invokers) {
+                handler.handle(level);
+            }
+        });
     }
 }

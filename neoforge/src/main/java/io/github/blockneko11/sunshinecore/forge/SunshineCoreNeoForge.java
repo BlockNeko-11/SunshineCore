@@ -6,7 +6,7 @@ import io.github.blockneko11.sunshinecore.client.SunshineCoreClient;
 import io.github.blockneko11.sunshinecore.client.forge.MenuRegistryImpl;
 import io.github.blockneko11.sunshinecore.command.forge.CommandRegistryImpl;
 import io.github.blockneko11.sunshinecore.entity.villager.forge.VillagerInteractionRegistryImpl;
-import io.github.blockneko11.sunshinecore.event.SetupEvent;
+import io.github.blockneko11.sunshinecore.event.CommonEvents;
 import io.github.blockneko11.sunshinecore.event.forge.ClientEventHandlers;
 import io.github.blockneko11.sunshinecore.event.forge.EventHandlers;
 import io.github.blockneko11.sunshinecore.item.tab.forge.CreativeModeTabHelperImpl;
@@ -35,6 +35,6 @@ public final class SunshineCoreNeoForge {
     }
 
     private void onCommonSetup(FMLCommonSetupEvent e) {
-        SunshineCore.BUS.post(new SetupEvent());
+        CommonEvents.SETUP.invoker().onSetup();
     }
 }

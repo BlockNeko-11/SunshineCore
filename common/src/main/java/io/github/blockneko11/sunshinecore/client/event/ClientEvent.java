@@ -8,6 +8,7 @@ import net.minecraft.client.Minecraft;
 /**
  * Game's lifecycle event on the client side.
  */
+@Deprecated(since = "1.3.0")
 @Environment(EnvType.CLIENT)
 public abstract class ClientEvent extends Event {
     protected final Minecraft client;

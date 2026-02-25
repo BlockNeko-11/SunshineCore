@@ -1,9 +1,7 @@
 package io.github.blockneko11.sunshinecore.event.forge;
 
-import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.event.ServerEvent;
-import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvent;
-import io.github.blockneko11.sunshinecore.event.level.player.PlayerEvent;
+import io.github.blockneko11.sunshinecore.event.ServerEvents;
+import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -20,37 +18,37 @@ public final class EventHandlers {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerAboutToStart(ServerAboutToStartEvent e) {
-        SunshineCore.BUS.post(new ServerEvent.BeforeStart(e.getServer()));
+        ServerEvents.BEFORE_START.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStarting(ServerStartingEvent e) {
-        SunshineCore.BUS.post(new ServerEvent.Starting(e.getServer()));
+        ServerEvents.STARTING.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStarted(ServerStartedEvent e) {
-        SunshineCore.BUS.post(new ServerEvent.Started(e.getServer()));
+        ServerEvents.STARTED.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStopping(ServerStoppingEvent e) {
-        SunshineCore.BUS.post(new ServerEvent.Stopping(e.getServer()));
+        ServerEvents.STOPPING.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerStopped(ServerStoppedEvent e) {
-        SunshineCore.BUS.post(new ServerEvent.Stopped(e.getServer()));
+        ServerEvents.STOPPED.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerTickPre(ServerTickEvent.Pre e) {
-        SunshineCore.BUS.post(new ServerEvent.PreTick(e.getServer()));
+        ServerEvents.PRE_TICK.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onServerTickPost(ServerTickEvent.Post e) {
-        SunshineCore.BUS.post(new ServerEvent.PostTick(e.getServer()));
+        ServerEvents.POST_TICK.invoker().handle(e.getServer());
     }
 
     // Server Level Lifecycle
@@ -61,7 +59,8 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelEvent.Load((ServerLevel) level));
+
+        ServerLevelEvents.LOAD.invoker().handle((ServerLevel) level);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -70,7 +69,8 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelEvent.Unload((ServerLevel) level));
+
+        ServerLevelEvents.UNLOAD.invoker().handle((ServerLevel) level);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -79,7 +79,8 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelEvent.Save((ServerLevel) level));
+
+        ServerLevelEvents.SAVE.invoker().handle((ServerLevel) level);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -88,7 +89,8 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelEvent.PreTick((ServerLevel) level));
+
+        ServerLevelEvents.PRE_TICK.invoker().handle((ServerLevel) level);
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -97,18 +99,17 @@ public final class EventHandlers {
         if (level.isClientSide()) {
             return;
         }
-        SunshineCore.BUS.post(new ServerLevelEvent.PostTick((ServerLevel) level));
+
+        ServerLevelEvents.POST_TICK.invoker().handle((ServerLevel) level);
     }
 
     // Player
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onPlayerTickPre(PlayerTickEvent.Pre e) {
-        SunshineCore.BUS.post(new PlayerEvent.PreTick(e.getEntity()));
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onPlayerTickPost(PlayerTickEvent.Post e) {
-        SunshineCore.BUS.post(new PlayerEvent.PostTick(e.getEntity()));
     }
 }

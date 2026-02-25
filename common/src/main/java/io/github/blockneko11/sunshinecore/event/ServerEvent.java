@@ -5,6 +5,7 @@ import net.minecraft.server.MinecraftServer;
 /**
  * Game's lifecycle event on the server side.
  */
+@Deprecated(since = "1.3.0")
 public abstract class ServerEvent extends Event {
     protected final MinecraftServer server;
 

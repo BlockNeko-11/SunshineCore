@@ -1,8 +1,7 @@
 package io.github.blockneko11.sunshinecore.event.fabric;
 
-import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.event.ServerEvent;
-import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvent;
+import io.github.blockneko11.sunshinecore.event.ServerEvents;
+import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
@@ -13,45 +12,45 @@ public final class EventHandlers {
         // Server Lifecycle
 
         ServerLifecycleEvents.SERVER_STARTING.register(s -> {
-            SunshineCore.BUS.post(new ServerEvent.BeforeStart(s));
+            ServerEvents.BEFORE_START.invoker().handle(s);
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register(s -> {
-            SunshineCore.BUS.post(new ServerEvent.Started(s));
+            ServerEvents.STARTED.invoker().handle(s);
         });
 
         ServerLifecycleEvents.SERVER_STOPPING.register(s -> {
-            SunshineCore.BUS.post(new ServerEvent.Stopping(s));
+            ServerEvents.STOPPING.invoker().handle(s);
         });
 
         ServerLifecycleEvents.SERVER_STOPPED.register(s -> {
-            SunshineCore.BUS.post(new ServerEvent.Stopped(s));
+            ServerEvents.STOPPED.invoker().handle(s);
         });
 
         ServerTickEvents.START_SERVER_TICK.register(s -> {
-            SunshineCore.BUS.post(new ServerEvent.PreTick(s));
+            ServerEvents.PRE_TICK.invoker().handle(s);
         });
 
         ServerTickEvents.END_SERVER_TICK.register(s -> {
-            SunshineCore.BUS.post(new ServerEvent.PostTick(s));
+            ServerEvents.POST_TICK.invoker().handle(s);
         });
 
         // Server Level Lifecycle
 
         ServerWorldEvents.LOAD.register((s, l) -> {
-            SunshineCore.BUS.post(new ServerLevelEvent.Load(l));
+            ServerLevelEvents.LOAD.invoker().handle(l);
         });
 
         ServerWorldEvents.UNLOAD.register((s, l) -> {
-            SunshineCore.BUS.post(new ServerLevelEvent.Unload(l));
+            ServerLevelEvents.UNLOAD.invoker().handle(l);
         });
 
         ServerTickEvents.START_WORLD_TICK.register(l -> {
-            SunshineCore.BUS.post(new ServerLevelEvent.PreTick(l));
+            ServerLevelEvents.PRE_TICK.invoker().handle(l);
         });
 
         ServerTickEvents.END_WORLD_TICK.register(l -> {
-            SunshineCore.BUS.post(new ServerLevelEvent.PostTick(l));
+            ServerLevelEvents.POST_TICK.invoker().handle(l);
         });
     }
 }

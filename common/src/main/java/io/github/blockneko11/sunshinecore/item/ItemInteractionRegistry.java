@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.item;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import io.github.blockneko11.sunshinecore.event.SetupEvent;
+import io.github.blockneko11.sunshinecore.event.CommonEvents;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 /**
  * Item interaction registry API, which is used for registering interactions for some specific items.
  * Now it's just only for tools (e.g. axe, shovel, hoe).
- * <h1>NOTE: Please call these methods in the event subscriber of {@link SetupEvent}.</h1>
+ * NOTE: Please use these methods with {@link CommonEvents#SETUP}.</h1>
  */
 public final class ItemInteractionRegistry {
     @ExpectPlatform

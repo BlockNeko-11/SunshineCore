@@ -5,9 +5,9 @@ import net.minecraft.server.level.ServerLevel;
 /**
  * Level's lifecycle event on the server side.
  */
-public abstract class ServerLevelEvent extends LevelEvent<ServerLevel> {
+@Deprecated(since = "1.3.0")
+public abstract class ServerLevelEvent {
     public ServerLevelEvent(ServerLevel level) {
-        super(level);
     }
 
     public static final class Load extends ServerLevelEvent {
