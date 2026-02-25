@@ -11,8 +11,8 @@ public interface LevelEvent<T extends Level> {
     void handle(T level);
 
     static <T extends Level> Event<LevelEvent<T>> create() {
-        return Event.create(invokers -> level -> {
-            for (LevelEvent<T> handler : invokers) {
+        return Event.create(handlers -> level -> {
+            for (LevelEvent<T> handler : handlers) {
                 handler.handle(level);
             }
         });

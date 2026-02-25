@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-class EventImpl<T> implements Event<T> {
+final class EventImpl<T> implements Event<T> {
     private final Function<List<T>, T> invokerFunction;
     private final List<T> handlers = new ArrayList<>();
 

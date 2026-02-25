@@ -1,5 +1,6 @@
 package io.github.blockneko11.sunshinecore.event.api;
 
+import java.lang.reflect.Proxy;
 import java.util.List;
 import java.util.function.Function;
 
@@ -14,5 +15,11 @@ public interface Event<T> {
 
     static <T> Event<T> create(Function<List<T>, T> invokerFunction) {
         return new EventImpl<>(invokerFunction);
+    }
+
+    static <T> Event<T> create(Class<T> handlerClass) {
+        return create(handlers -> (T) Proxy.newProxyInstance(handlerClass.getClassLoader(),
+                new Class[]{handlerClass},
+                new ReflectiveInvoker<>(handlers)));
     }
 }

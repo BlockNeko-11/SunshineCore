@@ -22,8 +22,8 @@ public final class ClientEvents {
     }
 
     private static Event<Handler> create() {
-        return Event.create(invokers -> c -> {
-            for (Handler handler : invokers) {
+        return Event.create(handlers -> c -> {
+            for (Handler handler : handlers) {
                 handler.handle(c);
             }
         });
