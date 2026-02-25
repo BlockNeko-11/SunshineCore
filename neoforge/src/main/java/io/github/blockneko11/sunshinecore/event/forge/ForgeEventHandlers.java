@@ -13,7 +13,7 @@ import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
-public final class EventHandlers {
+public final class ForgeEventHandlers {
     // Server Lifecycle
 
     @SubscribeEvent(priority = EventPriority.HIGH)
