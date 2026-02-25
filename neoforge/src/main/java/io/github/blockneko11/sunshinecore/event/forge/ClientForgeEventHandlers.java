@@ -33,7 +33,7 @@ public final class ClientForgeEventHandlers {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onClientLevelLoad(LevelEvent.Load e) {
         LevelAccessor level = e.getLevel();
-        if (!level.isClientSide()) {
+        if (level.isClientSide()) {
             ClientLevelEvents.LOAD.invoker().handle((ClientLevel) e.getLevel());
         }
     }
@@ -41,7 +41,7 @@ public final class ClientForgeEventHandlers {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onClientLevelTickPre(LevelTickEvent.Pre e) {
         Level level = e.getLevel();
-        if (!level.isClientSide()) {
+        if (level.isClientSide()) {
             ClientLevelEvents.PRE_TICK.invoker().handle((ClientLevel) e.getLevel());
         }
     }
