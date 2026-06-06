@@ -15,7 +15,7 @@ import java.util.function.UnaryOperator;
 /**
  * Registrar API, which is used to registering objects to the game.
  * <p>
- * Different loaders have different behaviours for registering objects:
+ * Different loaders have different behaviors for registering objects:
  * <ul>
  *   <li>In Fabric, objects are immediately registered when calling {@link #register(Registry, String, Supplier)}.
  *   <li>In Forge / NeoForge, objects wil be registered later.
