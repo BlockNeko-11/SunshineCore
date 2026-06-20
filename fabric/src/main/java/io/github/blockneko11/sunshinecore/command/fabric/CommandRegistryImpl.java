@@ -11,4 +11,7 @@ public final class CommandRegistryImpl {
             register.register(dispatcher, registryAccess, environment == Commands.CommandSelection.DEDICATED);
         });
     }
+
+    private CommandRegistryImpl() {
+    }
 }

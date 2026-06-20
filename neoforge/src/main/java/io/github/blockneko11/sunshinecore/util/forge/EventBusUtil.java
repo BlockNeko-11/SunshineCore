@@ -7,4 +7,7 @@ public final class EventBusUtil {
     public static IEventBus get(String modId) {
         return ModList.get().getModContainerById(modId).orElseThrow().getEventBus();
     }
+
+    private EventBusUtil() {
+    }
 }

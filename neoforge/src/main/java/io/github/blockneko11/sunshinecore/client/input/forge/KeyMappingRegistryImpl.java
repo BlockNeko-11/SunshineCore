@@ -9,12 +9,12 @@ import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KeyMappingRegistryImpl {
+public final class KeyMappingRegistryImpl {
     private static final List<KeyMapping> KEY_MAPPINGS = new ArrayList<>();
 
     public static void register(KeyMapping mapping) {
         if (Minecraft.getInstance().options != null) {
-            throw new IllegalStateException("GameOptions has already been initialised");
+            throw new IllegalStateException("GameOptions has already initialized");
         }
 
         KEY_MAPPINGS.add(mapping);
@@ -23,5 +23,8 @@ public class KeyMappingRegistryImpl {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onRegisterKeyMappings(RegisterKeyMappingsEvent e) {
         KEY_MAPPINGS.forEach(e::register);
+    }
+
+    private KeyMappingRegistryImpl() {
     }
 }

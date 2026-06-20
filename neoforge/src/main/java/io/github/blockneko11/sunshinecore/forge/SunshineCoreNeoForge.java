@@ -3,7 +3,7 @@ package io.github.blockneko11.sunshinecore.forge;
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.block.forge.BlockInteractionRegistryImpl;
 import io.github.blockneko11.sunshinecore.client.SunshineCoreClient;
-import io.github.blockneko11.sunshinecore.client.forge.MenuRegistryImpl;
+import io.github.blockneko11.sunshinecore.client.menu.forge.MenuRegistryImpl;
 import io.github.blockneko11.sunshinecore.command.forge.CommandRegistryImpl;
 import io.github.blockneko11.sunshinecore.entity.villager.forge.VillagerInteractionRegistryImpl;
 import io.github.blockneko11.sunshinecore.event.CommonEvents;

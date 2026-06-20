@@ -11,4 +11,7 @@ public final class MenuRegistryImpl {
     public static <M extends AbstractContainerMenu, S extends Screen & MenuAccess<M>> void register(MenuType<M> type, MenuRegistry.ScreenFactory<M, S> factory) {
         MenuScreens.register(type, factory::create);
     }
+
+    private MenuRegistryImpl() {
+    }
 }

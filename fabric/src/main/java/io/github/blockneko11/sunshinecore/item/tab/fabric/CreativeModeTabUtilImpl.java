@@ -16,4 +16,7 @@ public final class CreativeModeTabUtilImpl {
             modifier.modify(e, e.shouldShowOpRestrictedItems());
         });
     }
+
+    private CreativeModeTabUtilImpl() {
+    }
 }

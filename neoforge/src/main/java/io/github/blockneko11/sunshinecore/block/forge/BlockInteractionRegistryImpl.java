@@ -74,4 +74,7 @@ public final class BlockInteractionRegistryImpl {
             return this.spreadSpeed;
         }
     }
+
+    private BlockInteractionRegistryImpl() {
+    }
 }

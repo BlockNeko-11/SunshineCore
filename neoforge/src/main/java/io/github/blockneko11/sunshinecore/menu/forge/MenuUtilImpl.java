@@ -15,4 +15,7 @@ public final class MenuUtilImpl {
     public static <T extends AbstractContainerMenu> MenuType<T> extendedType(MenuUtil.ExtendedMenuTypeFactory<T> factory) {
         return IMenuTypeExtension.create(factory::create);
     }
+
+    private MenuUtilImpl() {
+    }
 }

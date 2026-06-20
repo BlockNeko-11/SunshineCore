@@ -15,4 +15,7 @@ public final class EventInvokersImpl {
     public static void initClient() {
         NeoForge.EVENT_BUS.register(ClientForgeEventHandlers.class);
     }
+
+    public static class ForgeEventHandlers {
+    }
 }

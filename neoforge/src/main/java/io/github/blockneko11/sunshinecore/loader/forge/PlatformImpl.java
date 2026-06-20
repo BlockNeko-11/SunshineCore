@@ -1,8 +1,8 @@
 package io.github.blockneko11.sunshinecore.loader.forge;
 
+import io.github.blockneko11.sunshinecore.loader.Side;
 import io.github.blockneko11.sunshinecore.loader.Loader;
 import io.github.blockneko11.sunshinecore.loader.Mod;
-import io.github.blockneko11.sunshinecore.loader.Side;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.fml.loading.FMLPaths;
@@ -39,5 +39,8 @@ public final class PlatformImpl {
 
     public static Path getConfigDir() {
         return FMLPaths.CONFIGDIR.get();
+    }
+
+    private PlatformImpl() {
     }
 }

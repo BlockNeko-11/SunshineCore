@@ -38,4 +38,7 @@ public final class PlatformImpl {
     public static Path getConfigDir() {
         return FabricLoader.getInstance().getConfigDir();
     }
+
+    private PlatformImpl() {
+    }
 }

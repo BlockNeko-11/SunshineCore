@@ -10,4 +10,7 @@ public final class SDataGenerationImpl {
                 generator.createPack(),
                 generator.getRegistries());
     }
+
+    private SDataGenerationImpl() {
+    }
 }

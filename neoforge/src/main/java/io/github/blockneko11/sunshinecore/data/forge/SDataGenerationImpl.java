@@ -11,4 +11,7 @@ public final class SDataGenerationImpl {
                 e.getGenerator().getBuiltinDatapack(true, modId),
                 e.getLookupProvider());
     }
+
+    private SDataGenerationImpl() {
+    }
 }

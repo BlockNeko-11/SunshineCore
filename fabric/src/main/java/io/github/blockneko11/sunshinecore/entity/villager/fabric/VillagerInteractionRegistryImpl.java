@@ -16,4 +16,7 @@ public final class VillagerInteractionRegistryImpl {
     public static void registerTradeWandening(VillagerInteractionRegistry.WandeningTradeType type, Consumer<List<VillagerTrades.ItemListing>> factory) {
         TradeOfferHelper.registerWanderingTraderOffers(type.getIndex(), factory);
     }
+
+    private VillagerInteractionRegistryImpl() {
+    }
 }

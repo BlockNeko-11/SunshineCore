@@ -17,4 +17,7 @@ public final class RenderTypeRegistryImpl {
             ItemBlockRenderTypes.setRenderLayer(fluid, type);
         }
     }
+
+    private RenderTypeRegistryImpl() {
+    }
 }

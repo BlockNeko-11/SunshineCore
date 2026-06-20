@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class RegistrarImpl extends Registrar {
+public final class RegistrarImpl extends Registrar {
     private final Map<ResourceLocation, DeferredRegister<?>> registers = new LinkedHashMap<>();
     private final IEventBus modBus;
 

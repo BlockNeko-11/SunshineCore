@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.Supplier;
 
-public class RegistrarImpl extends Registrar {
+public final class RegistrarImpl extends Registrar {
     private RegistrarImpl(String modId) {
         super(modId);
     }

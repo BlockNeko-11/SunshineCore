@@ -89,4 +89,7 @@ public final class EventInvokersImpl {
             ClientLevelEvents.POST_TICK.invoker().handle(l);
         });
     }
+
+    private EventInvokersImpl() {
+    }
 }

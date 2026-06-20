@@ -38,4 +38,7 @@ public final class BlockInteractionRegistryImpl {
             }
         }
     }
+
+    private BlockInteractionRegistryImpl() {
+    }
 }

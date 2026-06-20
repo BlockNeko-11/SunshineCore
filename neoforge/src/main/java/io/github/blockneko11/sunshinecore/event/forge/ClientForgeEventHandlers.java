@@ -53,4 +53,7 @@ public final class ClientForgeEventHandlers {
             ClientLevelEvents.POST_TICK.invoker().handle((ClientLevel) e.getLevel());
         }
     }
+
+    private ClientForgeEventHandlers() {
+    }
 }

@@ -112,4 +112,7 @@ public final class ForgeEventHandlers {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onPlayerTickPost(PlayerTickEvent.Post e) {
     }
+
+    private ForgeEventHandlers() {
+    }
 }

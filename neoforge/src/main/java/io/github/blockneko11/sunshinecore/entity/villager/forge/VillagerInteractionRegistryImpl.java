@@ -59,4 +59,7 @@ public final class VillagerInteractionRegistryImpl {
 
     private record TradeEntry(VillagerInteractionRegistry.TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
     }
+
+    private VillagerInteractionRegistryImpl() {
+    }
 }

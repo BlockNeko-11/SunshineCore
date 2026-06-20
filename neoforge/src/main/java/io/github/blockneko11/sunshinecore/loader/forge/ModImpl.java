@@ -6,7 +6,7 @@ import net.neoforged.fml.ModContainer;
 class ModImpl implements Mod {
     private final ModContainer delegate;
 
-    public ModImpl(ModContainer delegate) {
+    ModImpl(ModContainer delegate) {
         this.delegate = delegate;
     }
 

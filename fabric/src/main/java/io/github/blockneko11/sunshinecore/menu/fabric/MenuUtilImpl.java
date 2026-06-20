@@ -55,4 +55,7 @@ public final class MenuUtilImpl {
             return this.provider.createMenu(i, inventory, player);
         }
     }
+
+    private MenuUtilImpl() {
+    }
 }

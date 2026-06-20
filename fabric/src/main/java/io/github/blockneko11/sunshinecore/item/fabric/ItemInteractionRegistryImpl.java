@@ -23,4 +23,7 @@ public final class ItemInteractionRegistryImpl {
     public static void registerTillable(Block input, Predicate<UseOnContext> predicate, Consumer<UseOnContext> action) {
         TillableBlockRegistry.register(input, predicate, action);
     }
+
+    private ItemInteractionRegistryImpl() {
+    }
 }

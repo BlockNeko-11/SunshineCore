@@ -49,4 +49,7 @@ public final class ItemInteractionRegistryImpl {
 //            }
 //        }
 //    }
+
+    private ItemInteractionRegistryImpl() {
+    }
 }

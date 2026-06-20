@@ -13,4 +13,7 @@ public final class RenderTypeRegistryImpl {
     public static void register(RenderType type, Fluid... fluids) {
         BlockRenderLayerMap.INSTANCE.putFluids(type, fluids);
     }
+
+    private RenderTypeRegistryImpl() {
+    }
 }

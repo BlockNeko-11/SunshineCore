@@ -32,4 +32,7 @@ public final class CreativeModeTabUtilImpl {
     public static void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent e) {
         MODIFIERS.forEach(c -> c.accept(e));
     }
+
+    private CreativeModeTabUtilImpl() {
+    }
 }

@@ -23,4 +23,7 @@ public final class CommandRegistryImpl {
             r.register(e.getDispatcher(), e.getBuildContext(), e.getCommandSelection() == Commands.CommandSelection.DEDICATED);
         });
     }
+
+    private CommandRegistryImpl() {
+    }
 }

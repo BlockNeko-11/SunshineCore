@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.client.forge;
+package io.github.blockneko11.sunshinecore.client.menu.forge;
 
 import io.github.blockneko11.sunshinecore.client.menu.MenuRegistry;
 import net.minecraft.client.gui.screens.Screen;
@@ -28,5 +28,8 @@ public final class MenuRegistryImpl {
         private void register(RegisterMenuScreensEvent e) {
             e.register(this.type, this.factory::create);
         }
+    }
+
+    private MenuRegistryImpl() {
     }
 }
