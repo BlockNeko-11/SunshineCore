@@ -8,7 +8,7 @@
   ],
   "mixins": [
     "DedicatedServerMixin",
-    "data.FabricDataGenHelperMixin"
+    "data.FabricDataGenHelperMixin",
     "level.ServerLevelMixin"
   ],
   "injectors": {
