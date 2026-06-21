@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.networking;
 
-import io.github.blockneko11.sunshinecore.loader.Side;
+import io.github.blockneko11.sunshinecore.loader.Env;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.RegistryAccess;
@@ -11,7 +11,7 @@ public interface PayloadContext {
 
     void execute(Runnable runnable);
 
-    Side getSide();
+    Env getSide();
 
     default RegistryAccess getRegistryAccess() {
         return getPlayer().registryAccess();
@@ -19,16 +19,16 @@ public interface PayloadContext {
 
     interface Server extends PayloadContext {
         @Override
-        default Side getSide() {
-            return Side.SERVER;
+        default Env getSide() {
+            return Env.SERVER;
         }
     }
 
     @Environment(EnvType.CLIENT)
     interface Client extends PayloadContext {
         @Override
-        default Side getSide() {
-            return Side.CLIENT;
+        default Env getSide() {
+            return Env.CLIENT;
         }
     }
 }

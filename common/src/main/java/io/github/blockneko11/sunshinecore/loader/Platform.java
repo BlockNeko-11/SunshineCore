@@ -14,7 +14,7 @@ public final class Platform {
     }
 
     @ExpectPlatform
-    public static Side getSide() {
+    public static Env getSide() {
         throw new AssertionError();
     }
 

@@ -22,7 +22,7 @@ public final class TestMod {
     public static void init() {
         LOGGER.info("Hello from Test Mod!");
 
-        LOGGER.info("Loader: {}, Side: {}, Dev mode: {}", Platform.getLoader(), Platform.getSide(), Platform.isDev());
+        LOGGER.info("Loader: {}, Env: {}, Dev mode: {}", Platform.getLoader(), Platform.getSide(), Platform.isDev());
 
         LOGGER.info("Sunshine Core mod loaded? {}", Platform.isModLoaded(SunshineCore.MOD_ID));
         LOGGER.info("Test Mod version: {}", Platform.getMod(MOD_ID).getVersion());

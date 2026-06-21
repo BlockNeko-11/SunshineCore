@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.loader.forge;
 
-import io.github.blockneko11.sunshinecore.loader.Side;
+import io.github.blockneko11.sunshinecore.loader.Env;
 import io.github.blockneko11.sunshinecore.loader.Loader;
 import io.github.blockneko11.sunshinecore.loader.Mod;
 import net.neoforged.fml.ModList;
@@ -14,10 +14,10 @@ public final class PlatformImpl {
         return Loader.NEOFORGE;
     }
 
-    public static Side getSide() {
+    public static Env getSide() {
         return switch (FMLEnvironment.dist) {
-            case CLIENT -> Side.CLIENT;
-            case DEDICATED_SERVER -> Side.SERVER;
+            case CLIENT -> Env.CLIENT;
+            case DEDICATED_SERVER -> Env.SERVER;
         };
     }
 

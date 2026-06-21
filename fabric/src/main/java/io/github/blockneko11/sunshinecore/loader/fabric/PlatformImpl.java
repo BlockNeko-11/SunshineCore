@@ -2,7 +2,7 @@ package io.github.blockneko11.sunshinecore.loader.fabric;
 
 import io.github.blockneko11.sunshinecore.loader.Loader;
 import io.github.blockneko11.sunshinecore.loader.Mod;
-import io.github.blockneko11.sunshinecore.loader.Side;
+import io.github.blockneko11.sunshinecore.loader.Env;
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.nio.file.Path;
@@ -12,10 +12,10 @@ public final class PlatformImpl {
         return Loader.FABRIC;
     }
 
-    public static Side getSide() {
+    public static Env getSide() {
         return switch (FabricLoader.getInstance().getEnvironmentType()) {
-            case CLIENT -> Side.CLIENT;
-            case SERVER -> Side.SERVER;
+            case CLIENT -> Env.CLIENT;
+            case SERVER -> Env.SERVER;
         };
     }
 
