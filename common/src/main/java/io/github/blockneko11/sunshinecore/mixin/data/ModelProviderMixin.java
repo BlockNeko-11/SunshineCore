@@ -17,6 +17,7 @@ public abstract class ModelProviderMixin {
     private void getName(CallbackInfoReturnable<String> cir) {
         if (((ModelProvider) (Object) this) instanceof SModelProvider) {
             cir.setReturnValue("Sunshine Core Model Provider");
+            cir.cancel();
         }
     }
 }

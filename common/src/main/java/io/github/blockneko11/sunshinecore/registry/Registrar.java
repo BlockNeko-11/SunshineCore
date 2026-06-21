@@ -50,27 +50,27 @@ public abstract class Registrar {
      */
     public abstract <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry);
 
-    public final Supplier<Item> simpleItem(String id) {
+    public final RegistryHolder<Item, Item> simpleItem(String id) {
         return this.simpleItem(id, UnaryOperator.identity());
     }
 
-    public final Supplier<Item> simpleItem(String id, UnaryOperator<Item.Properties> operator) {
+    public final RegistryHolder<Item, Item> simpleItem(String id, UnaryOperator<Item.Properties> operator) {
         return this.register(BuiltInRegistries.ITEM, id, () -> new Item(operator.apply(new Item.Properties())));
     }
 
-    public final <T extends Block> Supplier<Item> blockItem(String id, Supplier<T> block) {
+    public final <T extends Block> RegistryHolder<Item, Item> blockItem(String id, Supplier<T> block) {
         return this.blockItem(id, block, UnaryOperator.identity());
     }
 
-    public final <T extends Block> Supplier<Item> blockItem(String id, Supplier<T> block, UnaryOperator<Item.Properties> operator) {
+    public final <T extends Block> RegistryHolder<Item, Item> blockItem(String id, Supplier<T> block, UnaryOperator<Item.Properties> operator) {
         return this.register(BuiltInRegistries.ITEM, id, () -> new BlockItem(block.get(), operator.apply(new Item.Properties())));
     }
 
-    public final Supplier<Block> simpleBlock(String id) {
+    public final RegistryHolder<Block, Block> simpleBlock(String id) {
         return this.simpleBlock(id, UnaryOperator.identity());
     }
 
-    public final Supplier<Block> simpleBlock(String id, UnaryOperator<Block.Properties> operator) {
+    public final RegistryHolder<Block, Block> simpleBlock(String id, UnaryOperator<Block.Properties> operator) {
         return this.register(BuiltInRegistries.BLOCK, id, () -> new Block(operator.apply(Block.Properties.of())));
     }
 
@@ -83,7 +83,7 @@ public abstract class Registrar {
      */
     public final void register() {
         if (this.registered) {
-            throw new IllegalStateException("Cannot regster twice for mod " + this.modId);
+            throw new IllegalStateException("Cannot register twice for the mod " + this.modId);
         }
 
         this.registered = true;

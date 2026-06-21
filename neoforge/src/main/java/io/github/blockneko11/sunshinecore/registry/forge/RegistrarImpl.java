@@ -28,6 +28,7 @@ public final class RegistrarImpl extends Registrar {
 
     @Override
     public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry) {
+        // to be compactible with Forge :(
         ResourceLocation registryId = registry.key().location();
         DeferredRegister<R> register = (DeferredRegister<R>) this.registers.computeIfAbsent(
                 registryId,
