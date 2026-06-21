@@ -100,6 +100,11 @@ public abstract class STagProvider<T> implements DataProvider {
         public BlockProvider(String modId, boolean validate, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
             super(modId, validate, output, lookupProvider, Registries.BLOCK);
         }
+
+        @Override
+        public ResourceKey<Block> toResourceKey(Block entry) {
+            return entry.builtInRegistryHolder().key();
+        }
     }
 
     public static abstract class ItemProvider extends STagProvider<Item> {

@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.menu.fabric;
 
 import io.github.blockneko11.sunshinecore.menu.ExtendedMenuProvider;
-import io.github.blockneko11.sunshinecore.menu.MenuUtil;
+import io.github.blockneko11.sunshinecore.menu.MenuUtils;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -19,12 +19,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Function;
 
-public final class MenuUtilImpl {
+public final class MenuUtilsImpl {
     public static void openExtended(ServerPlayer player, ExtendedMenuProvider provider) {
         player.openMenu(new ExtendedScreenHandlerFactoryImpl(provider));
     }
 
-    public static <T extends AbstractContainerMenu> MenuType<T> extendedType(MenuUtil.ExtendedMenuTypeFactory<T> factory) {
+    public static <T extends AbstractContainerMenu> MenuType<T> extendedType(MenuUtils.ExtendedMenuTypeFactory<T> factory) {
         return new ExtendedScreenHandlerType<>((syncId, inventory, data) -> {
             FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.wrappedBuffer(data));
             T menu = factory.create(syncId, inventory, buf);
@@ -56,6 +56,6 @@ public final class MenuUtilImpl {
         }
     }
 
-    private MenuUtilImpl() {
+    private MenuUtilsImpl() {
     }
 }

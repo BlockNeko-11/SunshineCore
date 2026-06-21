@@ -3,7 +3,7 @@ package io.github.blockneko11.sunshinecore.item.forge;
 import com.mojang.datafixers.util.Pair;
 import io.github.blockneko11.sunshinecore.mixin.forge.item.AxeItemMixin;
 import io.github.blockneko11.sunshinecore.mixin.forge.item.ShovelItemMixin;
-import io.github.blockneko11.sunshinecore.util.CollectionUtil;
+import io.github.blockneko11.sunshinecore.util.CollectionUtils;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,12 +26,12 @@ public final class ItemInteractionRegistryImpl {
             throw new IllegalArgumentException("block " + after.builtInRegistryHolder().getRegisteredName() + " requires a \"axis\" property");
         }
 
-        CollectionUtil.toMutable(AxeItemMixin::getStrippables, AxeItemMixin::setStrippables);
+        CollectionUtils.toMutable(AxeItemMixin::getStrippables, AxeItemMixin::setStrippables);
         AxeItemMixin.getStrippables().put(before, after);
     }
 
     public static void registerFlattenable(Block before, BlockState after) {
-        CollectionUtil.toMutable(ShovelItemMixin::getFlattenables, ShovelItemMixin::setFlattenables);
+        CollectionUtils.toMutable(ShovelItemMixin::getFlattenables, ShovelItemMixin::setFlattenables);
         ShovelItemMixin.getFlattenables().put(before, after);
     }
 

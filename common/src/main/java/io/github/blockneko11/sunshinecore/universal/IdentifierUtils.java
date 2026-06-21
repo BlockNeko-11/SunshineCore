@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 /**
  * A cross-version identifier utility.
  */
-public final class IdentifierUtil {
+public final class IdentifierUtils {
     /**
      * Create an identifier.
      * @param modId mod id
@@ -16,6 +16,6 @@ public final class IdentifierUtil {
         return ResourceLocation.fromNamespaceAndPath(modId, path);
     }
 
-    private IdentifierUtil() {
+    private IdentifierUtils() {
     }
 }

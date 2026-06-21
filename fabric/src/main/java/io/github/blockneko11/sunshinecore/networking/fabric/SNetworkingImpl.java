@@ -15,7 +15,7 @@ public final class SNetworkingImpl {
     }
 
     public static <T extends CustomPacketPayload> void registerC2SReceiver(CustomPacketPayload.Type<T> type, StreamCodec<? super RegistryFriendlyByteBuf, T> codec, PayloadReceiver<T> receiver) {
-        registerS2CType(type, codec); // to be the same behavior as NeoForge's
+        registerS2CType(type, codec); // to be the same behaviour as NeoForge's
         ServerPlayNetworking.registerGlobalReceiver(type, (payload, context) ->
                 receiver.receive(payload, new PayloadContext.Server() {
                     @Override

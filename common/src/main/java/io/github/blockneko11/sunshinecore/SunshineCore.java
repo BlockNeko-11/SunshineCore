@@ -11,6 +11,7 @@ public final class SunshineCore {
     public static void init() {
         LOGGER.info("Sunshine Core loaded! version: {}", Platform.getMod(MOD_ID).getVersion());
         EventInvokers.init();
+
     }
 
     private SunshineCore() {

@@ -13,9 +13,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Slice;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Consumer;
@@ -58,9 +56,12 @@ public abstract class HoeItemMixin {
             }
 
             pair.getSecond().accept(context);
+
+            // to be the same behaviour as Vanilla's
             if (player != null) {
                 context.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
             }
+
             cir.setReturnValue(InteractionResult.CONSUME);
             return;
         }

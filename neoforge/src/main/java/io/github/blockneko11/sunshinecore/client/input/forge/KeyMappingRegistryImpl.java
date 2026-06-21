@@ -1,14 +1,16 @@
 package io.github.blockneko11.sunshinecore.client.input.forge;
 
+import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
-import net.neoforged.bus.api.EventPriority;
-import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@OnlyIn(Dist.CLIENT)
 public final class KeyMappingRegistryImpl {
     private static final List<KeyMapping> KEY_MAPPINGS = new ArrayList<>();
 
@@ -20,8 +22,11 @@ public final class KeyMappingRegistryImpl {
         KEY_MAPPINGS.add(mapping);
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onRegisterKeyMappings(RegisterKeyMappingsEvent e) {
+    static {
+        EventBusUtils.SC().addListener(KeyMappingRegistryImpl::onRegister);
+    }
+
+    private static void onRegister(RegisterKeyMappingsEvent e) {
         KEY_MAPPINGS.forEach(e::register);
     }
 

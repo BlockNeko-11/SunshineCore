@@ -1,11 +1,10 @@
 package io.github.blockneko11.sunshinecore.entity.villager.forge;
 
 import io.github.blockneko11.sunshinecore.entity.villager.VillagerInteractionRegistry;
+import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
-import net.neoforged.bus.api.EventPriority;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
 
@@ -32,8 +31,12 @@ public final class VillagerInteractionRegistryImpl {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onVillagerTrade(VillagerTradesEvent e) {
+    static {
+        EventBusUtils.SC().addListener(VillagerInteractionRegistryImpl::onVillagerTrade);
+        EventBusUtils.SC().addListener(VillagerInteractionRegistryImpl::onWardeningTrade);
+    }
+
+    private static void onVillagerTrade(VillagerTradesEvent e) {
         List<TradeEntry> entries = TRADES.get(e.getType());
         if (entries == null) {
             return;
@@ -46,8 +49,7 @@ public final class VillagerInteractionRegistryImpl {
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onWardeningTrade(WandererTradesEvent e) {
+    private static void onWardeningTrade(WandererTradesEvent e) {
         for (Consumer<List<VillagerTrades.ItemListing>> factory : WANDERING_TRADE_GENERIC) {
             factory.accept(e.getGenericTrades());
         }

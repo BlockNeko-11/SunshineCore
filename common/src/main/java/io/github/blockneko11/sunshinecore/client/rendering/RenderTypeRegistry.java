@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.client.render;
+package io.github.blockneko11.sunshinecore.client.rendering;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import net.fabricmc.api.EnvType;

@@ -22,7 +22,6 @@ public final class ForgeEventHandlers {
     @SubscribeEvent
     public static void onTagsUpdated(TagsUpdatedEvent e) {
         LoadTagsEvent.EVENT.invoker().onLoadTags(e.getRegistryAccess(), !e.shouldUpdateStaticData());
-        BlockInteractionRegistryImpl.onTagsUpdated();
     }
 
     // Server Lifecycle

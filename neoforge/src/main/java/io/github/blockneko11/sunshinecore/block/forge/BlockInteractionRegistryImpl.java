@@ -1,10 +1,13 @@
 package io.github.blockneko11.sunshinecore.block.forge;
 
 import io.github.blockneko11.sunshinecore.registry.RegistryUtils;
+import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.TagsUpdatedEvent;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Collection;
@@ -60,8 +63,12 @@ public final class BlockInteractionRegistryImpl {
         FUEL_TAGS.put(tag, burnTick);
     }
 
-    @ApiStatus.Internal
-    public static void onTagsUpdated() {
+    static {
+        EventBusUtils.FML().addListener(BlockInteractionRegistryImpl::onTagsUpdated);
+    }
+
+    @SubscribeEvent
+    public static void onTagsUpdated(TagsUpdatedEvent e) {
         COMPUTED_FLAMMABLES = null;
         COMPUTED_COMPOSTABLES = null;
         COMPUTED_FUELS = null;

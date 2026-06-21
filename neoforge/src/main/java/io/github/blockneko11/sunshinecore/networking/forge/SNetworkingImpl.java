@@ -1,9 +1,8 @@
 package io.github.blockneko11.sunshinecore.networking.forge;
 
-import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.networking.PayloadContext;
 import io.github.blockneko11.sunshinecore.networking.PayloadReceiver;
-import io.github.blockneko11.sunshinecore.util.forge.EventBusUtil;
+import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -12,13 +11,13 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public final class SNetworkingImpl {
     public static <T extends CustomPacketPayload> void registerS2CType(CustomPacketPayload.Type<T> type, StreamCodec<? super RegistryFriendlyByteBuf, T> codec) {
-        EventBusUtil.get(SunshineCore.MOD_ID).<RegisterPayloadHandlersEvent>addListener(e ->
+        EventBusUtils.SC().<RegisterPayloadHandlersEvent>addListener(e ->
                 e.registrar(type.id().getNamespace())
                         .playToClient(type, codec, (payload, context) -> {}));
     }
 
     public static <T extends CustomPacketPayload> void registerC2SReceiver(CustomPacketPayload.Type<T> type, StreamCodec<? super RegistryFriendlyByteBuf, T> codec, PayloadReceiver<T> receiver) {
-        EventBusUtil.get(SunshineCore.MOD_ID).<RegisterPayloadHandlersEvent>addListener(e ->
+        EventBusUtils.SC().<RegisterPayloadHandlersEvent>addListener(e ->
                 e.registrar(type.id().getNamespace())
                         .playToClient(type, codec, (payload, context) ->
                                 receiver.receive(payload, new PayloadContext.Server() {

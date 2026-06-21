@@ -2,7 +2,7 @@ package io.github.blockneko11.sunshinecore.registry.forge;
 
 import io.github.blockneko11.sunshinecore.registry.Registrar;
 import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
-import io.github.blockneko11.sunshinecore.util.forge.EventBusUtil;
+import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -19,7 +19,7 @@ public final class RegistrarImpl extends Registrar {
 
     private RegistrarImpl(String modId) {
         super(modId);
-        this.modBus = EventBusUtil.get(modId);
+        this.modBus = EventBusUtils.get(modId);
     }
 
     public static Registrar create(String modId) {
