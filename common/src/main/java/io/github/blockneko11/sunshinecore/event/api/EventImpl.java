@@ -10,7 +10,7 @@ final class EventImpl<T> implements Event<T> {
 
     private T invoker = null;
 
-    public EventImpl(Function<List<T>, T> invokerFunction) {
+    EventImpl(Function<List<T>, T> invokerFunction) {
         this.invokerFunction = invokerFunction;
     }
 
@@ -18,17 +18,6 @@ final class EventImpl<T> implements Event<T> {
     public void register(T handler) {
         this.handlers.add(handler);
         this.reset();
-    }
-
-    @Override
-    public void unregister(T handler) {
-        this.handlers.remove(handler);
-        this.reset();
-    }
-
-    @Override
-    public boolean isRegistered(T handler) {
-        return this.handlers.contains(handler);
     }
 
     private void reset() {

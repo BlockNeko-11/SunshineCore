@@ -1,13 +1,10 @@
 package io.github.blockneko11.sunshinecore.event;
 
 import io.github.blockneko11.sunshinecore.event.api.Event;
+import io.github.blockneko11.sunshinecore.event.api.EventFactory;
 
 public final class CommonEvents {
-    public static final Event<Setup> SETUP = Event.create(handlers -> () -> {
-        for (Setup handler : handlers) {
-            handler.onSetup();
-        }
-    });
+    public static final Event<Setup> SETUP = EventFactory.createNonReturn();
 
     /**
      * The setup event.
