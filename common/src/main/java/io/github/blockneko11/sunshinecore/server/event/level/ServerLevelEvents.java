@@ -1,6 +1,7 @@
-package io.github.blockneko11.sunshinecore.event.level;
+package io.github.blockneko11.sunshinecore.server.event.level;
 
 import io.github.blockneko11.sunshinecore.event.api.Event;
+import io.github.blockneko11.sunshinecore.event.level.LevelEvent;
 import net.minecraft.server.level.ServerLevel;
 
 /**

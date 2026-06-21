@@ -6,7 +6,7 @@ import com.example.testmod.registry.TestRegistry;
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.command.CommandRegistry;
 import io.github.blockneko11.sunshinecore.data.SDataGeneration;
-import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvents;
+import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
 import io.github.blockneko11.sunshinecore.loader.Platform;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;

@@ -2,18 +2,26 @@ package io.github.blockneko11.sunshinecore.event.impl.fabric;
 
 import io.github.blockneko11.sunshinecore.client.event.ClientEvents;
 import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelEvents;
-import io.github.blockneko11.sunshinecore.event.ServerEvents;
-import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvents;
+import io.github.blockneko11.sunshinecore.event.tag.LoadTagsEvent;
+import io.github.blockneko11.sunshinecore.server.event.ServerEvents;
+import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 
 public final class EventInvokersImpl {
     public static void init() {
+        // Common Lifecycle
+
+        CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
+            LoadTagsEvent.EVENT.invoker().onLoadTags(registries, client);
+        });
+
         // Server Lifecycle
 
         ServerLifecycleEvents.SERVER_STARTING.register(s -> {

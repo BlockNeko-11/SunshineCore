@@ -1,7 +1,8 @@
 package io.github.blockneko11.sunshinecore.block;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import io.github.blockneko11.sunshinecore.event.CommonEvents;
+import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -10,7 +11,7 @@ import java.util.Collection;
 
 /**
  * Block interaction registry API, which is used for registering interactions for some specific blocks.
- * <h1>NOTE: Please use these methods with {@link CommonEvents#SETUP}.</h1>
+ * <h1>NOTE: Please use these methods with {@link SetupEvent#EVENT}.</h1>
  */
 public final class BlockInteractionRegistry {
     public static void registerFlammable(int flameAbility, int spreadSpeed, Block... blocks) {
@@ -22,9 +23,10 @@ public final class BlockInteractionRegistry {
         throw new AssertionError();
     }
 
-//    public static void registerFlammable(int burn, int spread, TagKey<Block> tag) {
-//        registerFlammable(burn, spread, RegistryUtil.getEntries(BuiltInRegistries.BLOCK, tag));
-//    }
+    @ExpectPlatform
+    public static void registerFlammable(int burn, int spread, TagKey<Block> tag) {
+        throw new AssertionError();
+    }
 
     public static void registerComposting(float chance, Item... items) {
         registerComposting(chance, Arrays.asList(items));
@@ -35,9 +37,10 @@ public final class BlockInteractionRegistry {
         throw new AssertionError();
     }
 
-//    public static void registerComposting(float chance, TagKey<Item> tag) {
-//        registerComposting(chance, RegistryUtil.getEntries(BuiltInRegistries.ITEM, tag));
-//    }
+    @ExpectPlatform
+    public static void registerComposting(float chance, TagKey<Item> tag) {
+        throw new AssertionError();
+    }
 
     public static void registerFuel(int burnTick, Item... items) {
         registerFuel(burnTick, Arrays.asList(items));
@@ -48,9 +51,10 @@ public final class BlockInteractionRegistry {
         throw new AssertionError();
     }
 
-//    public static void registerFuel(int burnTick, TagKey<Item> tag) {
-//        registerFuel(burnTick, RegistryUtil.getEntries(BuiltInRegistries.ITEM, tag));
-//    }
+    @ExpectPlatform
+    public static void registerFuel(int burnTick, TagKey<Item> tag) {
+        throw new AssertionError();
+    }
 
     private BlockInteractionRegistry() {
     }

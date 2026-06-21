@@ -1,12 +1,11 @@
 package io.github.blockneko11.sunshinecore.forge;
 
 import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.block.forge.BlockInteractionRegistryImpl;
 import io.github.blockneko11.sunshinecore.client.SunshineCoreClient;
 import io.github.blockneko11.sunshinecore.client.menu.forge.MenuRegistryImpl;
 import io.github.blockneko11.sunshinecore.command.forge.CommandRegistryImpl;
 import io.github.blockneko11.sunshinecore.entity.villager.forge.VillagerInteractionRegistryImpl;
-import io.github.blockneko11.sunshinecore.event.CommonEvents;
+import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
 import io.github.blockneko11.sunshinecore.item.tab.forge.CreativeModeTabUtilImpl;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -21,7 +20,6 @@ public final class SunshineCoreNeoForge {
         bus.addListener(this::onCommonSetup);
         NeoForge.EVENT_BUS.register(CommandRegistryImpl.class);
         bus.register(CreativeModeTabUtilImpl.class);
-        NeoForge.EVENT_BUS.register(BlockInteractionRegistryImpl.class);
         NeoForge.EVENT_BUS.register(VillagerInteractionRegistryImpl.class);
 
         if (dist.isClient()) {
@@ -31,6 +29,6 @@ public final class SunshineCoreNeoForge {
     }
 
     private void onCommonSetup(FMLCommonSetupEvent e) {
-        CommonEvents.SETUP.invoker().onSetup();
+        SetupEvent.EVENT.invoker().onSetup();
     }
 }

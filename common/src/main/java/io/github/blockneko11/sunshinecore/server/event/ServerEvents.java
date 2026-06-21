@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.event;
+package io.github.blockneko11.sunshinecore.server.event;
 
 import io.github.blockneko11.sunshinecore.event.api.Event;
 import io.github.blockneko11.sunshinecore.event.api.EventFactory;

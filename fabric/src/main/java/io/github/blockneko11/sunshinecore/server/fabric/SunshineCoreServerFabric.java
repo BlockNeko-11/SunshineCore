@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.server.fabric;
 
-import io.github.blockneko11.sunshinecore.event.CommonEvents;
+import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -9,6 +9,6 @@ import net.fabricmc.api.Environment;
 public final class SunshineCoreServerFabric implements DedicatedServerModInitializer {
     @Override
     public void onInitializeServer() {
-        CommonEvents.SETUP.invoker().onSetup();
+        SetupEvent.EVENT.invoker().onSetup();
     }
 }

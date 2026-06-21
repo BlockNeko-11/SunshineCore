@@ -2,7 +2,7 @@ package com.example.testmod.registry;
 
 import com.example.testmod.TestMod;
 import io.github.blockneko11.sunshinecore.block.BlockInteractionRegistry;
-import io.github.blockneko11.sunshinecore.event.CommonEvents;
+import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
 import io.github.blockneko11.sunshinecore.item.tab.CreativeModeTabUtil;
 import io.github.blockneko11.sunshinecore.item.ItemInteractionRegistry;
 import io.github.blockneko11.sunshinecore.registry.Registrar;
@@ -38,7 +38,7 @@ public final class TestRegistry {
             output.accept(TEST_BLOCK_FLATTENED_ITEM.get());
         });
 
-        CommonEvents.SETUP.register(() -> {
+        SetupEvent.EVENT.register(() -> {
             ItemInteractionRegistry.registerFlattenable(TEST_BLOCK.get(), TEST_BLOCK_FLATTENED.get().defaultBlockState());
             ItemInteractionRegistry.registerTillable(TEST_BLOCK.get(),
                     HoeItem::onlyIfAirAbove,

@@ -1,12 +1,15 @@
 package io.github.blockneko11.sunshinecore.event.forge;
 
-import io.github.blockneko11.sunshinecore.event.ServerEvents;
-import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvents;
+import io.github.blockneko11.sunshinecore.block.forge.BlockInteractionRegistryImpl;
+import io.github.blockneko11.sunshinecore.event.tag.LoadTagsEvent;
+import io.github.blockneko11.sunshinecore.server.event.ServerEvents;
+import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.TagsUpdatedEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.*;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
@@ -14,6 +17,14 @@ import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 
 public final class ForgeEventHandlers {
+    // Common Lifecycle
+
+    @SubscribeEvent
+    public static void onTagsUpdated(TagsUpdatedEvent e) {
+        LoadTagsEvent.EVENT.invoker().onLoadTags(e.getRegistryAccess(), !e.shouldUpdateStaticData());
+        BlockInteractionRegistryImpl.onTagsUpdated();
+    }
+
     // Server Lifecycle
 
     @SubscribeEvent(priority = EventPriority.HIGH)

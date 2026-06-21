@@ -24,7 +24,7 @@ public abstract class MinecraftMixin {
         ClientEvents.STARTED.invoker().handle((Minecraft) (Object) this);
     }
 
-    // TODO: use more correct injection point
+    // TODO: use a more correct injection point
     @Inject(
             method = "destroy",
             at = @At(

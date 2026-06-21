@@ -1,78 +1,129 @@
 package io.github.blockneko11.sunshinecore.block.forge;
 
+import io.github.blockneko11.sunshinecore.registry.RegistryUtils;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.bus.api.EventPriority;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 public final class BlockInteractionRegistryImpl {
-    public static final Map<Block, FlammableEntry> FLAMMABLES = new HashMap<>();
-    public static final Map<Item, Float> COMPOSTABLES = new HashMap<>();
+    private static final Map<Block, FlammableEntry> FLAMMABLES = new HashMap<>();
+    private static final Map<TagKey<Block>, FlammableEntry> FLAMMABLE_TAGS = new HashMap<>();
+    private static Map<Block, FlammableEntry> COMPUTED_FLAMMABLES = null;
+
+    private static final Map<Item, Float> COMPOSTABLES = new HashMap<>();
+    private static final Map<TagKey<Item>, Float> COMPOSTABLE_TAGS = new HashMap<>();
+    private static Map<Item, Float> COMPUTED_COMPOSTABLES = null;
+
     private static final Map<Item, Integer> FUELS = new HashMap<>();
+    private static final Map<TagKey<Item>, Integer> FUEL_TAGS = new HashMap<>();
+    private static Map<Item, Integer> COMPUTED_FUELS = null;
 
     public static void registerFlammable(int flameAbility, int spreadSpeed, Collection<Block> blocks) {
+        COMPUTED_FLAMMABLES = null;
         for (Block block : blocks) {
-            if (flameAbility <= 0 || spreadSpeed <= 0) {
-                FLAMMABLES.remove(block);
-            } else {
-                FLAMMABLES.put(block, new FlammableEntry(flameAbility, spreadSpeed));
-            }
+            FLAMMABLES.put(block, new FlammableEntry(flameAbility, spreadSpeed));
         }
+    }
+
+    public static void registerFlammable(int burn, int spread, TagKey<Block> tag) {
+        COMPUTED_FLAMMABLES = null;
+        FLAMMABLE_TAGS.put(tag, new FlammableEntry(burn, spread));
     }
 
     public static void registerComposting(float chance, Collection<Item> items) {
+        COMPUTED_COMPOSTABLES = null;
         for (Item item : items) {
-            if (chance <= 0.0f || chance > 1.0f) {
-                COMPOSTABLES.remove(item);
-            } else {
-                COMPOSTABLES.put(item, chance);
-            }
+            COMPOSTABLES.put(item, chance);
         }
+    }
+
+    public static void registerComposting(float chance, TagKey<Item> tag) {
+        COMPUTED_COMPOSTABLES = null;
+        COMPOSTABLE_TAGS.put(tag, chance);
     }
 
     public static void registerFuel(int burnTick, Collection<Item> items) {
+        COMPUTED_FUELS = null;
         for (Item i : items) {
-            if (burnTick <= 0) {
-                FUELS.remove(i);
-            } else {
-                FUELS.put(i, burnTick);
+            FUELS.put(i, burnTick);
+        }
+    }
+
+    public static void registerFuel(int burnTick, TagKey<Item> tag) {
+        COMPUTED_FUELS = null;
+        FUEL_TAGS.put(tag, burnTick);
+    }
+
+    @ApiStatus.Internal
+    public static void onTagsUpdated() {
+        COMPUTED_FLAMMABLES = null;
+        COMPUTED_COMPOSTABLES = null;
+        COMPUTED_FUELS = null;
+    }
+
+    @ApiStatus.Internal
+    public static Map<Block, FlammableEntry> getFlammables() {
+        if (COMPUTED_FLAMMABLES != null) {
+            return COMPUTED_FLAMMABLES;
+        }
+
+        Map<Block, FlammableEntry> computed = new HashMap<>();
+
+        for (Map.Entry<TagKey<Block>, FlammableEntry> entry : FLAMMABLE_TAGS.entrySet()) {
+            for (Block block : RegistryUtils.getEntries(BuiltInRegistries.BLOCK, entry.getKey())) {
+                computed.put(block, entry.getValue());
             }
         }
+
+        computed.putAll(FLAMMABLES);
+        COMPUTED_FLAMMABLES = computed;
+        return COMPUTED_FLAMMABLES;
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onFuelRegister(FurnaceFuelBurnTimeEvent e) {
-        if (e.getItemStack().isEmpty()) {
-            return;
+    @ApiStatus.Internal
+    public static Map<Item, Float> getCompostables() {
+        if (COMPUTED_COMPOSTABLES != null) {
+            return COMPUTED_COMPOSTABLES;
         }
 
-        int ticks = FUELS.getOrDefault(e.getItemStack().getItem(), Integer.MIN_VALUE);
-        if (ticks != Integer.MIN_VALUE) {
-            e.setBurnTime(ticks);
+        Map<Item, Float> computed = new HashMap<>();
+        for (Map.Entry<TagKey<Item>, Float> entry : COMPOSTABLE_TAGS.entrySet()) {
+            for (Item item : RegistryUtils.getEntries(BuiltInRegistries.ITEM, entry.getKey())) {
+                computed.put(item, entry.getValue());
+            }
         }
+
+        computed.putAll(COMPOSTABLES);
+        COMPUTED_COMPOSTABLES = computed;
+        return COMPUTED_COMPOSTABLES;
     }
 
-    public static final class FlammableEntry {
-        private final int flameAbility;
-        private final int spreadSpeed;
-
-        private FlammableEntry(int flameAbility, int spreadSpeed) {
-            this.flameAbility = flameAbility;
-            this.spreadSpeed = spreadSpeed;
+    @ApiStatus.Internal
+    public static Map<Item, Integer> getFuels() {
+        if (COMPUTED_FUELS != null) {
+            return COMPUTED_FUELS;
         }
 
-        public int getFlameAbility() {
-            return this.flameAbility;
+        Map<Item, Integer> computed = new HashMap<>();
+        for (Map.Entry<TagKey<Item>, Integer> entry : FUEL_TAGS.entrySet()) {
+            for (Item item : RegistryUtils.getEntries(BuiltInRegistries.ITEM, entry.getKey())) {
+                computed.put(item, entry.getValue());
+            }
         }
 
-        public int getSpreadSpeed() {
-            return this.spreadSpeed;
-        }
+        computed.putAll(FUELS);
+        COMPUTED_FUELS = computed;
+        return COMPUTED_FUELS;
+    }
+
+    @ApiStatus.Internal
+    public record FlammableEntry(int flameAbility, int spreadSpeed) {
     }
 
     private BlockInteractionRegistryImpl() {

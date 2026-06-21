@@ -22,7 +22,11 @@ public abstract class ComposterBlockMixin {
         }
 
         Item item = stack.getItem();
-        float chance = BlockInteractionRegistryImpl.COMPOSTABLES.getOrDefault(item, -1.0f);
+        float chance = BlockInteractionRegistryImpl.getCompostables().getOrDefault(item, 0.0f);
+        if (chance <= 0.0f) {
+            return;
+        }
+
         cir.setReturnValue(chance);
     }
 }

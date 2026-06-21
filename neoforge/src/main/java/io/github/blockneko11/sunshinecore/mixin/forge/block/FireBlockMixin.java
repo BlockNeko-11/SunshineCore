@@ -21,13 +21,13 @@ public abstract class FireBlockMixin {
     )
     private int getFlammability$registerFlammable(int baseValue, Level level, BlockPos pos) {
         Block block = level.getBlockState(pos).getBlock();
-        BlockInteractionRegistryImpl.FlammableEntry entry = BlockInteractionRegistryImpl.FLAMMABLES.get(block);
+        BlockInteractionRegistryImpl.FlammableEntry entry = BlockInteractionRegistryImpl.getFlammables().get(block);
 
         if (entry == null) {
             return baseValue;
         }
 
-        return entry.getFlameAbility();
+        return entry.flameAbility();
     }
 
     @Inject(
@@ -37,13 +37,13 @@ public abstract class FireBlockMixin {
     )
     private void getIgniteOdds$registerFlammable(LevelReader level, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
         Block block = level.getBlockState(pos).getBlock();
-        BlockInteractionRegistryImpl.FlammableEntry entry = BlockInteractionRegistryImpl.FLAMMABLES.get(block);
+        BlockInteractionRegistryImpl.FlammableEntry entry = BlockInteractionRegistryImpl.getFlammables().get(block);
 
         if (entry == null) {
             return;
         }
 
-        int speed = entry.getSpreadSpeed();
+        int speed = entry.spreadSpeed();
         cir.setReturnValue(Math.max(cir.getReturnValue(), speed));
     }
 }

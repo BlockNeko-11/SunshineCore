@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.mixin.fabric.level;
 
-import io.github.blockneko11.sunshinecore.event.level.ServerLevelEvents;
+import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.ProgressListener;
 import org.spongepowered.asm.mixin.Mixin;

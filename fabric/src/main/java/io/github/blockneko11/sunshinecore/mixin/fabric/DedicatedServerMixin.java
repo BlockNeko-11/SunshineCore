@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.mixin.fabric;
 
-import io.github.blockneko11.sunshinecore.event.ServerEvents;
+import io.github.blockneko11.sunshinecore.server.event.ServerEvents;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.dedicated.DedicatedServer;
 import org.spongepowered.asm.mixin.Mixin;
