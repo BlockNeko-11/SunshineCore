@@ -5,6 +5,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.common.ClientCommonPacketListener;
+import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -19,9 +20,8 @@ public final class SNetworking {
         throw new AssertionError();
     }
 
-    @ExpectPlatform
     public static <T extends CustomPacketPayload> Packet<ClientCommonPacketListener> toS2CPacket(T payload) {
-        throw new AssertionError();
+        return new ClientboundCustomPayloadPacket(payload);
     }
 
     public static <T extends CustomPacketPayload> void sendToPlayer(ServerPlayer player, T payload) {

@@ -6,9 +6,6 @@ import io.github.blockneko11.sunshinecore.networking.PayloadReceiver;
 import io.github.blockneko11.sunshinecore.util.forge.EventBusUtil;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.common.ClientCommonPacketListener;
-import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -35,10 +32,6 @@ public final class SNetworkingImpl {
                                         context.enqueueWork(runnable);
                                     }
                                 })));
-    }
-
-    public static <T extends CustomPacketPayload> Packet<ClientCommonPacketListener> toS2CPacket(T payload) {
-        return new ClientboundCustomPayloadPacket(payload);
     }
 
     private SNetworkingImpl() {

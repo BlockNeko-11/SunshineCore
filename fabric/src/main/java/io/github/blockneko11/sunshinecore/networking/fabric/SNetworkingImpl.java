@@ -6,8 +6,6 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.common.ClientCommonPacketListener;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.world.entity.player.Player;
 
@@ -30,10 +28,6 @@ public final class SNetworkingImpl {
                         context.server().execute(runnable);
                     }
                 }));
-    }
-
-    public static <T extends CustomPacketPayload> Packet<ClientCommonPacketListener> toS2CPacket(T payload) {
-        return ServerPlayNetworking.createS2CPacket(payload);
     }
 
     private SNetworkingImpl() {

@@ -9,6 +9,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.common.ServerCommonPacketListener;
+import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
 import java.util.Objects;
@@ -25,9 +26,8 @@ public final class SClientNetworking {
         throw new AssertionError();
     }
 
-    @ExpectPlatform
     public static <T extends CustomPacketPayload> Packet<ServerCommonPacketListener> toC2SPacket(T payload) {
-        throw new AssertionError();
+        return new ServerboundCustomPayloadPacket(payload);
     }
 
     public static <T extends CustomPacketPayload> void sendToServer(T payload) {
