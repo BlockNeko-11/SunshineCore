@@ -32,13 +32,9 @@ public abstract class SEntityBlock<E extends SBlockEntity> extends BaseEntityBlo
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        if (pLevel.isClientSide()) {
-            return null;
-        }
-
-        return createTickerHelper(pBlockEntityType, this.type, (level, pos, state, blockEntity) -> {
-            blockEntity.tick(level, pos, state);
-        });
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return createTickerHelper(type, this.type, getTicker());
     }
+
+    protected abstract BlockEntityTicker<? super E> getTicker();
 }

@@ -38,6 +38,6 @@ public abstract class SBlockEntity extends BlockEntity {
         return super.saveWithoutMetadata(registries);
     }
 
-    public void tick(Level level, BlockPos pos, BlockState state) {
-    }
+//    public void tick(Level level, BlockPos pos, BlockState state) {
+//    }
 }
