@@ -1,13 +1,16 @@
-package io.github.blockneko11.sunshinecore.event.api;
+package io.github.blockneko11.sunshinecore.event.api.internals;
+
+import org.jetbrains.annotations.ApiStatus;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.List;
 
-final class VoidReflectiveInvoker<T> implements InvocationHandler {
+@ApiStatus.Internal
+public final class VoidProxy<T> implements InvocationHandler {
     private final List<T> handlers;
 
-    VoidReflectiveInvoker(List<T> handlers) {
+    public VoidProxy(List<T> handlers) {
         this.handlers = handlers;
     }
 

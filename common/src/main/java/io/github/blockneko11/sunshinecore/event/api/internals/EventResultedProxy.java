@@ -1,15 +1,17 @@
-package io.github.blockneko11.sunshinecore.event.api;
+package io.github.blockneko11.sunshinecore.event.api.internals;
 
-import net.minecraft.world.InteractionResult;
+import io.github.blockneko11.sunshinecore.event.api.EventResult;
+import org.jetbrains.annotations.ApiStatus;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.List;
 
-class InteractionResultReflectiveInvoker<T> implements InvocationHandler {
+@ApiStatus.Internal
+public class EventResultedProxy<T> implements InvocationHandler {
     private final List<T> handlers;
 
-    InteractionResultReflectiveInvoker(List<T> handlers) {
+    public EventResultedProxy(List<T> handlers) {
         this.handlers = handlers;
     }
 
@@ -18,11 +20,11 @@ class InteractionResultReflectiveInvoker<T> implements InvocationHandler {
         for (T handler : this.handlers) {
             Object result = method.invoke(handler, args);
 
-            if (result != InteractionResult.PASS) {
+            if (result != EventResult.PASS) {
                 return result;
             }
         }
 
-        return InteractionResult.PASS;
+        return EventResult.PASS;
     }
 }
