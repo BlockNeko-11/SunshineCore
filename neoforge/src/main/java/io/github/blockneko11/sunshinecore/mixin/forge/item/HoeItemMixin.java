@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.mixin.forge.item;
 
 import com.mojang.datafixers.util.Pair;
-import io.github.blockneko11.sunshinecore.item.forge.ItemInteractionRegistryImpl;
+import io.github.blockneko11.sunshinecore.item.tool.forge.ToolInteractionRegistryImpl;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -41,7 +41,7 @@ public abstract class HoeItemMixin {
         BlockPos pos = context.getClickedPos();
         Player player = context.getPlayer();
         Block base = level.getBlockState(pos).getBlock();
-        Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = ItemInteractionRegistryImpl.TILLABLES.get(base);
+        Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = ToolInteractionRegistryImpl.TILLABLES.get(base);
 
         if (pair == null) {
             cir.setReturnValue(InteractionResult.PASS);

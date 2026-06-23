@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.item.forge;
+package io.github.blockneko11.sunshinecore.item.tool.forge;
 
 import com.mojang.datafixers.util.Pair;
 import io.github.blockneko11.sunshinecore.mixin.forge.item.AxeItemMixin;
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public final class ItemInteractionRegistryImpl {
+public final class ToolInteractionRegistryImpl {
     public static final Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> TILLABLES = new HashMap<>();
 
     public static void registerStrippable(Block before, Block after) {
@@ -50,6 +50,6 @@ public final class ItemInteractionRegistryImpl {
 //        }
 //    }
 
-    private ItemInteractionRegistryImpl() {
+    private ToolInteractionRegistryImpl() {
     }
 }

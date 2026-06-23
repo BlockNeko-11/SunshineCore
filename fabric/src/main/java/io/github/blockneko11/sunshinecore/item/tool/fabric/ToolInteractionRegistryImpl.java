@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.item.fabric;
+package io.github.blockneko11.sunshinecore.item.tool.fabric;
 
 import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 // TODO: Add ItemAbility to Fabric
-public final class ItemInteractionRegistryImpl {
+public final class ToolInteractionRegistryImpl {
     public static void registerStrippable(Block before, Block after) {
         StrippableBlockRegistry.register(before, after);
     }
@@ -24,6 +24,6 @@ public final class ItemInteractionRegistryImpl {
         TillableBlockRegistry.register(input, predicate, action);
     }
 
-    private ItemInteractionRegistryImpl() {
+    private ToolInteractionRegistryImpl() {
     }
 }

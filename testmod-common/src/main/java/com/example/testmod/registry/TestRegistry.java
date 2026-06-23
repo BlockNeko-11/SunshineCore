@@ -4,7 +4,7 @@ import com.example.testmod.TestMod;
 import io.github.blockneko11.sunshinecore.block.BlockInteractionRegistry;
 import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
 import io.github.blockneko11.sunshinecore.item.tab.CreativeModeTabUtils;
-import io.github.blockneko11.sunshinecore.item.ItemInteractionRegistry;
+import io.github.blockneko11.sunshinecore.item.tool.ToolInteractionRegistry;
 import io.github.blockneko11.sunshinecore.registry.Registrar;
 import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -39,8 +39,8 @@ public final class TestRegistry {
         });
 
         SetupEvent.EVENT.register(() -> {
-            ItemInteractionRegistry.registerFlattenable(TEST_BLOCK.get(), TEST_BLOCK_FLATTENED.get().defaultBlockState());
-            ItemInteractionRegistry.registerTillable(TEST_BLOCK.get(),
+            ToolInteractionRegistry.registerFlattenable(TEST_BLOCK.get(), TEST_BLOCK_FLATTENED.get().defaultBlockState());
+            ToolInteractionRegistry.registerTillable(TEST_BLOCK.get(),
                     HoeItem::onlyIfAirAbove,
                     ctx -> Block.popResourceFromFace(ctx.getLevel(), ctx.getClickedPos(), ctx.getClickedFace(), new ItemStack(Items.REDSTONE)));
 

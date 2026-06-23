@@ -12,7 +12,6 @@ import java.util.Collection;
 import java.util.function.Consumer;
 
 /**
- * Block interaction registry API, which is used for registering interactions for some specific blocks.
  * <h1>NOTE: Please use these methods with {@link SetupEvent#EVENT}.</h1>
  */
 public final class BlockInteractionRegistry {
