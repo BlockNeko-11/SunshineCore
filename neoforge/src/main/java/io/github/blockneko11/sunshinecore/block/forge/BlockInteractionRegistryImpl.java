@@ -5,14 +5,14 @@ import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.TagsUpdatedEvent;
+import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Consumer;
 
 public final class BlockInteractionRegistryImpl {
     private static final Map<Block, FlammableEntry> FLAMMABLES = new HashMap<>();
@@ -26,6 +26,8 @@ public final class BlockInteractionRegistryImpl {
     private static final Map<Item, Integer> FUELS = new HashMap<>();
     private static final Map<TagKey<Item>, Integer> FUEL_TAGS = new HashMap<>();
     private static Map<Item, Integer> COMPUTED_FUELS = null;
+
+    private static final List<Consumer<PotionBrewing.Builder>> BREWING_RECIPES = new ArrayList<>();
 
     public static void registerFlammable(int flameAbility, int spreadSpeed, Collection<Block> blocks) {
         COMPUTED_FLAMMABLES = null;
@@ -63,15 +65,25 @@ public final class BlockInteractionRegistryImpl {
         FUEL_TAGS.put(tag, burnTick);
     }
 
-    static {
-        EventBusUtils.FML().addListener(BlockInteractionRegistryImpl::onTagsUpdated);
+    public static void registerBrewingRecipe(Consumer<PotionBrewing.Builder> builder) {
+        BREWING_RECIPES.add(builder);
     }
 
-    @SubscribeEvent
-    public static void onTagsUpdated(TagsUpdatedEvent e) {
+    static {
+        EventBusUtils.FML().addListener(BlockInteractionRegistryImpl::onTagsUpdated);
+        EventBusUtils.SC().addListener(BlockInteractionRegistryImpl::onRegisterBrewingRecipes);
+    }
+
+    private static void onTagsUpdated(TagsUpdatedEvent e) {
         COMPUTED_FLAMMABLES = null;
         COMPUTED_COMPOSTABLES = null;
         COMPUTED_FUELS = null;
+    }
+
+    private static void onRegisterBrewingRecipes(RegisterBrewingRecipesEvent e) {
+        for (Consumer<PotionBrewing.Builder> consumer : BREWING_RECIPES) {
+            consumer.accept(e.getBuilder());
+        }
     }
 
     @ApiStatus.Internal

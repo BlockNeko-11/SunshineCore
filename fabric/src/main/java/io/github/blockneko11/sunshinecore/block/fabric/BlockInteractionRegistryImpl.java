@@ -1,13 +1,16 @@
 package io.github.blockneko11.sunshinecore.block.fabric;
 
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.level.block.Block;
 
 import java.util.Collection;
+import java.util.function.Consumer;
 
 public final class BlockInteractionRegistryImpl {
     public static void registerFlammable(int flameAbility, int spreadSpeed, Collection<Block> blocks) {
@@ -38,6 +41,10 @@ public final class BlockInteractionRegistryImpl {
 
     public static void registerFuel(int burnTick, TagKey<Item> tag) {
         FuelRegistry.INSTANCE.add(tag, burnTick);
+    }
+
+    public static void registerBrewingRecipe(Consumer<PotionBrewing.Builder> builder) {
+        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder::accept);
     }
 
     private BlockInteractionRegistryImpl() {
