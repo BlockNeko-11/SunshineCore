@@ -35,7 +35,7 @@ public final class CompostingRegistryImpl {
 
         Map<Item, Float> computed = new HashMap<>();
         for (Map.Entry<TagKey<Item>, Float> entry : COMPOSTABLE_TAGS.entrySet()) {
-            for (Item item : RegistryUtils.getEntries(BuiltInRegistries.ITEM, entry.getKey())) {
+            for (Item item : RegistryUtils.getTagEntries(BuiltInRegistries.ITEM, entry.getKey())) {
                 computed.put(item, entry.getValue());
             }
         }

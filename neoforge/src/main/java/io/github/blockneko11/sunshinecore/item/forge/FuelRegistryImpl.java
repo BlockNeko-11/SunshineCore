@@ -35,7 +35,7 @@ public final class FuelRegistryImpl {
 
         Map<Item, Integer> computed = new HashMap<>();
         for (Map.Entry<TagKey<Item>, Integer> entry : FUEL_TAGS.entrySet()) {
-            for (Item item : RegistryUtils.getEntries(BuiltInRegistries.ITEM, entry.getKey())) {
+            for (Item item : RegistryUtils.getTagEntries(BuiltInRegistries.ITEM, entry.getKey())) {
                 computed.put(item, entry.getValue());
             }
         }

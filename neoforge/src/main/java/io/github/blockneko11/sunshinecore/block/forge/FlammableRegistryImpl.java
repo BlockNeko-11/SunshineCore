@@ -36,7 +36,7 @@ public final class FlammableRegistryImpl {
         Map<Block, FlammableEntry> computed = new HashMap<>();
 
         for (Map.Entry<TagKey<Block>, FlammableEntry> entry : FLAMMABLE_TAGS.entrySet()) {
-            for (Block block : RegistryUtils.getEntries(BuiltInRegistries.BLOCK, entry.getKey())) {
+            for (Block block : RegistryUtils.getTagEntries(BuiltInRegistries.BLOCK, entry.getKey())) {
                 computed.put(block, entry.getValue());
             }
         }

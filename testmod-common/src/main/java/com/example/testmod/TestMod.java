@@ -6,7 +6,7 @@ import com.example.testmod.registry.TestRegistry;
 import io.github.blockneko11.sunshinecore.SunshineCore;
 import io.github.blockneko11.sunshinecore.command.CommandRegistry;
 import io.github.blockneko11.sunshinecore.data.SDataGeneration;
-import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
+import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvent;
 import io.github.blockneko11.sunshinecore.loader.Platform;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
@@ -28,7 +28,7 @@ public final class TestMod {
         LOGGER.info("Test Mod version: {}", Platform.getMod(MOD_ID).getVersion());
 
         TestRegistry.init();
-        ServerLevelEvents.LOAD.register(TestMod::onLevelLoad);
+        ServerLevelEvent.LOAD.register(TestMod::onLevelLoad);
 
         CommandRegistry.registerCommand((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("test")

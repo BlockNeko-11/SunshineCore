@@ -8,7 +8,7 @@ import net.minecraft.tags.TagKey;
 import java.util.List;
 
 public final class RegistryUtils {
-    public static <R> List<R> getEntries(Registry<R> registry, TagKey<R> tag) {
+    public static <R> List<R> getTagEntries(Registry<R> registry, TagKey<R> tag) {
         return StreamUtils.toStream(registry.getTagOrEmpty(tag))
                 .map(Holder::value)
                 .toList();
