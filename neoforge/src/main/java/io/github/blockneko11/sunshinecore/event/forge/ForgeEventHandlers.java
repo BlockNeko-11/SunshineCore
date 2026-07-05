@@ -1,8 +1,8 @@
 package io.github.blockneko11.sunshinecore.event.forge;
 
 import io.github.blockneko11.sunshinecore.event.tag.LoadTagsEvent;
-import io.github.blockneko11.sunshinecore.server.event.ServerEvents;
-import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
+import io.github.blockneko11.sunshinecore.server.event.ServerEvent;
+import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -26,37 +26,37 @@ public final class ForgeEventHandlers {
 
     @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent e) {
-        ServerEvents.BEFORE_START.invoker().handle(e.getServer());
+        ServerEvent.BEFORE_START.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent
     public static void onServerStarting(ServerStartingEvent e) {
-        ServerEvents.STARTING.invoker().handle(e.getServer());
+        ServerEvent.STARTING.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent
     public static void onServerStarted(ServerStartedEvent e) {
-        ServerEvents.STARTED.invoker().handle(e.getServer());
+        ServerEvent.STARTED.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent
     public static void onServerStopping(ServerStoppingEvent e) {
-        ServerEvents.STOPPING.invoker().handle(e.getServer());
+        ServerEvent.STOPPING.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent e) {
-        ServerEvents.STOPPED.invoker().handle(e.getServer());
+        ServerEvent.STOPPED.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent
     public static void onServerTickPre(ServerTickEvent.Pre e) {
-        ServerEvents.PRE_TICK.invoker().handle(e.getServer());
+        ServerEvent.PRE_TICK.invoker().handle(e.getServer());
     }
 
     @SubscribeEvent
     public static void onServerTickPost(ServerTickEvent.Post e) {
-        ServerEvents.POST_TICK.invoker().handle(e.getServer());
+        ServerEvent.POST_TICK.invoker().handle(e.getServer());
     }
 
     // Server Level Lifecycle
@@ -68,7 +68,7 @@ public final class ForgeEventHandlers {
             return;
         }
 
-        ServerLevelEvents.LOAD.invoker().handle((ServerLevel) level);
+        ServerLevelEvent.LOAD.invoker().handle((ServerLevel) level);
     }
 
     @SubscribeEvent
@@ -78,7 +78,7 @@ public final class ForgeEventHandlers {
             return;
         }
 
-        ServerLevelEvents.UNLOAD.invoker().handle((ServerLevel) level);
+        ServerLevelEvent.UNLOAD.invoker().handle((ServerLevel) level);
     }
 
     @SubscribeEvent
@@ -88,7 +88,7 @@ public final class ForgeEventHandlers {
             return;
         }
 
-        ServerLevelEvents.SAVE.invoker().handle((ServerLevel) level);
+        ServerLevelEvent.SAVE.invoker().handle((ServerLevel) level);
     }
 
     @SubscribeEvent
@@ -98,7 +98,7 @@ public final class ForgeEventHandlers {
             return;
         }
 
-        ServerLevelEvents.PRE_TICK.invoker().handle((ServerLevel) level);
+        ServerLevelEvent.PRE_TICK.invoker().handle((ServerLevel) level);
     }
 
     @SubscribeEvent
@@ -108,7 +108,7 @@ public final class ForgeEventHandlers {
             return;
         }
 
-        ServerLevelEvents.POST_TICK.invoker().handle((ServerLevel) level);
+        ServerLevelEvent.POST_TICK.invoker().handle((ServerLevel) level);
     }
 
     // Player

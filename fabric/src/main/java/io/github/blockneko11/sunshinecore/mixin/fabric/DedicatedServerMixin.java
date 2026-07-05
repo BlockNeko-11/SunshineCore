@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.mixin.fabric;
 
-import io.github.blockneko11.sunshinecore.server.event.ServerEvents;
+import io.github.blockneko11.sunshinecore.server.event.ServerEvent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.dedicated.DedicatedServer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +16,7 @@ public abstract class DedicatedServerMixin {
     )
     private void initServer$serverStarting(CallbackInfoReturnable<Boolean> cir) {
         if (cir.getReturnValueZ()) {
-            ServerEvents.STARTING.invoker().handle((MinecraftServer) (Object) this);
+            ServerEvent.STARTING.invoker().handle((MinecraftServer) (Object) this);
         }
     }
 }

@@ -6,7 +6,7 @@ import net.minecraft.world.level.Level;
 
 /**
  * Level event.
- * @param <T> the type of level (e.g. client-sided, server-sided)
+ * @param <T> the type of level (e.g. ClientLevel, ServerLevel)
  */
 public interface LevelEvent<T extends Level> {
     void handle(T level);

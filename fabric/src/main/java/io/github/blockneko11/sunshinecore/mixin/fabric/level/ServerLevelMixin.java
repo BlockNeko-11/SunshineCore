@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.mixin.fabric.level;
 
-import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
+import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.ProgressListener;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +20,6 @@ public abstract class ServerLevelMixin {
             )
     )
     private void serverLevelSave(ProgressListener progress, boolean flush, boolean skipSave, CallbackInfo ci) {
-        ServerLevelEvents.SAVE.invoker().handle((ServerLevel) (Object) this);
+        ServerLevelEvent.SAVE.invoker().handle((ServerLevel) (Object) this);
     }
 }

@@ -1,6 +1,5 @@
 package io.github.blockneko11.sunshinecore.event.api;
 
-import io.github.blockneko11.sunshinecore.event.api.internals.EventImpl;
 import io.github.blockneko11.sunshinecore.event.api.handlers.EventResultHandler;
 import io.github.blockneko11.sunshinecore.event.api.handlers.InteractionResultHandler;
 import io.github.blockneko11.sunshinecore.event.api.handlers.NonReturnHandler;

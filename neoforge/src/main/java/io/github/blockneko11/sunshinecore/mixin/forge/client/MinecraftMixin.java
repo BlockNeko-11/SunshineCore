@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.mixin.forge.client;
 
-import io.github.blockneko11.sunshinecore.client.event.ClientEvents;
+import io.github.blockneko11.sunshinecore.client.event.ClientEvent;
 import net.minecraft.client.Minecraft;
 import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,7 +21,7 @@ public abstract class MinecraftMixin {
             )
     )
     private void onRun$clientStarted(CallbackInfo ci) {
-        ClientEvents.STARTED.invoker().handle((Minecraft) (Object) this);
+        ClientEvent.STARTED.invoker().handle((Minecraft) (Object) this);
     }
 
     // TODO: use a more correct injection point
@@ -35,6 +35,6 @@ public abstract class MinecraftMixin {
             )
     )
     private void onDestroy$clientStopping(CallbackInfo ci) {
-        ClientEvents.STOPPING.invoker().handle((Minecraft) (Object) this);
+        ClientEvent.STOPPING.invoker().handle((Minecraft) (Object) this);
     }
 }

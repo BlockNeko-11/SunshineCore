@@ -1,8 +1,8 @@
 package io.github.blockneko11.sunshinecore.event.fabric;
 
 import io.github.blockneko11.sunshinecore.event.tag.LoadTagsEvent;
-import io.github.blockneko11.sunshinecore.server.event.ServerEvents;
-import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
+import io.github.blockneko11.sunshinecore.server.event.ServerEvent;
+import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvent;
 import net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -19,45 +19,45 @@ public final class FabricEventHandlers {
         // Server Lifecycle
 
         ServerLifecycleEvents.SERVER_STARTING.register(s -> {
-            ServerEvents.BEFORE_START.invoker().handle(s);
+            ServerEvent.BEFORE_START.invoker().handle(s);
         });
 
         ServerLifecycleEvents.SERVER_STARTED.register(s -> {
-            ServerEvents.STARTED.invoker().handle(s);
+            ServerEvent.STARTED.invoker().handle(s);
         });
 
         ServerLifecycleEvents.SERVER_STOPPING.register(s -> {
-            ServerEvents.STOPPING.invoker().handle(s);
+            ServerEvent.STOPPING.invoker().handle(s);
         });
 
         ServerLifecycleEvents.SERVER_STOPPED.register(s -> {
-            ServerEvents.STOPPED.invoker().handle(s);
+            ServerEvent.STOPPED.invoker().handle(s);
         });
 
         ServerTickEvents.START_SERVER_TICK.register(s -> {
-            ServerEvents.PRE_TICK.invoker().handle(s);
+            ServerEvent.PRE_TICK.invoker().handle(s);
         });
 
         ServerTickEvents.END_SERVER_TICK.register(s -> {
-            ServerEvents.POST_TICK.invoker().handle(s);
+            ServerEvent.POST_TICK.invoker().handle(s);
         });
 
         // Server Level Lifecycle
 
         ServerWorldEvents.LOAD.register((s, l) -> {
-            ServerLevelEvents.LOAD.invoker().handle(l);
+            ServerLevelEvent.LOAD.invoker().handle(l);
         });
 
         ServerWorldEvents.UNLOAD.register((s, l) -> {
-            ServerLevelEvents.UNLOAD.invoker().handle(l);
+            ServerLevelEvent.UNLOAD.invoker().handle(l);
         });
 
         ServerTickEvents.START_WORLD_TICK.register(l -> {
-            ServerLevelEvents.PRE_TICK.invoker().handle(l);
+            ServerLevelEvent.PRE_TICK.invoker().handle(l);
         });
 
         ServerTickEvents.END_WORLD_TICK.register(l -> {
-            ServerLevelEvents.POST_TICK.invoker().handle(l);
+            ServerLevelEvent.POST_TICK.invoker().handle(l);
         });
     }
 

@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.client.event.forge;
 
-import io.github.blockneko11.sunshinecore.client.event.ClientEvents;
-import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelEvents;
+import io.github.blockneko11.sunshinecore.client.event.ClientEvent;
+import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.level.Level;
@@ -19,12 +19,12 @@ public final class ClientForgeEventHandlers {
 
     @SubscribeEvent
     public static void onClientTickPre(ClientTickEvent.Pre e) {
-        ClientEvents.PRE_TICK.invoker().handle(Minecraft.getInstance());
+        ClientEvent.PRE_TICK.invoker().handle(Minecraft.getInstance());
     }
 
     @SubscribeEvent
     public static void onClientTickPost(ClientTickEvent.Post e) {
-        ClientEvents.POST_TICK.invoker().handle(Minecraft.getInstance());
+        ClientEvent.POST_TICK.invoker().handle(Minecraft.getInstance());
     }
 
     // Client Level Lifecycle
@@ -33,7 +33,7 @@ public final class ClientForgeEventHandlers {
     public static void onClientLevelLoad(LevelEvent.Load e) {
         LevelAccessor level = e.getLevel();
         if (level.isClientSide()) {
-            ClientLevelEvents.LOAD.invoker().handle((ClientLevel) e.getLevel());
+            ClientLevelEvent.LOAD.invoker().handle((ClientLevel) e.getLevel());
         }
     }
 
@@ -41,7 +41,7 @@ public final class ClientForgeEventHandlers {
     public static void onClientLevelTickPre(LevelTickEvent.Pre e) {
         Level level = e.getLevel();
         if (level.isClientSide()) {
-            ClientLevelEvents.PRE_TICK.invoker().handle((ClientLevel) e.getLevel());
+            ClientLevelEvent.PRE_TICK.invoker().handle((ClientLevel) e.getLevel());
         }
     }
 
@@ -49,7 +49,7 @@ public final class ClientForgeEventHandlers {
     public static void onClientLevelTickPost(LevelTickEvent.Post e) {
         Level level = e.getLevel();
         if (level.isClientSide()) {
-            ClientLevelEvents.POST_TICK.invoker().handle((ClientLevel) e.getLevel());
+            ClientLevelEvent.POST_TICK.invoker().handle((ClientLevel) e.getLevel());
         }
     }
 

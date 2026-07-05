@@ -8,7 +8,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 @ApiStatus.Internal
-public class EventResultHandler<T> implements InvocationHandler {
+public final class EventResultHandler<T> implements InvocationHandler {
     private final List<T> handlers;
 
     public EventResultHandler(List<T> handlers) {

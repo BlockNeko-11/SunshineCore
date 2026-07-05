@@ -1,20 +1,16 @@
-package io.github.blockneko11.sunshinecore.event.api.internals;
-
-import io.github.blockneko11.sunshinecore.event.api.Event;
-import org.jetbrains.annotations.ApiStatus;
+package io.github.blockneko11.sunshinecore.event.api;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-@ApiStatus.Internal
-public final class EventImpl<T> implements Event<T> {
+final class EventImpl<T> implements Event<T> {
     private final Function<List<T>, T> invokerFunction;
     private final List<T> handlers = new ArrayList<>();
 
     private T invoker = null;
 
-    public EventImpl(Function<List<T>, T> invokerFunction) {
+    EventImpl(Function<List<T>, T> invokerFunction) {
         this.invokerFunction = invokerFunction;
     }
 
