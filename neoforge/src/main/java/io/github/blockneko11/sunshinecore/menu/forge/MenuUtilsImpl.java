@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.menu.forge;
 
 import io.github.blockneko11.sunshinecore.menu.ExtendedMenuProvider;
-import io.github.blockneko11.sunshinecore.menu.MenuUtils;
+import io.github.blockneko11.sunshinecore.menu.ExtendedMenuTypeFactory;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -12,7 +12,7 @@ public final class MenuUtilsImpl {
         player.openMenu(provider, provider::saveExtraData);
     }
 
-    public static <T extends AbstractContainerMenu> MenuType<T> extendedType(MenuUtils.ExtendedMenuTypeFactory<T> factory) {
+    public static <T extends AbstractContainerMenu> MenuType<T> extendedType(ExtendedMenuTypeFactory<T> factory) {
         return IMenuTypeExtension.create(factory::create);
     }
 
