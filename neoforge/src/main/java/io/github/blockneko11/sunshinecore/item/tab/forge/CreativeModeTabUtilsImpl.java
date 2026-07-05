@@ -1,9 +1,9 @@
 package io.github.blockneko11.sunshinecore.item.tab.forge;
 
 import io.github.blockneko11.sunshinecore.item.tab.CreativeModTabModifier;
-import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 import java.util.ArrayList;
@@ -25,13 +25,10 @@ public final class CreativeModeTabUtilsImpl {
         });
     }
 
-    static {
-        EventBusUtils.SC().addListener(CreativeModeTabUtilsImpl::onBuildCreativeModeTabContents);
-    }
-
     // BuildCreativeModeTabContentsEvent fires with each tab
 
-    private static void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent e) {
+    @SubscribeEvent
+    public static void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent e) {
         MODIFIERS.forEach(c -> c.accept(e));
     }
 

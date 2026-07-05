@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.mixin.forge.block.entity;
 
-import io.github.blockneko11.sunshinecore.block.forge.BlockInteractionRegistryImpl;
+import io.github.blockneko11.sunshinecore.item.forge.FuelRegistryImpl;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +20,7 @@ public abstract class AbstractFurnaceBlockEntityMixin {
             return;
         }
 
-        int i = BlockInteractionRegistryImpl.getFuels().getOrDefault(fuel.getItem(), 0);
+        int i = FuelRegistryImpl.getFuels().getOrDefault(fuel.getItem(), 0);
         if (i <= 0) {
             return;
         }

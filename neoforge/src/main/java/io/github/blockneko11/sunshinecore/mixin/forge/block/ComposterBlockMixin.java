@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.mixin.forge.block;
 
-import io.github.blockneko11.sunshinecore.block.forge.BlockInteractionRegistryImpl;
+import io.github.blockneko11.sunshinecore.item.forge.CompostingRegistryImpl;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.ComposterBlock;
@@ -22,7 +22,7 @@ public abstract class ComposterBlockMixin {
         }
 
         Item item = stack.getItem();
-        float chance = BlockInteractionRegistryImpl.getCompostables().getOrDefault(item, 0.0f);
+        float chance = CompostingRegistryImpl.getCompostables().getOrDefault(item, 0.0f);
         if (chance <= 0.0f) {
             return;
         }

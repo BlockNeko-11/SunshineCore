@@ -1,21 +1,15 @@
-package io.github.blockneko11.sunshinecore.event.impl.fabric;
+package io.github.blockneko11.sunshinecore.event.fabric;
 
-import io.github.blockneko11.sunshinecore.client.event.ClientEvents;
-import io.github.blockneko11.sunshinecore.client.event.level.ClientLevelEvents;
 import io.github.blockneko11.sunshinecore.event.tag.LoadTagsEvent;
 import io.github.blockneko11.sunshinecore.server.event.ServerEvents;
 import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 
-public final class EventInvokersImpl {
-    public static void init() {
+public final class FabricEventHandlers {
+    public static void register() {
         // Common Lifecycle
 
         CommonLifecycleEvents.TAGS_LOADED.register((registries, client) -> {
@@ -67,37 +61,6 @@ public final class EventInvokersImpl {
         });
     }
 
-    @Environment(EnvType.CLIENT)
-    public static void initClient() {
-        // Client Lifecycle
-
-        ClientLifecycleEvents.CLIENT_STARTED.register(c -> {
-            ClientEvents.STARTED.invoker().handle(c);
-        });
-
-        ClientLifecycleEvents.CLIENT_STOPPING.register(c -> {
-            ClientEvents.STOPPING.invoker().handle(c);
-        });
-
-        ClientTickEvents.START_CLIENT_TICK.register(c -> {
-            ClientEvents.PRE_TICK.invoker().handle(c);
-        });
-
-        ClientTickEvents.END_CLIENT_TICK.register(c -> {
-            ClientEvents.POST_TICK.invoker().handle(c);
-        });
-
-        // Client Level Lifecycle
-
-        ClientTickEvents.START_WORLD_TICK.register(l -> {
-            ClientLevelEvents.PRE_TICK.invoker().handle(l);
-        });
-
-        ClientTickEvents.END_WORLD_TICK.register(l -> {
-            ClientLevelEvents.POST_TICK.invoker().handle(l);
-        });
-    }
-
-    private EventInvokersImpl() {
+    private FabricEventHandlers() {
     }
 }

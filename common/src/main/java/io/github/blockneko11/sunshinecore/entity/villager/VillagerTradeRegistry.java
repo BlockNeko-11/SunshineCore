@@ -7,14 +7,14 @@ import net.minecraft.world.entity.npc.VillagerTrades;
 import java.util.List;
 import java.util.function.Consumer;
 
-public final class VillagerInteractionRegistry {
+public final class VillagerTradeRegistry {
     @ExpectPlatform
-    public static void registerTrade(VillagerProfession profession, TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
+    public static void register(VillagerProfession profession, TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
         throw new AssertionError();
     }
 
     @ExpectPlatform
-    public static void registerTradeWandening(WandeningTradeType type, Consumer<List<VillagerTrades.ItemListing>> factory) {
+    public static void registerWandening(WandeningTradeType type, Consumer<List<VillagerTrades.ItemListing>> factory) {
         throw new AssertionError();
     }
 

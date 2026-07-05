@@ -1,6 +1,7 @@
 package io.github.blockneko11.sunshinecore.client.fabric;
 
 import io.github.blockneko11.sunshinecore.client.SunshineCoreClient;
+import io.github.blockneko11.sunshinecore.client.event.fabric.ClientFabricEventHandlers;
 import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -11,6 +12,7 @@ public final class SunshineCoreClientFabric implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         SunshineCoreClient.initClient();
+        ClientFabricEventHandlers.registerClient();
         SetupEvent.EVENT.invoker().onSetup();
     }
 }

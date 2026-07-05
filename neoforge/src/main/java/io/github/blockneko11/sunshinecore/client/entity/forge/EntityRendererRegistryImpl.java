@@ -1,11 +1,11 @@
 package io.github.blockneko11.sunshinecore.client.entity.forge;
 
-import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 import java.util.HashMap;
@@ -19,11 +19,8 @@ public final class EntityRendererRegistryImpl {
         PROVIDERS.put(type, provider);
     }
 
-    static {
-        EventBusUtils.SC().addListener(EntityRendererRegistryImpl::onRegister);
-    }
-
-    private static void onRegister(EntityRenderersEvent.RegisterRenderers e) {
+    @SubscribeEvent
+    public static void onRegister(EntityRenderersEvent.RegisterRenderers e) {
         PROVIDERS.forEach((type, provider) -> {
             e.registerEntityRenderer((EntityType) type, provider);
         });

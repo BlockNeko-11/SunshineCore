@@ -1,13 +1,13 @@
 package io.github.blockneko11.sunshinecore.client.menu.forge;
 
 import io.github.blockneko11.sunshinecore.client.menu.MenuRegistry;
-import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 import java.util.ArrayList;
@@ -21,11 +21,8 @@ public final class MenuRegistryImpl {
         SCREEN_FACTORIES.add(new MenuEntry<>(type, factory));
     }
 
-    static {
-        EventBusUtils.SC().addListener(MenuRegistryImpl::onRegister);
-    }
-
-    private static void onRegister(RegisterMenuScreensEvent e) {
+    @SubscribeEvent
+    public static void onRegister(RegisterMenuScreensEvent e) {
         SCREEN_FACTORIES.forEach(entry -> entry.register(e));
     }
 

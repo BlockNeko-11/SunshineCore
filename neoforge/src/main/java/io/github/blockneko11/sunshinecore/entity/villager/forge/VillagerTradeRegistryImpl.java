@@ -1,10 +1,10 @@
 package io.github.blockneko11.sunshinecore.entity.villager.forge;
 
-import io.github.blockneko11.sunshinecore.entity.villager.VillagerInteractionRegistry;
-import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
+import io.github.blockneko11.sunshinecore.entity.villager.VillagerTradeRegistry;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.event.village.WandererTradesEvent;
 
@@ -14,29 +14,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public final class VillagerInteractionRegistryImpl {
+public final class VillagerTradeRegistryImpl {
     private static final Map<VillagerProfession, List<TradeEntry>> TRADES = new HashMap<>();
     private static final List<Consumer<List<VillagerTrades.ItemListing>>> WANDERING_TRADE_GENERIC = new ArrayList<>();
     private static final List<Consumer<List<VillagerTrades.ItemListing>>> WANDERING_TRADE_RARE = new ArrayList<>();
 
-    public static void registerTrade(VillagerProfession profession, VillagerInteractionRegistry.TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
+    public static void register(VillagerProfession profession, VillagerTradeRegistry.TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
         TRADES.computeIfAbsent(profession, k -> new ArrayList<>())
                 .add(new TradeEntry(level, factory));
     }
 
-    public static void registerTradeWandening(VillagerInteractionRegistry.WandeningTradeType type, Consumer<List<VillagerTrades.ItemListing>> factory) {
+    public static void registerWandening(VillagerTradeRegistry.WandeningTradeType type, Consumer<List<VillagerTrades.ItemListing>> factory) {
         switch (type) {
             case GENERIC -> WANDERING_TRADE_GENERIC.add(factory);
             case RARE -> WANDERING_TRADE_RARE.add(factory);
         }
     }
 
-    static {
-        EventBusUtils.SC().addListener(VillagerInteractionRegistryImpl::onVillagerTrade);
-        EventBusUtils.SC().addListener(VillagerInteractionRegistryImpl::onWardeningTrade);
-    }
-
-    private static void onVillagerTrade(VillagerTradesEvent e) {
+    @SubscribeEvent
+    public static void onVillagerTrade(VillagerTradesEvent e) {
         List<TradeEntry> entries = TRADES.get(e.getType());
         if (entries == null) {
             return;
@@ -49,7 +45,8 @@ public final class VillagerInteractionRegistryImpl {
         }
     }
 
-    private static void onWardeningTrade(WandererTradesEvent e) {
+    @SubscribeEvent
+    public static void onWardeningTrade(WandererTradesEvent e) {
         for (Consumer<List<VillagerTrades.ItemListing>> factory : WANDERING_TRADE_GENERIC) {
             factory.accept(e.getGenericTrades());
         }
@@ -59,9 +56,9 @@ public final class VillagerInteractionRegistryImpl {
         }
     }
 
-    private record TradeEntry(VillagerInteractionRegistry.TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
+    private record TradeEntry(VillagerTradeRegistry.TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
     }
 
-    private VillagerInteractionRegistryImpl() {
+    private VillagerTradeRegistryImpl() {
     }
 }

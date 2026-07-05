@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.mixin.forge.block;
 
-import io.github.blockneko11.sunshinecore.block.forge.BlockInteractionRegistryImpl;
+import io.github.blockneko11.sunshinecore.block.forge.FlammableRegistryImpl;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -21,7 +21,7 @@ public abstract class FireBlockMixin {
     )
     private int getFlammability$registerFlammable(int baseValue, Level level, BlockPos pos) {
         Block block = level.getBlockState(pos).getBlock();
-        BlockInteractionRegistryImpl.FlammableEntry entry = BlockInteractionRegistryImpl.getFlammables().get(block);
+        FlammableRegistryImpl.FlammableEntry entry = FlammableRegistryImpl.getFlammables().get(block);
 
         if (entry == null) {
             return baseValue;
@@ -37,7 +37,7 @@ public abstract class FireBlockMixin {
     )
     private void getIgniteOdds$registerFlammable(LevelReader level, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
         Block block = level.getBlockState(pos).getBlock();
-        BlockInteractionRegistryImpl.FlammableEntry entry = BlockInteractionRegistryImpl.getFlammables().get(block);
+        FlammableRegistryImpl.FlammableEntry entry = FlammableRegistryImpl.getFlammables().get(block);
 
         if (entry == null) {
             return;

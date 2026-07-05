@@ -1,8 +1,9 @@
 package com.example.testmod.registry;
 
 import com.example.testmod.TestMod;
-import io.github.blockneko11.sunshinecore.block.BlockInteractionRegistry;
 import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
+import io.github.blockneko11.sunshinecore.item.CompostingRegistry;
+import io.github.blockneko11.sunshinecore.item.FuelRegistry;
 import io.github.blockneko11.sunshinecore.item.tab.CreativeModeTabUtils;
 import io.github.blockneko11.sunshinecore.item.tool.ToolInteractionRegistry;
 import io.github.blockneko11.sunshinecore.registry.Registrar;
@@ -44,8 +45,8 @@ public final class TestRegistry {
                     HoeItem::onlyIfAirAbove,
                     ctx -> Block.popResourceFromFace(ctx.getLevel(), ctx.getClickedPos(), ctx.getClickedFace(), new ItemStack(Items.REDSTONE)));
 
-            BlockInteractionRegistry.registerFuel(50, TEST_BLOCK_ITEM.get());
-            BlockInteractionRegistry.registerComposting(0.4f, TEST_BLOCK_ITEM.get());
+            FuelRegistry.register(50, TEST_BLOCK_ITEM.get());
+            CompostingRegistry.register(0.4f, TEST_BLOCK_ITEM.get());
         });
     }
 }

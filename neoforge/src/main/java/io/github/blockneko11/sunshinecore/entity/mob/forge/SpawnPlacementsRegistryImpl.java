@@ -1,11 +1,11 @@
 package io.github.blockneko11.sunshinecore.entity.mob.forge;
 
-import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 import java.util.ArrayList;
@@ -18,11 +18,8 @@ public final class SpawnPlacementsRegistryImpl {
         ENTRIES.add(new Entry<>(entityType, pType, hType, sPredicate));
     }
 
-    static {
-        EventBusUtils.SC().addListener(SpawnPlacementsRegistryImpl::onRegister);
-    }
-
-    private static void onRegister(RegisterSpawnPlacementsEvent e) {
+    @SubscribeEvent
+    public static void onRegister(RegisterSpawnPlacementsEvent e) {
         for (Entry<?> entry : ENTRIES) {
             e.register((EntityType) entry.entityType, entry.pType, entry.hType, entry.sPredicate, RegisterSpawnPlacementsEvent.Operation.OR);
         }

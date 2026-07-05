@@ -1,13 +1,11 @@
 package io.github.blockneko11.sunshinecore.event.forge;
 
-import io.github.blockneko11.sunshinecore.block.forge.BlockInteractionRegistryImpl;
 import io.github.blockneko11.sunshinecore.event.tag.LoadTagsEvent;
 import io.github.blockneko11.sunshinecore.server.event.ServerEvents;
 import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.TagsUpdatedEvent;
 import net.neoforged.neoforge.event.level.LevelEvent;
@@ -26,44 +24,44 @@ public final class ForgeEventHandlers {
 
     // Server Lifecycle
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerAboutToStart(ServerAboutToStartEvent e) {
         ServerEvents.BEFORE_START.invoker().handle(e.getServer());
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerStarting(ServerStartingEvent e) {
         ServerEvents.STARTING.invoker().handle(e.getServer());
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerStarted(ServerStartedEvent e) {
         ServerEvents.STARTED.invoker().handle(e.getServer());
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerStopping(ServerStoppingEvent e) {
         ServerEvents.STOPPING.invoker().handle(e.getServer());
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerStopped(ServerStoppedEvent e) {
         ServerEvents.STOPPED.invoker().handle(e.getServer());
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerTickPre(ServerTickEvent.Pre e) {
         ServerEvents.PRE_TICK.invoker().handle(e.getServer());
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerTickPost(ServerTickEvent.Post e) {
         ServerEvents.POST_TICK.invoker().handle(e.getServer());
     }
 
     // Server Level Lifecycle
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerLevelLoad(LevelEvent.Load e) {
         LevelAccessor level = e.getLevel();
         if (level.isClientSide()) {
@@ -73,7 +71,7 @@ public final class ForgeEventHandlers {
         ServerLevelEvents.LOAD.invoker().handle((ServerLevel) level);
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerLevelUnload(LevelEvent.Unload e) {
         LevelAccessor level = e.getLevel();
         if (level.isClientSide()) {
@@ -83,7 +81,7 @@ public final class ForgeEventHandlers {
         ServerLevelEvents.UNLOAD.invoker().handle((ServerLevel) level);
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerLevelSave(LevelEvent.Save e) {
         LevelAccessor level = e.getLevel();
         if (level.isClientSide()) {
@@ -93,7 +91,7 @@ public final class ForgeEventHandlers {
         ServerLevelEvents.SAVE.invoker().handle((ServerLevel) level);
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerTickPre(LevelTickEvent.Pre e) {
         Level level = e.getLevel();
         if (level.isClientSide()) {
@@ -103,7 +101,7 @@ public final class ForgeEventHandlers {
         ServerLevelEvents.PRE_TICK.invoker().handle((ServerLevel) level);
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onServerTickPost(LevelTickEvent.Post e) {
         Level level = e.getLevel();
         if (level.isClientSide()) {
@@ -115,11 +113,11 @@ public final class ForgeEventHandlers {
 
     // Player
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onPlayerTickPre(PlayerTickEvent.Pre e) {
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
+    @SubscribeEvent
     public static void onPlayerTickPost(PlayerTickEvent.Post e) {
     }
 
