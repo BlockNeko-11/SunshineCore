@@ -34,7 +34,7 @@ public final class TestRegistry {
     public static void init() {
         REGISTRAR.register();
 
-        CreativeModeTabUtils.modify(TEST_TAB.getKey(), (output, isOP) -> {
+        CreativeModeTabUtils.modify(TEST_TAB.key(), (output, isOP) -> {
             output.accept(TEST_BLOCK_ITEM.get());
             output.accept(TEST_BLOCK_FLATTENED_ITEM.get());
         });
