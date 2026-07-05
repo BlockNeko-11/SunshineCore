@@ -30,6 +30,5 @@ public final class ArmorMaterialUtils {
     }
 
     private ArmorMaterialUtils() {
-
     }
 }

@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
 
-public class STier implements Tier {
+public class SimpleTier implements Tier {
     private final int uses;
     private final float speed;
     private final float attackDamageBonus;
@@ -15,7 +15,7 @@ public class STier implements Tier {
     private final TagKey<Block> incorrectBlocksForDrops;
     private final Supplier<Ingredient> repairIngredient;
 
-    public STier(int uses, float speed, float attackDamageBonus, int enchantmentValue, TagKey<Block> incorrectBlocksForDrops, Supplier<Ingredient> repairIngredient) {
+    public SimpleTier(int uses, float speed, float attackDamageBonus, int enchantmentValue, TagKey<Block> incorrectBlocksForDrops, Supplier<Ingredient> repairIngredient) {
         this.uses = uses;
         this.speed = speed;
         this.attackDamageBonus = attackDamageBonus;

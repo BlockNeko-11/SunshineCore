@@ -20,6 +20,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
+@SuppressWarnings("deprecation")
 public abstract class SModelProvider extends ModelProvider {
     private final String modId;
     private final boolean validate;

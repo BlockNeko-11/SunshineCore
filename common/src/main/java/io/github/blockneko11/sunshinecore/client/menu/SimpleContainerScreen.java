@@ -12,10 +12,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 
 @Environment(EnvType.CLIENT)
-public class SContainerScreen<T extends AbstractContainerMenu> extends AbstractContainerScreen<T> {
+public class SimpleContainerScreen<T extends AbstractContainerMenu> extends AbstractContainerScreen<T> {
     private final ResourceLocation texture;
 
-    public SContainerScreen(T menu, Inventory playerInventory, Component title, ResourceLocation texture) {
+    public SimpleContainerScreen(T menu, Inventory playerInventory, Component title, ResourceLocation texture) {
         super(menu, playerInventory, title);
         this.texture = texture;
     }

@@ -1,9 +1,10 @@
 package io.github.blockneko11.sunshinecore.event.api;
 
 import io.github.blockneko11.sunshinecore.event.api.internals.EventImpl;
-import io.github.blockneko11.sunshinecore.event.api.internals.EventResultedProxy;
-import io.github.blockneko11.sunshinecore.event.api.internals.InteractionResultedProxy;
-import io.github.blockneko11.sunshinecore.event.api.internals.VoidProxy;
+import io.github.blockneko11.sunshinecore.event.api.handlers.EventResultHandler;
+import io.github.blockneko11.sunshinecore.event.api.handlers.InteractionResultHandler;
+import io.github.blockneko11.sunshinecore.event.api.handlers.NonReturnHandler;
+import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Proxy;
 import java.util.List;
@@ -16,35 +17,35 @@ public final class EventFactory {
     }
 
     @SafeVarargs
-    public static <T> Event<T> createWithInteractionResult(T... typeGetter) {
+    public static <T> Event<T> createWithInteractionResult(@Nullable T... typeGetter) {
         return (Event<T>) createWithInteractionResult(typeGetter.getClass().getComponentType());
     }
 
     public static <T> Event<T> createWithInteractionResult(Class<T> handlerClass) {
         return create(handlers -> (T) Proxy.newProxyInstance(handlerClass.getClassLoader(),
                 new Class[]{handlerClass},
-                new InteractionResultedProxy<>(handlers)));
+                new InteractionResultHandler<>(handlers)));
     }
 
-    public static <T> Event<T> createWithEventResult(T... typeGetter) {
+    public static <T> Event<T> createWithEventResult(@Nullable T... typeGetter) {
         return (Event<T>) createWithEventResult(typeGetter.getClass().getComponentType());
     }
 
     public static <T> Event<T> createWithEventResult(Class<T> handlerClass) {
         return create(handlers -> (T) Proxy.newProxyInstance(handlerClass.getClassLoader(),
                 new Class[]{handlerClass},
-                new EventResultedProxy<>(handlers)));
+                new EventResultHandler<>(handlers)));
     }
 
     @SafeVarargs
-    public static <T> Event<T> createNonReturn(T... typeGetter) {
+    public static <T> Event<T> createNonReturn(@Nullable T... typeGetter) {
         return (Event<T>) createNonReturn(typeGetter.getClass().getComponentType());
     }
 
     public static <T> Event<T> createNonReturn(Class<T> handlerClass) {
         return create(handlers -> (T) Proxy.newProxyInstance(handlerClass.getClassLoader(),
                 new Class[]{handlerClass},
-                new VoidProxy<>(handlers)));
+                new NonReturnHandler<>(handlers)));
     }
 
     private EventFactory() {

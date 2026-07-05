@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.event.api.internals;
+package io.github.blockneko11.sunshinecore.event.api.handlers;
 
 import io.github.blockneko11.sunshinecore.event.api.EventResult;
 import org.jetbrains.annotations.ApiStatus;
@@ -8,10 +8,10 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 @ApiStatus.Internal
-public class EventResultedProxy<T> implements InvocationHandler {
+public class EventResultHandler<T> implements InvocationHandler {
     private final List<T> handlers;
 
-    public EventResultedProxy(List<T> handlers) {
+    public EventResultHandler(List<T> handlers) {
         this.handlers = handlers;
     }
 

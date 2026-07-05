@@ -30,6 +30,7 @@ public abstract class DatagenModLoaderMixin {
     private static void onRunAllDataGen$fixDataGenRun(GatherDataEvent.DataGeneratorConfig config, Operation<Void> runAll) {
         try {
             runAll.call(config);
+            System.exit(0);
         } catch (Throwable throwable) {
             sc$LOGGER.error("Data generation failed", throwable);
             System.exit(-1);

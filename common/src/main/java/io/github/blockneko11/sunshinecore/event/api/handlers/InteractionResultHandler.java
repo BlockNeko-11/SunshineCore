@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.event.api.internals;
+package io.github.blockneko11.sunshinecore.event.api.handlers;
 
 import net.minecraft.world.InteractionResult;
 import org.jetbrains.annotations.ApiStatus;
@@ -8,10 +8,10 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 @ApiStatus.Internal
-public class InteractionResultedProxy<T> implements InvocationHandler {
+public class InteractionResultHandler<T> implements InvocationHandler {
     private final List<T> handlers;
 
-    public InteractionResultedProxy(List<T> handlers) {
+    public InteractionResultHandler(List<T> handlers) {
         this.handlers = handlers;
     }
 
