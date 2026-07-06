@@ -56,8 +56,8 @@ public final class TestMod {
                 HoeItem::onlyIfAirAbove,
                 ctx -> Block.popResourceFromFace(ctx.getLevel(), ctx.getClickedPos(), ctx.getClickedFace(), new ItemStack(Items.BEDROCK)));
 
-        FuelRegistry.register(50, TestRegistry.TEST_BLOCK_ITEM.get());
-        CompostingRegistry.register(0.4f, TestRegistry.TEST_BLOCK_ITEM.get());
+//        FuelRegistry.register(50, TestRegistry.TEST_BLOCK_ITEM.get());
+//        CompostingRegistry.register(0.4f, TestRegistry.TEST_BLOCK_ITEM.get());
         FlammableRegistry.register(5, 5, TestRegistry.TEST_BLOCK_FLAMMABLE.get());
 
         VillagerInteractionRegistry.registerWanted(TestRegistry.TEST_BLOCK_ITEM.get());
