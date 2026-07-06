@@ -4,6 +4,8 @@ import io.github.blockneko11.sunshinecore.registry.RegistryUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Collection;
@@ -28,7 +30,7 @@ public final class FuelRegistryImpl {
     }
 
     @ApiStatus.Internal
-    public static Map<Item, Integer> getFuels() {
+    private static Map<Item, Integer> getFuels() {
         if (COMPUTED_FUELS != null) {
             return COMPUTED_FUELS;
         }
@@ -48,6 +50,15 @@ public final class FuelRegistryImpl {
     @ApiStatus.Internal
     public static void onUpdateTags() {
         COMPUTED_FUELS = null;
+    }
+
+    @SubscribeEvent
+    public static void onEvent(FurnaceFuelBurnTimeEvent e) {
+        Item item = e.getItemStack().getItem();
+
+        if (getFuels().containsKey(item)) {
+            e.setBurnTime(getFuels().get(item));
+        }
     }
 
     private FuelRegistryImpl() {

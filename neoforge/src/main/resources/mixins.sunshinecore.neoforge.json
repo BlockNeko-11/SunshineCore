@@ -9,7 +9,6 @@
   "mixins": [
     "block.ComposterBlockMixin",
     "block.FireBlockMixin",
-    "block.entity.AbstractFurnaceBlockEntityMixin",
     "data.DatagenModLoaderMixin",
     "entity.ai.GiveGiftToHeroMixin",
     "entity.ai.WorkAtComposterMixin",

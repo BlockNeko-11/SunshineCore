@@ -48,6 +48,7 @@ public final class SunshineCoreNeoForge {
             FuelRegistryImpl.onUpdateTags();
         });
 
+        EventBusUtils.FML().register(FuelRegistryImpl.class);
         EventBusUtils.FML().register(PotionBrewingRegistryImpl.class);
         EventBusUtils.FML().register(VillagerTradeRegistryImpl.class);
     }
