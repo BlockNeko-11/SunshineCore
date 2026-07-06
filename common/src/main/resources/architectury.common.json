@@ -6,6 +6,12 @@
     ],
     "net/minecraft/class_1792$class_1793": [
       "io/github/blockneko11/sunshinecore/item/extension/ItemPropertiesExtension"
+    ],
+    "net/minecraft/class_2248": [
+      "io/github/blockneko11/sunshinecore/block/extension/BlockExtension"
+    ],
+    "net/minecraft/class_4970$class_2251": [
+      "io/github/blockneko11/sunshinecore/block/extension/BlockBehaviourPropertiesExtension"
     ]
   }
 }

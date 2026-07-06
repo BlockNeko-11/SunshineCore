@@ -22,7 +22,7 @@ public final class TestRegistry {
 
     public static final Supplier<Block> TEST_BLOCK = REGISTRAR.simpleBlock("test_block");
     public static final Supplier<Block> TEST_BLOCK_FLATTENED = REGISTRAR.simpleBlock("test_block_flattened");
-    public static final Supplier<Block> TEST_BLOCK_FLAMMABLE = REGISTRAR.simpleBlock("test_block_flammable");
+    public static final Supplier<Block> TEST_BLOCK_FLAMMABLE = REGISTRAR.simpleBlock("test_block_flammable", p -> p.sc$flammable(5, 5));
     public static final TagKey<Block> TEST_BLOCKS = REGISTRAR.tag(BuiltInRegistries.BLOCK, "test_blocks");
 
     public static final Supplier<Item> TEST_BLOCK_ITEM = REGISTRAR.blockItem("test_block", TEST_BLOCK, p -> p.sc$fuel(50).sc$compostable(0.4f));

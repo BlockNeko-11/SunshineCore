@@ -4,14 +4,10 @@ import com.example.testmod.data.TestTagProvider;
 import com.example.testmod.data.TestTranslationProvider;
 import com.example.testmod.registry.TestRegistry;
 import io.github.blockneko11.sunshinecore.SunshineCore;
-import io.github.blockneko11.sunshinecore.block.FlammableRegistry;
 import io.github.blockneko11.sunshinecore.command.CommandRegistry;
 import io.github.blockneko11.sunshinecore.data.SDataGeneration;
-import io.github.blockneko11.sunshinecore.entity.villager.SimpleVillagerTrade;
 import io.github.blockneko11.sunshinecore.entity.villager.VillagerInteractionRegistry;
 import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
-import io.github.blockneko11.sunshinecore.item.CompostingRegistry;
-import io.github.blockneko11.sunshinecore.item.FuelRegistry;
 import io.github.blockneko11.sunshinecore.item.tool.ToolInteractionRegistry;
 import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvent;
 import io.github.blockneko11.sunshinecore.loader.Platform;
@@ -58,7 +54,7 @@ public final class TestMod {
 
 //        FuelRegistry.register(50, TestRegistry.TEST_BLOCK_ITEM.get());
 //        CompostingRegistry.register(0.4f, TestRegistry.TEST_BLOCK_ITEM.get());
-        FlammableRegistry.register(5, 5, TestRegistry.TEST_BLOCK_FLAMMABLE.get());
+//        FlammableRegistry.register(5, 5, TestRegistry.TEST_BLOCK_FLAMMABLE.get());
 
         VillagerInteractionRegistry.registerWanted(TestRegistry.TEST_BLOCK_ITEM.get());
         VillagerInteractionRegistry.registerCompostable(TestRegistry.TEST_BLOCK_ITEM.get());

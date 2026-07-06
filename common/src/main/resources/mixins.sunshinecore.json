@@ -6,6 +6,8 @@
   "client": [
   ],
   "mixins": [
+    "block.BlockBehaviourPropertiesMixin",
+    "block.BlockMixin",
     "item.ItemMixin",
     "item.ItemPropertiesMixin"
   ],

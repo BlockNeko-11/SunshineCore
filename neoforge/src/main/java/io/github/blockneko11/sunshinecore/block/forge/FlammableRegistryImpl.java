@@ -1,5 +1,6 @@
 package io.github.blockneko11.sunshinecore.block.forge;
 
+import io.github.blockneko11.sunshinecore.block.FlammableEntry;
 import io.github.blockneko11.sunshinecore.registry.RegistryUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
@@ -15,16 +16,16 @@ public final class FlammableRegistryImpl {
     private static final Map<TagKey<Block>, FlammableEntry> FLAMMABLE_TAGS = new HashMap<>();
     private static Map<Block, FlammableEntry> COMPUTED_FLAMMABLES = null;
 
-    public static void register(int flameAbility, int spreadSpeed, Collection<Block> blocks) {
+    public static void register(FlammableEntry entry, Collection<Block> blocks) {
         COMPUTED_FLAMMABLES = null;
         for (Block block : blocks) {
-            FLAMMABLES.put(block, new FlammableEntry(flameAbility, spreadSpeed));
+            FLAMMABLES.put(block, entry);
         }
     }
 
-    public static void register(int burn, int spread, TagKey<Block> tag) {
+    public static void register(FlammableEntry entry, TagKey<Block> tag) {
         COMPUTED_FLAMMABLES = null;
-        FLAMMABLE_TAGS.put(tag, new FlammableEntry(burn, spread));
+        FLAMMABLE_TAGS.put(tag, entry);
     }
 
     @ApiStatus.Internal
@@ -49,10 +50,6 @@ public final class FlammableRegistryImpl {
     @ApiStatus.Internal
     public static void onUpdateTags() {
         COMPUTED_FLAMMABLES = null;
-    }
-
-    @ApiStatus.Internal
-    public record FlammableEntry(int flameAbility, int spreadSpeed) {
     }
 
     private FlammableRegistryImpl() {

@@ -9,16 +9,28 @@ import java.util.Collection;
 
 public final class FlammableRegistry {
     public static void register(int flameAbility, int spreadSpeed, Block... blocks) {
-        register(flameAbility, spreadSpeed, Arrays.asList(blocks));
+        register(new FlammableEntry(flameAbility, spreadSpeed), Arrays.asList(blocks));
+    }
+
+    public static void register(int flameAbility, int spreadSpeed, Collection<Block> blocks) {
+        register(new FlammableEntry(flameAbility, spreadSpeed), blocks);
+    }
+
+    public static void register(FlammableEntry entry, Block... blocks) {
+        register(entry, Arrays.asList(blocks));
     }
 
     @ExpectPlatform
-    public static void register(int flameAbility, int spreadSpeed, Collection<Block> blocks) {
+    public static void register(FlammableEntry entry, Collection<Block> blocks) {
         throw new AssertionError();
     }
 
+    public static void register(int flameAbility, int spreadSpeed, TagKey<Block> tag) {
+        register(new FlammableEntry(flameAbility, spreadSpeed), tag);
+    }
+
     @ExpectPlatform
-    public static void register(int burn, int spread, TagKey<Block> tag) {
+    public static void register(FlammableEntry entry, TagKey<Block> tag) {
         throw new AssertionError();
     }
 

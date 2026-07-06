@@ -1,49 +1,44 @@
 package io.github.blockneko11.sunshinecore.mixin.forge.block;
 
 import io.github.blockneko11.sunshinecore.block.forge.FlammableRegistryImpl;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
+import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FireBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(FireBlock.class)
 public abstract class FireBlockMixin {
-    @ModifyVariable(
-            method = "checkBurnOut",
-            at = @At("STORE"),
-            ordinal = 2
+    @Redirect(
+            method = "getBurnOdds",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lit/unimi/dsi/fastutil/objects/Object2IntMap;getInt(Ljava/lang/Object;)I",
+                    remap = false
+            )
     )
-    private int getFlammability$registerFlammable(int baseValue, Level level, BlockPos pos) {
-        Block block = level.getBlockState(pos).getBlock();
-        FlammableRegistryImpl.FlammableEntry entry = FlammableRegistryImpl.getFlammables().get(block);
-
-        if (entry == null) {
-            return baseValue;
+    private int sc$getFlammability(Object2IntMap<Block> instance, Object o) {
+        if (FlammableRegistryImpl.getFlammables().containsKey(o)) {
+            return FlammableRegistryImpl.getFlammables().get(o).flameAbility();
         }
 
-        return entry.flameAbility();
+        return instance.getInt(o);
     }
 
-    @Inject(
-            method = "getIgniteOdds(Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)I",
-            at = @At("TAIL"),
-            cancellable = true
+    @Redirect(
+            method = "getIgniteOdds(Lnet/minecraft/world/level/block/state/BlockState;)I",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lit/unimi/dsi/fastutil/objects/Object2IntMap;getInt(Ljava/lang/Object;)I",
+                    remap = false
+            )
     )
-    private void getIgniteOdds$registerFlammable(LevelReader level, BlockPos pos, CallbackInfoReturnable<Integer> cir) {
-        Block block = level.getBlockState(pos).getBlock();
-        FlammableRegistryImpl.FlammableEntry entry = FlammableRegistryImpl.getFlammables().get(block);
-
-        if (entry == null) {
-            return;
+    private int sc$getSpreadSpeed(Object2IntMap<Block> instance, Object o) {
+        if (FlammableRegistryImpl.getFlammables().containsKey(o)) {
+            return FlammableRegistryImpl.getFlammables().get(o).spreadSpeed();
         }
 
-        int speed = entry.spreadSpeed();
-        cir.setReturnValue(Math.max(cir.getReturnValue(), speed));
+        return instance.getInt(o);
     }
 }
