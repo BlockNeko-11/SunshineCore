@@ -17,37 +17,4 @@ public final class VillagerTradeRegistry {
     public static void registerWandening(WandeningTradeType type, Consumer<List<VillagerTrades.ItemListing>> factory) {
         throw new AssertionError();
     }
-
-    public enum TradeLevel {
-        LEVEL_1(1),
-        LEVEL_2(2),
-        LEVEL_3(3),
-        LEVEL_4(4),
-        LEVEL_5(5);
-
-        private final int level;
-
-        TradeLevel(int level) {
-            this.level = level;
-        }
-
-        public int getLevel() {
-            return this.level;
-        }
-    }
-
-    public enum WandeningTradeType {
-        GENERIC(1),
-        RARE(2);
-
-        private final int index;
-
-        WandeningTradeType(int index) {
-            this.index = index;
-        }
-
-        public int getIndex() {
-            return this.index;
-        }
-    }
 }

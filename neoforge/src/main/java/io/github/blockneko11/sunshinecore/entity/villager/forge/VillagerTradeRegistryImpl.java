@@ -1,6 +1,7 @@
 package io.github.blockneko11.sunshinecore.entity.villager.forge;
 
-import io.github.blockneko11.sunshinecore.entity.villager.VillagerTradeRegistry;
+import io.github.blockneko11.sunshinecore.entity.villager.TradeLevel;
+import io.github.blockneko11.sunshinecore.entity.villager.WandeningTradeType;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -19,12 +20,12 @@ public final class VillagerTradeRegistryImpl {
     private static final List<Consumer<List<VillagerTrades.ItemListing>>> WANDERING_TRADE_GENERIC = new ArrayList<>();
     private static final List<Consumer<List<VillagerTrades.ItemListing>>> WANDERING_TRADE_RARE = new ArrayList<>();
 
-    public static void register(VillagerProfession profession, VillagerTradeRegistry.TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
+    public static void register(VillagerProfession profession, TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
         TRADES.computeIfAbsent(profession, k -> new ArrayList<>())
                 .add(new TradeEntry(level, factory));
     }
 
-    public static void registerWandening(VillagerTradeRegistry.WandeningTradeType type, Consumer<List<VillagerTrades.ItemListing>> factory) {
+    public static void registerWandening(WandeningTradeType type, Consumer<List<VillagerTrades.ItemListing>> factory) {
         switch (type) {
             case GENERIC -> WANDERING_TRADE_GENERIC.add(factory);
             case RARE -> WANDERING_TRADE_RARE.add(factory);
@@ -56,7 +57,7 @@ public final class VillagerTradeRegistryImpl {
         }
     }
 
-    private record TradeEntry(VillagerTradeRegistry.TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
+    private record TradeEntry(TradeLevel level, Consumer<List<VillagerTrades.ItemListing>> factory) {
     }
 
     private VillagerTradeRegistryImpl() {
