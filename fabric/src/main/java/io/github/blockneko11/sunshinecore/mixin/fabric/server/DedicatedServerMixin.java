@@ -1,4 +1,4 @@
-package io.github.blockneko11.sunshinecore.mixin.fabric;
+package io.github.blockneko11.sunshinecore.mixin.fabric.server;
 
 import io.github.blockneko11.sunshinecore.server.event.ServerEvent;
 import net.minecraft.server.MinecraftServer;

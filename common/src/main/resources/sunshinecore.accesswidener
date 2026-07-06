@@ -2,6 +2,7 @@ accessWidener   v2  named
 accessible field net/minecraft/commands/synchronization/ArgumentTypeInfos BY_CLASS Ljava/util/Map;
 accessible field net/minecraft/data/models/ModelProvider blockStatePathProvider Lnet/minecraft/data/PackOutput$PathProvider;
 accessible field net/minecraft/data/models/ModelProvider modelPathProvider Lnet/minecraft/data/PackOutput$PathProvider;
+extendable method net/minecraft/data/models/ModelProvider getName ()Ljava/lang/String;
 accessible field net/minecraft/tags/TagEntry id Lnet/minecraft/resources/ResourceLocation;
 accessible field net/minecraft/tags/TagEntry required Z
 extendable method net/minecraft/tags/TagEntry <init> (Lnet/minecraft/resources/ResourceLocation;ZZ)V

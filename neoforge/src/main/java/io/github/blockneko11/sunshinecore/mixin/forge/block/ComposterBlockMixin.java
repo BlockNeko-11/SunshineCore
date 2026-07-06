@@ -28,5 +28,6 @@ public abstract class ComposterBlockMixin {
         }
 
         cir.setReturnValue(chance);
+        cir.cancel();
     }
 }

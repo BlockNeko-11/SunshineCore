@@ -57,7 +57,7 @@ public abstract class HoeItemMixin {
 
             pair.getSecond().accept(context);
 
-            // to be the same behaviour as Vanilla's
+            // to be the same behavior as Vanilla's
             if (player != null) {
                 context.getItemInHand().hurtAndBreak(1, player, LivingEntity.getSlotForHand(context.getHand()));
             }

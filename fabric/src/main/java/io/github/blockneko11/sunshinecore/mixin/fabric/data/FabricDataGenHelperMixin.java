@@ -10,9 +10,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class FabricDataGenHelperMixin {
     @Inject(
             method = "run",
-            at = @At("TAIL")
+            at = @At(value = "INVOKE",
+                    target = "Lnet/fabricmc/fabric/impl/datagen/FabricDataGenHelper;runInternal()V",
+                    shift = At.Shift.AFTER
+            )
     )
-    private static void onRun$$fixDataGenRun(CallbackInfo ci) {
+    private static void onRun$fixDataGenRun(CallbackInfo ci) {
         System.exit(0);
     }
 }

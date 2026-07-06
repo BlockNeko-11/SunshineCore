@@ -110,4 +110,9 @@ public abstract class SModelProvider extends ModelProvider {
 
         return CompletableFuture.allOf(CompletableFuture.allOf(blockStateModelSaver), CompletableFuture.allOf(modelSaver));
     }
+
+    @Override
+    public String getName() {
+        return "Sunshine Core Model Provider";
+    }
 }

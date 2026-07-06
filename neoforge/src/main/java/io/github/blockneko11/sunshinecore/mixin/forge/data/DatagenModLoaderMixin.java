@@ -31,8 +31,8 @@ public abstract class DatagenModLoaderMixin {
         try {
             runAll.call(config);
             System.exit(0);
-        } catch (Throwable throwable) {
-            sc$LOGGER.error("Data generation failed", throwable);
+        } catch (Throwable t) {
+            sc$LOGGER.error("Failed to run data generation", t);
             System.exit(-1);
         }
     }

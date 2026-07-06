@@ -7,7 +7,7 @@
     "client.ClientLevelMixin"
   ],
   "mixins": [
-    "DedicatedServerMixin",
+    "server.DedicatedServerMixin",
     "data.FabricDataGenHelperMixin",
     "level.ServerLevelMixin"
   ],

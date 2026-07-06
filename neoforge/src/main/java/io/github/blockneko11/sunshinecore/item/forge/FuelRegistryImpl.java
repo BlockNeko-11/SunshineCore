@@ -29,7 +29,6 @@ public final class FuelRegistryImpl {
         FUEL_TAGS.put(tag, burnTick);
     }
 
-    @ApiStatus.Internal
     private static Map<Item, Integer> getFuels() {
         if (COMPUTED_FUELS != null) {
             return COMPUTED_FUELS;
