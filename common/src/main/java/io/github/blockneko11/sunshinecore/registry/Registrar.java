@@ -8,6 +8,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
@@ -70,8 +71,8 @@ public abstract class Registrar {
         return this.simpleBlock(id, UnaryOperator.identity());
     }
 
-    public final RegistryHolder<Block, Block> simpleBlock(String id, UnaryOperator<Block.Properties> operator) {
-        return this.register(BuiltInRegistries.BLOCK, id, () -> new Block(operator.apply(Block.Properties.of())));
+    public final RegistryHolder<Block, Block> simpleBlock(String id, UnaryOperator<BlockBehaviour.Properties> operator) {
+        return this.register(BuiltInRegistries.BLOCK, id, () -> new Block(operator.apply(BlockBehaviour.Properties.of())));
     }
 
     public final <T> TagKey<T> tag(Registry<T> registry, String id) {

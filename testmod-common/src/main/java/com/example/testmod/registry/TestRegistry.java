@@ -25,14 +25,15 @@ public final class TestRegistry {
     public static final Supplier<Block> TEST_BLOCK_FLAMMABLE = REGISTRAR.simpleBlock("test_block_flammable");
     public static final TagKey<Block> TEST_BLOCKS = REGISTRAR.tag(BuiltInRegistries.BLOCK, "test_blocks");
 
-    public static final Supplier<Item> TEST_BLOCK_ITEM = REGISTRAR.blockItem("test_block", TEST_BLOCK);
-    public static final Supplier<Item> TEST_BLOCK_FLATTENED_ITEM = REGISTRAR.blockItem("test_block_flattened", TEST_BLOCK_FLATTENED);
-    public static final Supplier<Item> TEST_BLOCK_FLAMMABLE_ITEM = REGISTRAR.blockItem("test_block_flammable", TEST_BLOCK_FLAMMABLE);
-    public static final TagKey<Item> TEST_BLOCK_ITEMS = REGISTRAR.tag(BuiltInRegistries.ITEM, "test_block_items");
+    public static final Supplier<Item> TEST_BLOCK_ITEM = REGISTRAR.blockItem("test_block", TEST_BLOCK, p -> p.sc$fuel(50).sc$compostable(0.4f));
 
     public static final RegistryHolder<CreativeModeTab, CreativeModeTab> TEST_TAB = REGISTRAR.register(
             BuiltInRegistries.CREATIVE_MODE_TAB, "test_tab", () -> CreativeModeTabUtils.create(
                     Component.literal("Test Tab"), () -> new ItemStack(TEST_BLOCK_ITEM.get())));
+
+    public static final Supplier<Item> TEST_BLOCK_FLATTENED_ITEM = REGISTRAR.blockItem("test_block_flattened", TEST_BLOCK_FLATTENED);
+    public static final Supplier<Item> TEST_BLOCK_FLAMMABLE_ITEM = REGISTRAR.blockItem("test_block_flammable", TEST_BLOCK_FLAMMABLE, p -> p.sc$tab(TEST_TAB.key()));
+    public static final TagKey<Item> TEST_BLOCK_ITEMS = REGISTRAR.tag(BuiltInRegistries.ITEM, "test_block_items");
 
     public static void init() {
         REGISTRAR.register();
@@ -40,7 +41,7 @@ public final class TestRegistry {
         CreativeModeTabUtils.modify(TEST_TAB.key(), (output, isOP) -> {
             output.accept(TEST_BLOCK_ITEM.get());
             output.accept(TEST_BLOCK_FLATTENED_ITEM.get());
-            output.accept(TEST_BLOCK_FLAMMABLE_ITEM.get());
+//            output.accept(TEST_BLOCK_FLAMMABLE_ITEM.get());
         });
     }
 }

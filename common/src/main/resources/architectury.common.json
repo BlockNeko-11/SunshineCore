@@ -1,3 +1,11 @@
 {
-  "accessWidener": "sunshinecore.accesswidener"
+  "accessWidener": "sunshinecore.accesswidener",
+  "injected_interfaces": {
+    "net/minecraft/class_1792": [
+      "io/github/blockneko11/sunshinecore/item/extension/ItemExtension"
+    ],
+    "net/minecraft/class_1792$class_1793": [
+      "io/github/blockneko11/sunshinecore/item/extension/ItemPropertiesExtension"
+    ]
+  }
 }
