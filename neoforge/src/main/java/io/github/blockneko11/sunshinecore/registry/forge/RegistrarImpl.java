@@ -35,7 +35,7 @@ public final class RegistrarImpl extends Registrar {
                 key -> DeferredRegister.create(key, this.modId));
 
         DeferredHolder<R, T> holder = register.register(id, entry);
-        return new RegistryHolder<>(holder, holder.getKey(), holder.getId());
+        return new RegistryHolder<>(holder, holder, holder.getKey(), holder.getId());
     }
 
     @Override
