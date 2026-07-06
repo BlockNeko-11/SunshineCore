@@ -4,8 +4,9 @@ A modding library, for multi-loader mod development.
 ## Features
 - Cross-loader abstractions and events
 - Registrar API and other registries
-- Data Generation API
-- Some basic class for blocks, items, etc.
+- Data Generation API (see `SDataGeneration`)
+- Networking API (see `SNetworking` and `SClientNetworking`)
+- Some basic class and utilities for blocks, items, etc.
 
 ## Installation (Developers)
 The library is published on [JitPack](https://jitpack.io/#BlockNeko-11/SunshineCore).
