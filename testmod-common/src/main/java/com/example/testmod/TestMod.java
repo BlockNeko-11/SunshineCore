@@ -4,13 +4,23 @@ import com.example.testmod.data.TestTagProvider;
 import com.example.testmod.data.TestTranslationProvider;
 import com.example.testmod.registry.TestRegistry;
 import io.github.blockneko11.sunshinecore.SunshineCore;
+import io.github.blockneko11.sunshinecore.block.FlammableRegistry;
 import io.github.blockneko11.sunshinecore.command.CommandRegistry;
 import io.github.blockneko11.sunshinecore.data.SDataGeneration;
+import io.github.blockneko11.sunshinecore.entity.villager.SimpleVillagerTrade;
+import io.github.blockneko11.sunshinecore.entity.villager.VillagerInteractionRegistry;
+import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
+import io.github.blockneko11.sunshinecore.item.CompostingRegistry;
+import io.github.blockneko11.sunshinecore.item.FuelRegistry;
+import io.github.blockneko11.sunshinecore.item.tool.ToolInteractionRegistry;
 import io.github.blockneko11.sunshinecore.server.event.level.ServerLevelEvent;
 import io.github.blockneko11.sunshinecore.loader.Platform;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +38,8 @@ public final class TestMod {
         LOGGER.info("Test Mod version: {}", Platform.getMod(MOD_ID).getVersion());
 
         TestRegistry.init();
-        ServerLevelEvent.LOAD.register(TestMod::onLevelLoad);
+        SetupEvent.EVENT.register(TestMod::onSetup);
+        ServerLevelEvent.LOAD.register(l -> LOGGER.info("Level loaded: {}", l.dimension().location()));
 
         CommandRegistry.registerCommand((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("test")
@@ -39,8 +50,18 @@ public final class TestMod {
         });
     }
 
-    private static void onLevelLoad(ServerLevel level) {
-        LOGGER.info("Level loaded: {}", level.dimension().location());
+    private static void onSetup() {
+        ToolInteractionRegistry.registerFlattenable(TestRegistry.TEST_BLOCK.get(), TestRegistry.TEST_BLOCK_FLATTENED.get().defaultBlockState());
+        ToolInteractionRegistry.registerTillable(TestRegistry.TEST_BLOCK.get(),
+                HoeItem::onlyIfAirAbove,
+                ctx -> Block.popResourceFromFace(ctx.getLevel(), ctx.getClickedPos(), ctx.getClickedFace(), new ItemStack(Items.BEDROCK)));
+
+        FuelRegistry.register(50, TestRegistry.TEST_BLOCK_ITEM.get());
+        CompostingRegistry.register(0.4f, TestRegistry.TEST_BLOCK_ITEM.get());
+        FlammableRegistry.register(5, 5, TestRegistry.TEST_BLOCK_FLAMMABLE.get());
+
+        VillagerInteractionRegistry.registerWanted(TestRegistry.TEST_BLOCK_ITEM.get());
+        VillagerInteractionRegistry.registerCompostable(TestRegistry.TEST_BLOCK_ITEM.get());
     }
 
     public static void initDataGen(SDataGeneration gen) {

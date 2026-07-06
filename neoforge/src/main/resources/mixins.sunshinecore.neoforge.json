@@ -11,9 +11,12 @@
     "block.FireBlockMixin",
     "block.entity.AbstractFurnaceBlockEntityMixin",
     "data.DatagenModLoaderMixin",
-    "item.AxeItemMixin",
+    "entity.ai.GiveGiftToHeroMixin",
+    "entity.ai.WorkAtComposterMixin",
+    "entity.villager.VillagerMixin",
+    "item.AxeItemAccessor",
     "item.HoeItemMixin",
-    "item.ShovelItemMixin"
+    "item.ShovelItemAccessor"
   ],
   "injectors": {
     "defaultRequire": 1

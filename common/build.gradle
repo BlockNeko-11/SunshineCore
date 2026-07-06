@@ -17,6 +17,6 @@ dependencies {
 
     implementation "net.jodah:typetools:${rootProject.type_tools_version}"
 
-    implementation "com.github.BlockNeko-11.UnifiedConfig:unified-config-core:${rootProject.unified_config_version}"
-    implementation "com.github.BlockNeko-11.UnifiedConfig:unified-config-gson:${rootProject.unified_config_version}"
+    // implementation "com.github.BlockNeko-11.UnifiedConfig:unified-config-core:${rootProject.unified_config_version}"
+    // implementation "com.github.BlockNeko-11.UnifiedConfig:unified-config-gson:${rootProject.unified_config_version}"
 }

@@ -45,8 +45,10 @@ dependencies {
     // Remove the next line if you don't want to depend on the API
     // modImplementation "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
-    implementation(include("com.github.BlockNeko-11.UnifiedConfig:unified-config-core:${rootProject.unified_config_version}"))
-    implementation(include("com.github.BlockNeko-11.UnifiedConfig:unified-config-gson:${rootProject.unified_config_version}"))
+    // implementation(include("com.github.BlockNeko-11.UnifiedConfig:unified-config-core:${rootProject.unified_config_version}"))
+    // forgeRuntimeLibrary("com.github.BlockNeko-11.UnifiedConfig:unified-config-core:${rootProject.unified_config_version}")
+    // implementation(include("com.github.BlockNeko-11.UnifiedConfig:unified-config-gson:${rootProject.unified_config_version}"))
+    // forgeRuntimeLibrary("com.github.BlockNeko-11.UnifiedConfig:unified-config-gson:${rootProject.unified_config_version}")
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionNeoForge")) { transitive = false }

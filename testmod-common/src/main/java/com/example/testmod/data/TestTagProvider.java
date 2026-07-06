@@ -17,7 +17,8 @@ public final class TestTagProvider {
         public void addTag(HolderLookup.Provider lookup) {
             this.getTagBuilder(TestRegistry.TEST_BLOCKS)
                     .add(TestRegistry.TEST_BLOCK.get())
-                    .add(TestRegistry.TEST_BLOCK_FLATTENED.get());
+                    .add(TestRegistry.TEST_BLOCK_FLATTENED.get())
+                    .add(TestRegistry.TEST_BLOCK_FLAMMABLE.get());
         }
     }
 
@@ -30,7 +31,8 @@ public final class TestTagProvider {
         public void addTag(HolderLookup.Provider lookup) {
             this.getTagBuilder(TestRegistry.TEST_BLOCK_ITEMS)
                     .add(TestRegistry.TEST_BLOCK_ITEM.get())
-                    .add(TestRegistry.TEST_BLOCK_FLATTENED_ITEM.get());
+                    .add(TestRegistry.TEST_BLOCK_FLATTENED_ITEM.get())
+                    .add(TestRegistry.TEST_BLOCK_FLAMMABLE_ITEM.get());
         }
     }
 }

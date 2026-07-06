@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import java.util.Map;
 
 @Mixin(ShovelItem.class)
-public interface ShovelItemMixin {
+public interface ShovelItemAccessor {
     @Accessor("FLATTENABLES")
     static Map<Block, BlockState> getFlattenables() {
         throw new AssertionError();
