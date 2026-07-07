@@ -12,6 +12,9 @@
     ],
     "net/minecraft/class_4970$class_2251": [
       "io/github/blockneko11/sunshinecore/block/extension/BlockBehaviourPropertiesExtension"
+    ],
+    "net/minecraft/class_4174$class_4175": [
+      "io/github/blockneko11/sunshinecore/item/extension/FoodPropertiesBuilderExtension"
     ]
   }
 }
