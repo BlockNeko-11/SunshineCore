@@ -51,20 +51,28 @@ public abstract class Registrar {
      */
     public abstract <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry);
 
+    public final <I extends Item> RegistryHolder<Item, I> item(String id, Supplier<I> item) {
+        return this.register(BuiltInRegistries.ITEM, id, item);
+    }
+
     public final RegistryHolder<Item, Item> simpleItem(String id) {
         return this.simpleItem(id, UnaryOperator.identity());
     }
 
     public final RegistryHolder<Item, Item> simpleItem(String id, UnaryOperator<Item.Properties> operator) {
-        return this.register(BuiltInRegistries.ITEM, id, () -> new Item(operator.apply(new Item.Properties())));
+        return this.item(id, () -> new Item(operator.apply(new Item.Properties())));
     }
 
-    public final <T extends Block> RegistryHolder<Item, Item> blockItem(String id, Supplier<T> block) {
+    public final <B extends Block> RegistryHolder<Item, Item> blockItem(String id, Supplier<B> block) {
         return this.blockItem(id, block, UnaryOperator.identity());
     }
 
-    public final <T extends Block> RegistryHolder<Item, Item> blockItem(String id, Supplier<T> block, UnaryOperator<Item.Properties> operator) {
-        return this.register(BuiltInRegistries.ITEM, id, () -> new BlockItem(block.get(), operator.apply(new Item.Properties())));
+    public final <B extends Block> RegistryHolder<Item, Item> blockItem(String id, Supplier<B> block, UnaryOperator<Item.Properties> operator) {
+        return this.item(id, () -> new BlockItem(block.get(), operator.apply(new Item.Properties())));
+    }
+
+    public final <B extends Block> RegistryHolder<Block, B> block(String id, Supplier<B> block) {
+        return this.register(BuiltInRegistries.BLOCK, id, block);
     }
 
     public final RegistryHolder<Block, Block> simpleBlock(String id) {
@@ -72,7 +80,7 @@ public abstract class Registrar {
     }
 
     public final RegistryHolder<Block, Block> simpleBlock(String id, UnaryOperator<BlockBehaviour.Properties> operator) {
-        return this.register(BuiltInRegistries.BLOCK, id, () -> new Block(operator.apply(BlockBehaviour.Properties.of())));
+        return this.block(id, () -> new Block(operator.apply(BlockBehaviour.Properties.of())));
     }
 
     public final <T> TagKey<T> tag(Registry<T> registry, String id) {

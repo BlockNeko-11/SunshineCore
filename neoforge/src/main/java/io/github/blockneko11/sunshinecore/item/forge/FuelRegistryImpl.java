@@ -55,9 +55,16 @@ public final class FuelRegistryImpl {
     public static void onEvent(FurnaceFuelBurnTimeEvent e) {
         Item item = e.getItemStack().getItem();
 
-        if (getFuels().containsKey(item)) {
-            e.setBurnTime(getFuels().get(item));
+        if (item.sc$getBurnTick() > 0) {
+            e.setBurnTime(item.sc$getBurnTick());
+            return;
         }
+
+        if (!getFuels().containsKey(item)) {
+            return;
+        }
+
+        e.setBurnTime(getFuels().get(item));
     }
 
     private FuelRegistryImpl() {

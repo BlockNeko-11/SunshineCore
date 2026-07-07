@@ -30,7 +30,7 @@ allprojects {
         it.options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     }
 
-    compileJava.dependsOn clean
+    // compileJava.dependsOn clean
 
     java {
         withSourcesJar()

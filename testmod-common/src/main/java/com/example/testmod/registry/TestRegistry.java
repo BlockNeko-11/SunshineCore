@@ -1,6 +1,7 @@
 package com.example.testmod.registry;
 
 import com.example.testmod.TestMod;
+import com.example.testmod.item.TestCompostableItem;
 import io.github.blockneko11.sunshinecore.block.FlammableRegistry;
 import io.github.blockneko11.sunshinecore.event.initialize.SetupEvent;
 import io.github.blockneko11.sunshinecore.item.CompostingRegistry;
@@ -33,6 +34,7 @@ public final class TestRegistry {
 
     public static final Supplier<Item> TEST_BLOCK_FLATTENED_ITEM = REGISTRAR.blockItem("test_block_flattened", TEST_BLOCK_FLATTENED);
     public static final Supplier<Item> TEST_BLOCK_FLAMMABLE_ITEM = REGISTRAR.blockItem("test_block_flammable", TEST_BLOCK_FLAMMABLE, p -> p.sc$tab(TEST_TAB.key()));
+    public static final Supplier<Item> TEST_COMPOSTABLE_ITEM = REGISTRAR.item("test_compostable_item", TestCompostableItem::new);
     public static final TagKey<Item> TEST_BLOCK_ITEMS = REGISTRAR.tag(BuiltInRegistries.ITEM, "test_block_items");
 
     public static void init() {
@@ -41,6 +43,7 @@ public final class TestRegistry {
         CreativeModeTabUtils.modify(TEST_TAB.key(), (output, isOP) -> {
             output.accept(TEST_BLOCK_ITEM.get());
             output.accept(TEST_BLOCK_FLATTENED_ITEM.get());
+            output.accept(TEST_COMPOSTABLE_ITEM.get());
 //            output.accept(TEST_BLOCK_FLAMMABLE_ITEM.get());
         });
     }

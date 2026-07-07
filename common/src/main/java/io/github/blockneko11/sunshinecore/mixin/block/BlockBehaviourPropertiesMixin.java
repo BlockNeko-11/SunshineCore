@@ -18,7 +18,7 @@ public class BlockBehaviourPropertiesMixin implements BlockBehaviourPropertiesEx
     }
 
     @Override
-    public FlammableEntry sc$getFlammable() {
+    public FlammableEntry sc$getFlammableEntry() {
         return this.sc$flammable;
     }
 }

@@ -17,7 +17,7 @@ public abstract class BlockMixin implements BlockExtension {
             at = @At("RETURN")
     )
     private void sc$onBlockCtor(BlockBehaviour.Properties props, CallbackInfo ci) {
-        FlammableEntry entry = props.sc$getFlammable();
+        FlammableEntry entry = props.sc$getFlammableEntry();
         if (entry != null) {
             FlammableRegistry.register(entry, sc$self());
         }

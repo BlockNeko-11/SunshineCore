@@ -22,6 +22,12 @@ public abstract class ComposterBlockMixin {
         }
 
         Item item = stack.getItem();
+        if (item.sc$getCompostingChance() > 0.0f) {
+            cir.setReturnValue(item.sc$getCompostingChance());
+            cir.cancel();
+            return;
+        }
+
         float chance = CompostingRegistryImpl.getCompostables().getOrDefault(item, 0.0f);
         if (chance <= 0.0f) {
             return;

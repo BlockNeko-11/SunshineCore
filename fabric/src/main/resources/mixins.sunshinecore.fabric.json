@@ -7,9 +7,13 @@
     "client.ClientLevelMixin"
   ],
   "mixins": [
-    "server.DedicatedServerMixin",
+    "block.ComposterBlockMixin",
+    "block.ComposterBlockInputContainerMixin",
+    "block.FireBlockMixin",
+    "block.entity.AbstractFurnaceBlockEntityMixin",
     "data.FabricDataGenHelperMixin",
-    "level.ServerLevelMixin"
+    "level.ServerLevelMixin",
+    "server.DedicatedServerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

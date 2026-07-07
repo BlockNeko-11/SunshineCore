@@ -1,9 +1,11 @@
 package io.github.blockneko11.sunshinecore.mixin.forge.block;
 
+import io.github.blockneko11.sunshinecore.block.FlammableEntry;
 import io.github.blockneko11.sunshinecore.block.forge.FlammableRegistryImpl;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -19,6 +21,11 @@ public abstract class FireBlockMixin {
             )
     )
     private int sc$getFlammability(Object2IntMap<Block> instance, Object o) {
+        FlammableEntry entry = ((BlockState) o).getBlock().sc$getFlammability();
+        if (entry != null) {
+            return entry.flameAbility();
+        }
+
         if (FlammableRegistryImpl.getFlammables().containsKey(o)) {
             return FlammableRegistryImpl.getFlammables().get(o).flameAbility();
         }
@@ -35,6 +42,11 @@ public abstract class FireBlockMixin {
             )
     )
     private int sc$getSpreadSpeed(Object2IntMap<Block> instance, Object o) {
+        FlammableEntry entry = ((BlockState) o).getBlock().sc$getFlammability();
+        if (entry != null) {
+            return entry.spreadSpeed();
+        }
+
         if (FlammableRegistryImpl.getFlammables().containsKey(o)) {
             return FlammableRegistryImpl.getFlammables().get(o).spreadSpeed();
         }

@@ -18,7 +18,7 @@ public interface BlockBehaviourPropertiesExtension {
     }
 
     @ApiStatus.Internal
-    default FlammableEntry sc$getFlammable() {
+    default FlammableEntry sc$getFlammableEntry() {
         throw new AssertionError();
     }
 }
