@@ -8,7 +8,6 @@
   "mixins": [
     "block.BlockBehaviourPropertiesMixin",
     "block.BlockMixin",
-    "entity.player.InventoryMixin",
     "item.FoodPropertiesBuilderMixin",
     "item.ItemMixin",
     "item.ItemPropertiesMixin"

@@ -30,6 +30,7 @@ allprojects {
         it.options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
     }
 
+    // for hot-swaping
     // compileJava.dependsOn clean
 
     java {
@@ -95,5 +96,16 @@ subprojects {
             // Add repositories to publish to here.
             mavenLocal()
         }
+    }
+}
+
+tasks.register("devGenSources") {
+    group = "sunshinecoredev"
+    dependsOn project(":common").tasks.named("genSourcesWithVineflower").get()
+    dependsOn project(":fabric").tasks.named("genSourcesWithVineflower").get()
+    dependsOn project(":neoforge").tasks.named("genSourcesWithVineflower").get()
+
+    doLast {
+        logger.lifecycle("done generating sources")
     }
 }

@@ -15,6 +15,7 @@
     "entity.villager.VillagerMixin",
     "item.AxeItemAccessor",
     "item.HoeItemMixin",
+    "item.ItemMixin",
     "item.ShovelItemAccessor"
   ],
   "injectors": {
