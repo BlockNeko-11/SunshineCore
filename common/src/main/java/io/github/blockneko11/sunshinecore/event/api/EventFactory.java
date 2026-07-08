@@ -1,8 +1,8 @@
 package io.github.blockneko11.sunshinecore.event.api;
 
-import io.github.blockneko11.sunshinecore.event.api.handlers.EventResultHandler;
-import io.github.blockneko11.sunshinecore.event.api.handlers.InteractionResultHandler;
-import io.github.blockneko11.sunshinecore.event.api.handlers.NonReturnHandler;
+import io.github.blockneko11.sunshinecore.event.api.handlers.EventResultDelegate;
+import io.github.blockneko11.sunshinecore.event.api.handlers.InteractionResultDelegate;
+import io.github.blockneko11.sunshinecore.event.api.handlers.NonReturnDelegate;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Proxy;
@@ -23,7 +23,7 @@ public final class EventFactory {
     public static <T> Event<T> createWithInteractionResult(Class<T> handlerClass) {
         return create(handlers -> (T) Proxy.newProxyInstance(handlerClass.getClassLoader(),
                 new Class[]{handlerClass},
-                new InteractionResultHandler<>(handlers)));
+                new InteractionResultDelegate<>(handlers)));
     }
 
     public static <T> Event<T> createWithEventResult(@Nullable T... typeGetter) {
@@ -33,7 +33,7 @@ public final class EventFactory {
     public static <T> Event<T> createWithEventResult(Class<T> handlerClass) {
         return create(handlers -> (T) Proxy.newProxyInstance(handlerClass.getClassLoader(),
                 new Class[]{handlerClass},
-                new EventResultHandler<>(handlers)));
+                new EventResultDelegate<>(handlers)));
     }
 
     @SafeVarargs
@@ -44,7 +44,7 @@ public final class EventFactory {
     public static <T> Event<T> createNonReturn(Class<T> handlerClass) {
         return create(handlers -> (T) Proxy.newProxyInstance(handlerClass.getClassLoader(),
                 new Class[]{handlerClass},
-                new NonReturnHandler<>(handlers)));
+                new NonReturnDelegate<>(handlers)));
     }
 
     private EventFactory() {

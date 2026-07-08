@@ -2,16 +2,13 @@ package io.github.blockneko11.sunshinecore.event.api.handlers;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.List;
 
 @ApiStatus.Internal
-public final class NonReturnHandler<T> implements InvocationHandler {
-    private final List<T> handlers;
-
-    public NonReturnHandler(List<T> handlers) {
-        this.handlers = handlers;
+public final class NonReturnDelegate<T> extends EventDelegate<T> {
+    public NonReturnDelegate(List<T> handlers) {
+        super(handlers);
     }
 
     @Override
