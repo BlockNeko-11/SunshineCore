@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
@@ -13,47 +14,50 @@ public interface ItemPropertiesExtension {
     }
 
     default Item.Properties sc$tab(Supplier<CreativeModeTab> tab) {
-        throw new AssertionError();
+        return sc$self();
     }
 
     @ApiStatus.Internal
+    @Nullable
     default Supplier<CreativeModeTab> sc$getTabSupplier() {
-        throw new AssertionError();
+        return null;
     }
 
     default Item.Properties sc$tab(CreativeModeTab tab) {
-        throw new AssertionError();
+        return sc$self();
     }
 
     @ApiStatus.Internal
+    @Nullable
     default CreativeModeTab sc$getTab() {
-        throw new AssertionError();
+        return null;
     }
 
     default Item.Properties sc$tab(ResourceKey<CreativeModeTab> tab) {
-        throw new AssertionError();
+        return sc$self();
     }
 
     @ApiStatus.Internal
+    @Nullable
     default ResourceKey<CreativeModeTab> sc$getTabKey() {
-        throw new AssertionError();
+        return null;
     }
 
     default Item.Properties sc$fuel(int burnTick) {
-        throw new AssertionError();
+        return sc$self();
     }
 
     @ApiStatus.Internal
     default int sc$getBurnTick() {
-        throw new AssertionError();
+        return 0;
     }
 
     default Item.Properties sc$compostable(float chance) {
-        throw new AssertionError();
+        return sc$self();
     }
 
     @ApiStatus.Internal
     default float sc$getCompostingChance() {
-        throw new AssertionError();
+        return 0.0f;
     }
 }
