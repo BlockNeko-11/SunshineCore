@@ -4,26 +4,25 @@ import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.blockneko11.sunshinecore.util.ResourceLoc;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
+import org.jetbrains.annotations.ApiStatus;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
 
 /**
  * Registrar API, which is used to registering objects to the game.
  * <p>
  * Different loaders have different behaviors for registering objects:
  * <ul>
- *   <li>In Fabric, objects are immediately registered when calling {@link #register(Registry, String, Supplier)}.
+ *   <li>In Fabric, objects will be immediately registered.
  *   <li>In Forge / NeoForge, objects wil be registered later.
  * </ul>
  */
 public abstract class Registrar {
-    protected final String modId;
+    protected String modId;
     private boolean registered = false;
 
     protected Registrar(String modId) {
@@ -49,42 +48,31 @@ public abstract class Registrar {
      * @param <R> the type of the registry
      * @param <T> the type of the object
      */
-    public abstract <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry);
+    public abstract <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, ResourceLocation id, Supplier<T> entry);
 
-    public final <I extends Item> RegistryHolder<Item, I> item(String id, Supplier<I> item) {
-        return this.register(BuiltInRegistries.ITEM, id, item);
+    public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry) {
+        return this.register(registry, this.loc(id), entry);
     }
 
-    public final RegistryHolder<Item, Item> simpleItem(String id) {
-        return this.simpleItem(id, UnaryOperator.identity());
-    }
-
-    public final RegistryHolder<Item, Item> simpleItem(String id, UnaryOperator<Item.Properties> operator) {
-        return this.item(id, () -> new Item(operator.apply(new Item.Properties())));
-    }
-
-    public final <B extends Block> RegistryHolder<Item, Item> blockItem(String id, Supplier<B> block) {
-        return this.blockItem(id, block, UnaryOperator.identity());
-    }
-
-    public final <B extends Block> RegistryHolder<Item, Item> blockItem(String id, Supplier<B> block, UnaryOperator<Item.Properties> operator) {
-        return this.item(id, () -> new BlockItem(block.get(), operator.apply(new Item.Properties())));
-    }
-
-    public final <B extends Block> RegistryHolder<Block, B> block(String id, Supplier<B> block) {
-        return this.register(BuiltInRegistries.BLOCK, id, block);
-    }
-
-    public final RegistryHolder<Block, Block> simpleBlock(String id) {
-        return this.simpleBlock(id, UnaryOperator.identity());
-    }
-
-    public final RegistryHolder<Block, Block> simpleBlock(String id, UnaryOperator<BlockBehaviour.Properties> operator) {
-        return this.block(id, () -> new Block(operator.apply(BlockBehaviour.Properties.of())));
+    public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Function<ResourceLocation, T> factory) {
+        ResourceLocation loc = this.loc(id);
+        return this.register(registry, loc, () -> factory.apply(loc));
     }
 
     public final <T> TagKey<T> tag(Registry<T> registry, String id) {
-        return TagKey.create(registry.key(), ResourceLoc.id(this.modId, id));
+        return TagKey.create(registry.key(), this.loc(id));
+    }
+
+    public final ResourceLocation loc(String id) {
+        return ResourceLoc.id(this.modId, id);
+    }
+
+    public final <R> ResourceKey<R> regKey(Registry<R> registry, String id) {
+        return this.regKey(registry, this.loc(id));
+    }
+
+    public final <R> ResourceKey<R> regKey(Registry<R> registry, ResourceLocation id) {
+        return ResourceKey.create(registry.key(), id);
     }
 
     /**
@@ -99,5 +87,6 @@ public abstract class Registrar {
         this.bootstrap();
     }
 
+    @ApiStatus.OverrideOnly
     protected abstract void bootstrap();
 }

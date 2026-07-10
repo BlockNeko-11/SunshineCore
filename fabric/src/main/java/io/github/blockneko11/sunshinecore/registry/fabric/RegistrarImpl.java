@@ -20,12 +20,12 @@ public final class RegistrarImpl extends Registrar {
     }
 
     @Override
-    public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry) {
-        ResourceLocation loc = ResourceLoc.id(this.modId, id);
-        ResourceKey<R> key = ResourceKey.create(registry.key(), loc);
+    public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, ResourceLocation id, Supplier<T> entry) {
+//        ResourceLocation loc = ResourceLoc.id(this.modId, id);
+        ResourceKey<R> key = regKey(registry, id);
         T value = entry.get();
         Holder.Reference<R> holder = Registry.registerForHolder(registry, key, value);
-        return new RegistryHolder<>(() -> value, holder, key, loc);
+        return new RegistryHolder<>(() -> value, holder, key, id);
     }
 
     @Override
