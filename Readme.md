@@ -9,10 +9,14 @@ A Minecraft modding library, provides some tools and APIs for multi-loader moddi
 - Networking API (see `SNetworking` (for Server Side) and `SClientNetworking` (for Client Side))
 
 ## Version Supporting
-
 | Minecraft Version | Status     | Latest Version | Supported Loaders |
 |-------------------|------------|----------------|-------------------|
 | 1.21~1.21.1       | ✅ Mainline | 1.4.1          | Fabric, NeoForge  |
+
+## Requirements
+| Mod Name   | Required Version | Loader | Link                                            |
+|------------|------------------|--------|-------------------------------------------------|
+| Fabric API | Latest           | Fabric | [Modrinth](https://modrinth.com/mod/fabric-api) |
 
 ## Installation
 The library is published on [JitPack](https://jitpack.io/#BlockNeko-11/SunshineCore).
