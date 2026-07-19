@@ -67,4 +67,4 @@ dependencies {
 after all, you can find the jar files which can be a mod in `fabric/build/libs` and `neoforge/build/libs`.
 
 ## License
-Sunshine Core project is under the [GNU Lesser General Public License v3.0](./LICENSE).
+Sunshine Core project is under the [Apache 2.0 License](./LICENSE).

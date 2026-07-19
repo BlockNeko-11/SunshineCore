@@ -68,4 +68,4 @@ dependencies {
 然后，你可以在 `fabric/build/libs` 和 `neoforge/build/libs` 找到可以放进 mods 文件夹的 jar 文件。
 
 ## 许可证
-Sunshine Core 项目遵循 [GNU Lesser General Public License v3.0 许可证](./LICENSE)。
+Sunshine Core 项目遵循 [Apache 2.0 许可证](./LICENSE)。

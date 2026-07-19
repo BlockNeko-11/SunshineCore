@@ -45,8 +45,8 @@ jobs:
             fabric/build/libs
             neoforge/build/libs
 
-# s      - name: get short sha
-#         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+#      - name: get short sha
+#        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: read gradle.properties
         id: prop_info
