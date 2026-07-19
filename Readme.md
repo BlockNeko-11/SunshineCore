@@ -1,12 +1,18 @@
+EN | [简体中文](./Readme_cn.md)
+
 # Sunshine Core
-A modding library, for multi-loader mod development.
+A Minecraft modding library, provides some tools and APIs for multi-loader modding.
 
 ## Features
-- Cross-loader abstractions and events
 - Registrar API and other registries
 - Data Generation API (see `SDataGeneration`)
-- Networking API (see `SNetworking` and `SClientNetworking`)
-- Some basic class and utilities for blocks, items, etc.
+- Networking API (see `SNetworking` (for Server Side) and `SClientNetworking` (for Client Side))
+
+## Version Supporting
+
+| Minecraft Version | Status     | Latest Version | Supported Loaders |
+|-------------------|------------|----------------|-------------------|
+| 1.21~1.21.1       | ✅ Mainline | 1.4.1          | Fabric, NeoForge  |
 
 ## Installation (Developers)
 The library is published on [JitPack](https://jitpack.io/#BlockNeko-11/SunshineCore).
@@ -26,10 +32,10 @@ In your `build.gradle`:
 ```gradle
 dependencies {
     // Common
-    // with Architectury Loom
+    // if you use Architectury Loom
     modImplementation "com.github.BlockNeko-11.SunshineCore:sunshine-core-common:${rootProject.sunshine_core_version}"
 
-    // others
+    // other situations
     implementation "com.github.BlockNeko-11.SunshineCore:sunshine-core-common:${rootProject.sunshine_core_version}" 
 
 
@@ -38,10 +44,10 @@ dependencies {
 
 
     // NeoForge
-    // with ModDevGradle / NeoGradle
+    // if you use ModDevGradle / NeoGradle
     implementation "com.github.BlockNeko-11.SunshineCore:sunshine-core-neoforge:${rootProject.sunshine_core_version}"
     
-    // with Architectury Loom
+    // if you use Architectury Loom
     modImplementation "com.github.BlockNeko-11.SunshineCore:sunshine-core-neoforge:${rootProject.sunshine_core_version}"
 }
 ```
