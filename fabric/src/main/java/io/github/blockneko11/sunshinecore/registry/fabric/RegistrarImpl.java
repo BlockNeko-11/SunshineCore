@@ -19,7 +19,7 @@ public final class RegistrarImpl extends Registrar {
 
     @Override
     public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry) {
-        ResourceKey<R> key = resourceKey(registry, id);
+        ResourceKey<R> key = regKey(registry, id);
         T value = entry.get();
         Holder.Reference<R> holder = Registry.registerForHolder(registry, key, value);
         return new RegistryHolder<>(holder, registry, key);

@@ -1,8 +1,7 @@
 package io.github.blockneko11.sunshinecore.registry;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import io.github.blockneko11.sunshinecore.util.ResourceLoc;
-import net.minecraft.core.Holder;
+import io.github.blockneko11.sunshinecore.util.Id;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
@@ -58,8 +57,17 @@ public abstract class Registrar {
      */
     public abstract <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry);
 
+    /**
+     * Register an object to the game.
+     * @param registry a {@link Registry} instance. See {@link BuiltInRegistries}
+     * @param id the in-game id of the object
+     * @param factory a factory function
+     * @return a {@link RegistryHolder} of the registered object
+     * @param <R> the type of the registry
+     * @param <T> the type of the object
+     */
     public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Function<ResourceLocation, T> factory) {
-        ResourceLocation loc = this.location(id);
+        ResourceLocation loc = this.id(id);
         return this.register(registry, id, () -> factory.apply(loc));
     }
 
@@ -74,7 +82,7 @@ public abstract class Registrar {
     }
 
     public final <B extends Block> RegistryHolder<Block, B> block(String id, BlockFactory<B> factory, BlockBehaviour.Properties props) {
-        return this.register(BuiltInRegistries.BLOCK, id, loc -> factory.apply(props));
+        return this.register(BuiltInRegistries.BLOCK, id, identifier -> factory.apply(props));
     }
 
     public final RegistryHolder<Block, Block> block(String id, BlockBehaviour.Properties props) {
@@ -96,7 +104,7 @@ public abstract class Registrar {
     }
 
     public final <I extends Item> RegistryHolder<Item, I> item(String id, ItemFactory<I> factory, Item.Properties props) {
-        return this.register(BuiltInRegistries.ITEM, id, loc -> factory.apply(props));
+        return this.register(BuiltInRegistries.ITEM, id, identifier -> factory.apply(props));
     }
 
     public final RegistryHolder<Item, Item> item(String id, Item.Properties props) {
@@ -108,7 +116,7 @@ public abstract class Registrar {
     }
 
     public final RegistryHolder<Item, BlockItem> blockItem(String id, Supplier<? extends Block> block, Item.Properties props) {
-        return this.item(id, loc -> new BlockItem(block.get(), props));
+        return this.item(id, identifier -> new BlockItem(block.get(), props));
     }
 
     public final RegistryHolder<Item, BlockItem> blockItem(String id, Supplier<? extends Block> block) {
@@ -131,19 +139,26 @@ public abstract class Registrar {
 
     // generic helper methods
 
+    /**
+     * Create a tag key.
+     * @param registry a {@link Registry} instance. See {@link BuiltInRegistries}
+     * @param id the in-game id of the tag
+     * @return a tag key
+     * @param <T> the type of the registry
+     */
     public final <T> TagKey<T> tag(Registry<T> registry, String id) {
-        return TagKey.create(registry.key(), this.location(id));
+        return TagKey.create(registry.key(), this.id(id));
     }
 
-    public final ResourceLocation location(String id) {
-        return ResourceLoc.id(this.modId, id);
+    public final ResourceLocation id(String id) {
+        return Id.id(this.modId, id);
     }
 
-    public final <R> ResourceKey<R> resourceKey(Registry<R> registry, String id) {
-        return this.resourceKey(registry, this.location(id));
+    public final <R> ResourceKey<R> regKey(Registry<R> registry, String id) {
+        return this.regKey(registry, this.id(id));
     }
 
-    public final <R> ResourceKey<R> resourceKey(Registry<R> registry, ResourceLocation id) {
+    public final <R> ResourceKey<R> regKey(Registry<R> registry, ResourceLocation id) {
         return ResourceKey.create(registry.key(), id);
     }
 
