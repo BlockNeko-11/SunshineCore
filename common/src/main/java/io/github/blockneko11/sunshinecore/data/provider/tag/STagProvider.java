@@ -24,7 +24,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({"deprecation", "unchecked"})
 public abstract class STagProvider<T> implements DataProvider {
     private final PackOutput output;
     private final CompletableFuture<HolderLookup.Provider> lookupProvider;

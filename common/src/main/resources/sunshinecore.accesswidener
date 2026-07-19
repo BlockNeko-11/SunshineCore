@@ -11,3 +11,4 @@ accessible method net/minecraft/world/inventory/MenuType <init> (Lnet/minecraft/
 accessible class net/minecraft/world/inventory/MenuType$MenuSupplier
 accessible method net/minecraft/client/renderer/blockentity/BlockEntityRenderers register (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider;)V
 accessible class net/minecraft/world/item/CreativeModeTab$TabVisibility
+accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier

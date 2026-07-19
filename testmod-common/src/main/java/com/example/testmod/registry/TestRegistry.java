@@ -22,13 +22,13 @@ public final class TestRegistry {
     // 2. register blocks and items
     // register blocks first, then items (includes BlockItems), and then other registries
 
-    public static final Supplier<Block> TEST_BLOCK = simpleBlock("test_block");
-    public static final Supplier<Block> TEST_BLOCK_FLATTENED = simpleBlock("test_block_flattened");
-    public static final Supplier<Block> TEST_BLOCK_FLAMMABLE = simpleBlock("test_block_flammable", BlockBehaviour.Properties.of().sc$flammable(5, 5));
+    public static final Supplier<Block> TEST_BLOCK = REGISTRAR.block("test_block");
+    public static final Supplier<Block> TEST_BLOCK_FLATTENED = REGISTRAR.block("test_block_flattened");
+    public static final Supplier<Block> TEST_BLOCK_FLAMMABLE = REGISTRAR.block("test_block_flammable", BlockBehaviour.Properties.of().sc$flammable(5, 5));
     public static final TagKey<Block> TEST_BLOCKS = REGISTRAR.tag(BuiltInRegistries.BLOCK, "test_blocks");
 
     // register BlockItems via #blockItem(String, Supplier, Item.Properties)
-    public static final Supplier<BlockItem> TEST_BLOCK_ITEM = blockItem("test_block", TEST_BLOCK, new Item.Properties().sc$fuel(50).sc$compostable(0.4f));
+    public static final Supplier<BlockItem> TEST_BLOCK_ITEM = REGISTRAR.blockItem("test_block", TEST_BLOCK, new Item.Properties().sc$fuel(50).sc$compostable(0.4f));
 
     public static final RegistryHolder<CreativeModeTab, CreativeModeTab> TEST_TAB = REGISTRAR.register(
             BuiltInRegistries.CREATIVE_MODE_TAB, "test_tab", () -> CreativeModeTabUtils.create(
@@ -37,7 +37,7 @@ public final class TestRegistry {
     // register BlockItems via Registrar#register(Registry, String, Supplier)
     public static final Supplier<Item> TEST_BLOCK_FLATTENED_ITEM = REGISTRAR.register(BuiltInRegistries.ITEM, "test_block_flattened", () -> new BlockItem(TEST_BLOCK_FLATTENED.get(), new Item.Properties()));
 
-    public static final Supplier<BlockItem> TEST_BLOCK_FLAMMABLE_ITEM = blockItem("test_block_flammable", TEST_BLOCK_FLAMMABLE, new Item.Properties().sc$tab(TEST_TAB.key()));
+    public static final Supplier<BlockItem> TEST_BLOCK_FLAMMABLE_ITEM = REGISTRAR.blockItem("test_block_flammable", TEST_BLOCK_FLAMMABLE, new Item.Properties().sc$tab(TEST_TAB.key()));
 
     public static final Supplier<Item> TEST_COMPOSTABLE_ITEM = REGISTRAR.register(BuiltInRegistries.ITEM, "test_compostable_item", TestCompostableItem::new);
     public static final TagKey<Item> TEST_BLOCK_ITEMS = REGISTRAR.tag(BuiltInRegistries.ITEM, "test_block_items");
@@ -51,21 +51,5 @@ public final class TestRegistry {
             output.accept(TEST_COMPOSTABLE_ITEM.get());
 //            output.accept(TEST_BLOCK_FLAMMABLE_ITEM.get());
         });
-    }
-
-    private static RegistryHolder<Block, Block> simpleBlock(String id) {
-        return simpleBlock(id, BlockBehaviour.Properties.of());
-    }
-
-    private static RegistryHolder<Block, Block> simpleBlock(String id, BlockBehaviour.Properties properties) {
-        return REGISTRAR.register(BuiltInRegistries.BLOCK, id, () -> new Block(properties));
-    }
-
-    private static <B extends Block> RegistryHolder<Item, BlockItem> blockItem(String id, Supplier<B> block) {
-        return blockItem(id, block, new Item.Properties());
-    }
-
-    private static <B extends Block> RegistryHolder<Item, BlockItem> blockItem(String id, Supplier<B> block, Item.Properties properties) {
-        return REGISTRAR.register(BuiltInRegistries.ITEM, id, () -> new BlockItem(block.get(), properties));
     }
 }

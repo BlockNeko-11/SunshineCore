@@ -13,7 +13,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@SuppressWarnings("unchecked")
 public final class RegistrarImpl extends Registrar {
+
     private final Map<ResourceLocation, DeferredRegister<?>> registers = new LinkedHashMap<>();
     private final IEventBus modBus;
 
@@ -27,15 +29,18 @@ public final class RegistrarImpl extends Registrar {
     }
 
     @Override
-    public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, ResourceLocation id, Supplier<T> entry) {
+    public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Supplier<T> entry) {
+        DeferredRegister<R> register = this.getRegister(registry);
+        DeferredHolder<R, T> holder = register.register(id, entry);
+        return new RegistryHolder<>(holder, registry, holder.getKey());
+    }
+
+    private <R> DeferredRegister<R> getRegister(Registry<R> registry) {
         // to be compactible with Forge :(
         ResourceLocation registryId = registry.key().location();
-        DeferredRegister<R> register = (DeferredRegister<R>) this.registers.computeIfAbsent(
+        return (DeferredRegister<R>) this.registers.computeIfAbsent(
                 registryId,
                 key -> DeferredRegister.create(key, this.modId));
-
-        DeferredHolder<R, T> holder = register.register(id.getPath(), entry);
-        return new RegistryHolder<>(holder, holder, holder.getKey(), holder.getId());
     }
 
     @Override
