@@ -1,4 +1,4 @@
-EN | [简体中文](./Readme_cn.md)
+English | [简体中文](./Readme_cn.md)
 
 # Sunshine Core
 A Minecraft modding library, provides some tools and APIs for multi-loader modding.
