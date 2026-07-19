@@ -51,3 +51,16 @@ dependencies {
     modImplementation "com.github.BlockNeko-11.SunshineCore:sunshine-core-neoforge:${rootProject.sunshine_core_version}"
 }
 ```
+
+## 贡献
+### 环境要求
+- Java 21 (Minecraft 1.20.5+ 需要 Java 21)
+
+### 构建
+1. 克隆本仓库。
+2. 在项目目录下运行 `./gradlew build` 或 `gradlew build`。
+
+然后，你可以在 `fabric/build/libs` 和 `neoforge/build/libs` 找到可以放进 mods 文件夹的 jar 文件。
+
+## License
+Sunshine Core 项目遵循 [GNU Lesser General Public License v3.0 许可证](./LICENSE)。

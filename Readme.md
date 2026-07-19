@@ -14,7 +14,7 @@ A Minecraft modding library, provides some tools and APIs for multi-loader moddi
 |-------------------|------------|----------------|-------------------|
 | 1.21~1.21.1       | ✅ Mainline | 1.4.1          | Fabric, NeoForge  |
 
-## Installation (Developers)
+## Installation
 The library is published on [JitPack](https://jitpack.io/#BlockNeko-11/SunshineCore).
 
 ### Add repository
@@ -51,3 +51,16 @@ dependencies {
     modImplementation "com.github.BlockNeko-11.SunshineCore:sunshine-core-neoforge:${rootProject.sunshine_core_version}"
 }
 ```
+
+## Contributing
+### Environment Requirements
+- Java 21 (Minecraft 1.20.5+ requires Java 21)
+
+### Building
+1. Clone the repository.
+2. Run `./gradlew build` or `gradlew build` in the project directory.
+
+after all, you can find the jar files which can be a mod in `fabric/build/libs` and `neoforge/build/libs`.
+
+## License
+Sunshine Core project is under the [GNU Lesser General Public License v3.0](./LICENSE).
