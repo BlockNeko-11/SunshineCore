@@ -18,6 +18,14 @@ public final class CreativeModeTabUtils {
         return create(builder -> builder.title(title).icon(icon));
     }
 
+    public static CreativeModeTab createLiteral(String title, Supplier<ItemStack> icon) {
+        return create(Component.literal(title), icon);
+    }
+
+    public static CreativeModeTab createTranslatable(String title, Supplier<ItemStack> icon) {
+        return create(Component.translatable(title), icon);
+    }
+
     public static CreativeModeTab create(Consumer<CreativeModeTab.Builder> consumer) {
         CreativeModeTab.Builder builder = createBuilder();
         consumer.accept(builder);

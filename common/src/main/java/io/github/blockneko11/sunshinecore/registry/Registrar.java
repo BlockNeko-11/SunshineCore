@@ -152,8 +152,16 @@ public abstract class Registrar {
         return this.tab(id, () -> CreativeModeTabUtils.create(title, icon));
     }
 
+    public final RegistryHolder<CreativeModeTab, CreativeModeTab> simpleTabLiteral(String id, String title, Supplier<ItemStack> icon) {
+        return this.tab(id, () -> CreativeModeTabUtils.createLiteral(title, icon));
+    }
+
+    public final RegistryHolder<CreativeModeTab, CreativeModeTab> simpleTabTranslatable(String id, String title, Supplier<ItemStack> icon) {
+        return this.tab(id, () -> CreativeModeTabUtils.createTranslatable(title, icon));
+    }
+
     public final RegistryHolder<CreativeModeTab, CreativeModeTab> simpleTab(String id, Supplier<ItemStack> icon) {
-        return this.simpleTab(id, Component.translatable("itemGroup." + this.modId + "." + id), icon);
+        return this.simpleTabTranslatable(id, "itemGroup." + this.modId + "." + id, icon);
     }
 
     public final RegistryHolder<CreativeModeTab, CreativeModeTab> tab(String id, Consumer<CreativeModeTab.Builder> factory) {

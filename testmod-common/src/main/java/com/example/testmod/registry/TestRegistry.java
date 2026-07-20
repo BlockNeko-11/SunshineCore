@@ -22,9 +22,9 @@ public final class TestRegistry {
     // 2. register blocks and items
     // register blocks first, then items (includes BlockItems), and then other registries
 
-    public static final Supplier<Block> TEST_BLOCK = REGISTRAR.block("test_block");
-    public static final Supplier<Block> TEST_BLOCK_FLATTENED = REGISTRAR.block("test_block_flattened");
-    public static final Supplier<Block> TEST_BLOCK_FLAMMABLE = REGISTRAR.block("test_block_flammable", BlockBehaviour.Properties.of().sc$flammable(5, 5));
+    public static final Supplier<Block> TEST_BLOCK = REGISTRAR.simpleBlock("test_block");
+    public static final Supplier<Block> TEST_BLOCK_FLATTENED = REGISTRAR.simpleBlock("test_block_flattened");
+    public static final Supplier<Block> TEST_BLOCK_FLAMMABLE = REGISTRAR.simpleBlock("test_block_flammable", BlockBehaviour.Properties.of().sc$flammable(5, 5));
     public static final TagKey<Block> TEST_BLOCKS = REGISTRAR.tag(BuiltInRegistries.BLOCK, "test_blocks");
 
     // register BlockItems via #blockItem(String, Supplier, Item.Properties)
