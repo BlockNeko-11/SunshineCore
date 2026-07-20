@@ -86,16 +86,16 @@ public abstract class Registrar {
         return this.register(BuiltInRegistries.BLOCK, id, factory);
     }
 
-    public final <B extends Block> RegistryHolder<Block, B> block(String id, BlockFactory<B> factory, BlockBehaviour.Properties props) {
+    public final <B extends Block> RegistryHolder<Block, B> block(String id, Function<BlockBehaviour.Properties, B> factory, BlockBehaviour.Properties props) {
         return this.register(BuiltInRegistries.BLOCK, id, identifier -> factory.apply(props));
     }
 
-    public final RegistryHolder<Block, Block> block(String id, BlockBehaviour.Properties props) {
+    public final RegistryHolder<Block, Block> simpleBlock(String id, BlockBehaviour.Properties props) {
         return this.block(id, Block::new, props);
     }
 
-    public final RegistryHolder<Block, Block> block(String id) {
-        return this.block(id, BlockBehaviour.Properties.of());
+    public final RegistryHolder<Block, Block> simpleBlock(String id) {
+        return this.simpleBlock(id, BlockBehaviour.Properties.of());
     }
 
     // item helper methods
@@ -108,16 +108,16 @@ public abstract class Registrar {
         return this.register(BuiltInRegistries.ITEM, id, factory);
     }
 
-    public final <I extends Item> RegistryHolder<Item, I> item(String id, ItemFactory<I> factory, Item.Properties props) {
+    public final <I extends Item> RegistryHolder<Item, I> item(String id, Function<Item.Properties, I> factory, Item.Properties props) {
         return this.register(BuiltInRegistries.ITEM, id, identifier -> factory.apply(props));
     }
 
-    public final RegistryHolder<Item, Item> item(String id, Item.Properties props) {
+    public final RegistryHolder<Item, Item> simpleItem(String id, Item.Properties props) {
         return this.item(id, Item::new, props);
     }
 
-    public final RegistryHolder<Item, Item> item(String id) {
-        return this.item(id, new Item.Properties());
+    public final RegistryHolder<Item, Item> simpleItem(String id) {
+        return this.simpleItem(id, new Item.Properties());
     }
 
     public final RegistryHolder<Item, BlockItem> blockItem(String id, Supplier<? extends Block> block, Item.Properties props) {
@@ -148,8 +148,12 @@ public abstract class Registrar {
         return this.register(BuiltInRegistries.CREATIVE_MODE_TAB, id, tab);
     }
 
-    public final RegistryHolder<CreativeModeTab, CreativeModeTab> tab(String id, Component title, Supplier<ItemStack> icon) {
+    public final RegistryHolder<CreativeModeTab, CreativeModeTab> simpleTab(String id, Component title, Supplier<ItemStack> icon) {
         return this.tab(id, () -> CreativeModeTabUtils.create(title, icon));
+    }
+
+    public final RegistryHolder<CreativeModeTab, CreativeModeTab> simpleTab(String id, Supplier<ItemStack> icon) {
+        return this.simpleTab(id, Component.translatable("itemGroup." + this.modId + "." + id), icon);
     }
 
     public final RegistryHolder<CreativeModeTab, CreativeModeTab> tab(String id, Consumer<CreativeModeTab.Builder> factory) {
