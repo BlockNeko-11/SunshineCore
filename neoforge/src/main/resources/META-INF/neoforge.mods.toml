@@ -30,7 +30,7 @@ ordering = "NONE"
 side = "BOTH"
 
 [[mixins]]
-config = "mixins.sunshinecore.json"
+config = "sunshinecore.mixins.json"
 
 [[mixins]]
-config = "mixins.sunshinecore.neoforge.json"
+config = "sunshinecore-neoforge.mixins.json"
