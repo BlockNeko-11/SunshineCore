@@ -1,14 +1,18 @@
 package io.github.blockneko11.sunshinecore.registry;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
+import io.github.blockneko11.sunshinecore.item.tab.CreativeModeTabUtils;
 import io.github.blockneko11.sunshinecore.util.Id;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -16,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Arrays;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -135,6 +140,20 @@ public abstract class Registrar {
                 .map(Supplier::get)
                 .toArray(Block[]::new);
         return this.blockEntity(id, () -> BlockEntityType.Builder.of(factory, array).build(null));
+    }
+
+    // creative mod tab helper methods
+
+    public final RegistryHolder<CreativeModeTab, CreativeModeTab> tab(String id, Supplier<CreativeModeTab> tab) {
+        return this.register(BuiltInRegistries.CREATIVE_MODE_TAB, id, tab);
+    }
+
+    public final RegistryHolder<CreativeModeTab, CreativeModeTab> tab(String id, Component title, Supplier<ItemStack> icon) {
+        return this.tab(id, () -> CreativeModeTabUtils.create(title, icon));
+    }
+
+    public final RegistryHolder<CreativeModeTab, CreativeModeTab> tab(String id, Consumer<CreativeModeTab.Builder> factory) {
+        return this.tab(id, () -> CreativeModeTabUtils.create(factory));
     }
 
     // generic helper methods
