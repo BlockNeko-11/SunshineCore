@@ -3,7 +3,7 @@ package io.github.blockneko11.sunshinecore.loader.forge;
 import io.github.blockneko11.sunshinecore.loader.Mod;
 import net.neoforged.fml.ModContainer;
 
-class ModImpl implements Mod {
+final class ModImpl implements Mod {
     private final ModContainer delegate;
 
     ModImpl(ModContainer delegate) {
