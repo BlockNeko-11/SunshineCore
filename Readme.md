@@ -11,7 +11,7 @@ A Minecraft modding library, provides some tools and APIs for multi-loader moddi
 ## Version Supporting
 | Minecraft Version | Status     | Latest Version | Supported Loaders |
 |-------------------|------------|----------------|-------------------|
-| 1.21~1.21.1       | ✅ Mainline | 1.4.1          | Fabric, NeoForge  |
+| 1.21~1.21.1       | ✅ Mainline | 1.4.2          | Fabric, NeoForge  |
 
 ## Requirements
 | Mod Name   | Required Version | Loader | Link                                            |
