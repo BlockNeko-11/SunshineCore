@@ -175,35 +175,35 @@ public final class CreativeModeTabUtils {
 
 
     public static void append(RegistryHolder<CreativeModeTab, CreativeModeTab> tab, Item... items) {
-        append(tab.key(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS, items);
+        append(tab, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS, items);
     }
 
     public static void append(RegistryHolder<CreativeModeTab, CreativeModeTab> tab, CreativeModeTab.TabVisibility visibility, Item... items) {
-        append(tab.key(), visibility, Arrays.asList(items));
+        append(tab, visibility, Arrays.asList(items));
     }
 
     public static void append(RegistryHolder<CreativeModeTab, CreativeModeTab> tab, Collection<Item> items) {
-        append(tab.key(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS, items);
+        append(tab, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS, items);
     }
 
     public static void append(RegistryHolder<CreativeModeTab, CreativeModeTab> tab, CreativeModeTab.TabVisibility visibility, Collection<Item> items) {
-        appendStack(tab.key(), visibility, items.stream().map(ItemStack::new).toList());
+        appendStack(tab, visibility, items.stream().map(ItemStack::new).toList());
     }
 
     public static void appendStack(RegistryHolder<CreativeModeTab, CreativeModeTab> tab, ItemStack... stacks) {
-        appendStack(tab.key(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS, stacks);
+        appendStack(tab, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS, stacks);
     }
 
     public static void appendStack(RegistryHolder<CreativeModeTab, CreativeModeTab> tab, CreativeModeTab.TabVisibility visibility, ItemStack... stacks) {
-        appendStack(tab.key(), visibility, Arrays.asList(stacks));
+        appendStack(tab, visibility, Arrays.asList(stacks));
     }
 
     public static void appendStack(RegistryHolder<CreativeModeTab, CreativeModeTab> tab, Collection<ItemStack> stacks) {
-        appendStack(tab.key(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS, stacks);
+        appendStack(tab, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS, stacks);
     }
 
     public static void appendStack(RegistryHolder<CreativeModeTab, CreativeModeTab> tab, CreativeModeTab.TabVisibility visibility, Collection<ItemStack> stacks) {
-        modify(tab.key(), (output, isOP) -> output.acceptAll(stacks, visibility));
+        modify(tab, (output, isOP) -> output.acceptAll(stacks, visibility));
     }
 
     private CreativeModeTabUtils() {
