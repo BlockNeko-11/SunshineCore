@@ -21,7 +21,7 @@ public abstract class FireBlockMixin {
             )
     )
     private int sc$getFlammability(Object2IntMap<Block> instance, Object o) {
-        FlammableEntry entry = ((BlockState) o).getBlock().sc$getFlammability();
+        FlammableEntry entry = ((Block) o).sc$getFlammability();
         if (entry != null) {
             return entry.flameAbility();
         }
@@ -42,7 +42,7 @@ public abstract class FireBlockMixin {
             )
     )
     private int sc$getSpreadSpeed(Object2IntMap<Block> instance, Object o) {
-        FlammableEntry entry = ((BlockState) o).getBlock().sc$getFlammability();
+        FlammableEntry entry = ((Block) o).sc$getFlammability();
         if (entry != null) {
             return entry.spreadSpeed();
         }
