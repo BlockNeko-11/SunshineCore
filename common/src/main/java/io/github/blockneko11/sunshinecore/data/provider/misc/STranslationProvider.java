@@ -6,7 +6,6 @@ import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
@@ -69,7 +68,11 @@ public abstract class STranslationProvider implements DataProvider {
     public interface Translator {
         void add(String key, String value);
 
-        default void add(ItemLike item, String value) {
+        default void addBlock(Block block, String value) {
+            this.add(block.getDescriptionId(), value);
+        }
+
+        default void addItem(ItemLike item, String value) {
             this.add(item.asItem().getDescriptionId(), value);
         }
 
