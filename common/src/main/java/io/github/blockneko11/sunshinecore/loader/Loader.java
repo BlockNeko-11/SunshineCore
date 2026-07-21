@@ -5,6 +5,10 @@ public enum Loader {
     FORGE,
     NEOFORGE;
 
+    public boolean isFabric() {
+        return this == FABRIC;
+    }
+
     public boolean isForgeLike() {
         return this == FORGE || this == NEOFORGE;
     }
