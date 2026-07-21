@@ -8,7 +8,7 @@ public final class SDataGenerationImpl {
         String modId = e.getModContainer().getModId();
         return new SDataGeneration(modId,
                 e.validate(),
-                e.getGenerator().getBuiltinDatapack(true, modId),
+                e.getGenerator().getVanillaPack(true),
                 e.getLookupProvider());
     }
 
