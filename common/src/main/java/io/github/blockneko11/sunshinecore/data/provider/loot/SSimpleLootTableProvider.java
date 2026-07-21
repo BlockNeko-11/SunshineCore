@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
-public class SSimpleLootTableProvider implements LootTableSubProvider, DataProvider {
+public abstract class SSimpleLootTableProvider implements LootTableSubProvider, DataProvider {
     private final PackOutput output;
     private final CompletableFuture<HolderLookup.Provider> lookupProvider;
     private final LootContextParamSet lootContextType;
@@ -61,10 +61,5 @@ public class SSimpleLootTableProvider implements LootTableSubProvider, DataProvi
     @Override
     public final String getName() {
         return "Sunshine Core Simple Loot Table Provider for " + LootContextParamSets.REGISTRY.inverse().get(this.lootContextType);
-    }
-
-    @Override
-    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
-
     }
 }
