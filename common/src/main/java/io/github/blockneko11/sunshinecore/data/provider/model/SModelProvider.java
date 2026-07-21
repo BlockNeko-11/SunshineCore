@@ -57,7 +57,6 @@ public abstract class SModelProvider extends ModelProvider {
             itemModels.put(id, supplier);
         }, items::add);
         this.generateBlockStateModels(blockModelGenerator);
-        blockModelGenerator.run();
 
         ItemModelGenerators itemModelGenerator = new ItemModelGenerators((id, supplier) -> {
             if (itemModels.containsKey(id)) {
@@ -67,7 +66,6 @@ public abstract class SModelProvider extends ModelProvider {
             itemModels.put(id, supplier);
         });
         this.generateItemModels(itemModelGenerator);
-        itemModelGenerator.run();
 
         // check models if missing block states
         if (this.validate) {
