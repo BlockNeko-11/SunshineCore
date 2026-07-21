@@ -1,5 +1,6 @@
 package io.github.blockneko11.sunshinecore.item.extension;
 
+import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -13,6 +14,7 @@ public interface ItemPropertiesExtension {
         return (Item.Properties) this;
     }
 
+    @ApiStatus.Experimental
     default Item.Properties sc$tab(Supplier<CreativeModeTab> tab) {
         return sc$self();
     }
@@ -23,6 +25,7 @@ public interface ItemPropertiesExtension {
         return null;
     }
 
+    @ApiStatus.Experimental
     default Item.Properties sc$tab(CreativeModeTab tab) {
         return sc$self();
     }
@@ -31,6 +34,10 @@ public interface ItemPropertiesExtension {
     @Nullable
     default CreativeModeTab sc$getTab() {
         return null;
+    }
+
+    default Item.Properties sc$tab(RegistryHolder<CreativeModeTab, CreativeModeTab> tab) {
+        return this.sc$tab(tab.key());
     }
 
     default Item.Properties sc$tab(ResourceKey<CreativeModeTab> tab) {
