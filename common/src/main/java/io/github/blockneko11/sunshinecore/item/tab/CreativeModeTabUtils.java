@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.item.tab;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
-import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
+import io.github.blockneko11.sunshinecore.registry.holder.RegistryHolder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;

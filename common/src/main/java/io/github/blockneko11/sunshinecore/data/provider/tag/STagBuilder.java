@@ -35,7 +35,7 @@ public class STagBuilder<T> extends TagBuilder {
         return this.add(this.toResourceKey.apply(entry));
     }
 
-    public STagBuilder<T> add(Supplier<T> supplier) {
+    public STagBuilder<T> add(Supplier<? extends T> supplier) {
         return this.add(supplier.get());
     }
 

@@ -1,6 +1,6 @@
 package io.github.blockneko11.sunshinecore.item.extension;
 
-import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
+import io.github.blockneko11.sunshinecore.registry.holder.RegistryHolder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;

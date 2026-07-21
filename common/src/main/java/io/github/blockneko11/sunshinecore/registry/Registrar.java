@@ -2,6 +2,9 @@ package io.github.blockneko11.sunshinecore.registry;
 
 import dev.architectury.injectables.annotations.ExpectPlatform;
 import io.github.blockneko11.sunshinecore.item.tab.CreativeModeTabUtils;
+import io.github.blockneko11.sunshinecore.registry.holder.BlockHolder;
+import io.github.blockneko11.sunshinecore.registry.holder.ItemHolder;
+import io.github.blockneko11.sunshinecore.registry.holder.RegistryHolder;
 import io.github.blockneko11.sunshinecore.util.Id;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -72,59 +75,71 @@ public abstract class Registrar {
      * @param <T> the type of the object
      */
     public <R, T extends R> RegistryHolder<R, T> register(Registry<R> registry, String id, Function<ResourceLocation, T> factory) {
-        ResourceLocation loc = this.id(id);
-        return this.register(registry, id, () -> factory.apply(loc));
+        ResourceLocation identifier = this.id(id);
+        return this.register(registry, id, () -> factory.apply(identifier));
     }
 
     // block helper methods
 
-    public final <B extends Block> RegistryHolder<Block, B> block(String id, Supplier<B> block) {
-        return this.register(BuiltInRegistries.BLOCK, id, block);
+    public final <B extends Block> BlockHolder<B> block(String id, Supplier<B> block) {
+        RegistryHolder<Block, B> holder = this.register(BuiltInRegistries.BLOCK, id, block);
+        return new BlockHolder<>(holder);
     }
 
-    public final <B extends Block> RegistryHolder<Block, B> block(String id, Function<ResourceLocation, B> factory) {
-        return this.register(BuiltInRegistries.BLOCK, id, factory);
+    public final <B extends Block> BlockHolder<B> block(String id, Function<ResourceLocation, B> factory) {
+        ResourceLocation identifier = this.id(id);
+        return this.block(id, () -> factory.apply(identifier));
     }
 
-    public final <B extends Block> RegistryHolder<Block, B> block(String id, Function<BlockBehaviour.Properties, B> factory, BlockBehaviour.Properties props) {
-        return this.register(BuiltInRegistries.BLOCK, id, identifier -> factory.apply(props));
+    public final <B extends Block> BlockHolder<B> block(String id, Function<BlockBehaviour.Properties, B> factory, BlockBehaviour.Properties props) {
+        return this.block(id, identifier -> factory.apply(props));
     }
 
-    public final RegistryHolder<Block, Block> simpleBlock(String id, BlockBehaviour.Properties props) {
+    public final BlockHolder<Block> simpleBlock(String id, Function<BlockBehaviour.Properties, Block> factory) {
+        return this.block(id, identifier -> factory.apply(BlockBehaviour.Properties.of()));
+    }
+
+    public final BlockHolder<Block> simpleBlock(String id, BlockBehaviour.Properties props) {
         return this.block(id, Block::new, props);
     }
 
-    public final RegistryHolder<Block, Block> simpleBlock(String id) {
+    public final BlockHolder<Block> simpleBlock(String id) {
         return this.simpleBlock(id, BlockBehaviour.Properties.of());
     }
 
     // item helper methods
 
-    public final <I extends Item> RegistryHolder<Item, I> item(String id, Supplier<I> item) {
-        return this.register(BuiltInRegistries.ITEM, id, item);
+    public final <I extends Item> ItemHolder<I> item(String id, Supplier<I> item) {
+        RegistryHolder<Item, I> holder = this.register(BuiltInRegistries.ITEM, id, item);
+        return new ItemHolder<>(holder);
     }
 
-    public final <I extends Item> RegistryHolder<Item, I> item(String id, Function<ResourceLocation, I> factory) {
-        return this.register(BuiltInRegistries.ITEM, id, factory);
+    public final <I extends Item> ItemHolder<I> item(String id, Function<ResourceLocation, I> factory) {
+        ResourceLocation identifier = this.id(id);
+        return this.item(id, () -> factory.apply(identifier));
     }
 
-    public final <I extends Item> RegistryHolder<Item, I> item(String id, Function<Item.Properties, I> factory, Item.Properties props) {
-        return this.register(BuiltInRegistries.ITEM, id, identifier -> factory.apply(props));
+    public final <I extends Item> ItemHolder<I> item(String id, Function<Item.Properties, I> factory, Item.Properties props) {
+        return this.item(id, identifier -> factory.apply(props));
     }
 
-    public final RegistryHolder<Item, Item> simpleItem(String id, Item.Properties props) {
+    public final <I extends Item> ItemHolder<I> simpleItem(String id, Function<Item.Properties, I> factory) {
+        return this.item(id, identifier -> factory.apply(new Item.Properties()));
+    }
+
+    public final ItemHolder<Item> simpleItem(String id, Item.Properties props) {
         return this.item(id, Item::new, props);
     }
 
-    public final RegistryHolder<Item, Item> simpleItem(String id) {
+    public final ItemHolder<Item> simpleItem(String id) {
         return this.simpleItem(id, new Item.Properties());
     }
 
-    public final RegistryHolder<Item, BlockItem> blockItem(String id, Supplier<? extends Block> block, Item.Properties props) {
+    public final ItemHolder<BlockItem> blockItem(String id, Supplier<? extends Block> block, Item.Properties props) {
         return this.item(id, identifier -> new BlockItem(block.get(), props));
     }
 
-    public final RegistryHolder<Item, BlockItem> blockItem(String id, Supplier<? extends Block> block) {
+    public final ItemHolder<BlockItem> simpleBlockItem(String id, Supplier<? extends Block> block) {
         return this.blockItem(id, block, new Item.Properties());
     }
 

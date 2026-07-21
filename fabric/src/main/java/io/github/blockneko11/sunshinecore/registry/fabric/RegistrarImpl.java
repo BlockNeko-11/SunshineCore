@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.registry.fabric;
 
 import io.github.blockneko11.sunshinecore.registry.Registrar;
-import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
+import io.github.blockneko11.sunshinecore.registry.holder.RegistryHolder;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;

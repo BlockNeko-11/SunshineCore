@@ -11,8 +11,8 @@ public final class TestTranslationProvider extends STranslationProvider.EN_US {
 
     @Override
     public void translate(Translator builder) {
-        builder.add(TestRegistry.TEST_BLOCK.get(), "Test Block");
-        builder.add(TestRegistry.TEST_BLOCK_FLATTENED.get(), "Test Block (Flattened)");
-        builder.add(TestRegistry.TEST_BLOCK_FLAMMABLE.get(), "Test Block (Flammable)");
+        builder.add(TestRegistry.TEST_BLOCK, "Test Block");
+        builder.add(TestRegistry.TEST_BLOCK_FLATTENED, "Test Block (Flattened)");
+        builder.add(TestRegistry.TEST_BLOCK_FLAMMABLE, "Test Block (Flammable)");
     }
 }

@@ -8,10 +8,10 @@ accessible field net/minecraft/tags/TagEntry required Z
 extendable method net/minecraft/tags/TagEntry <init> (Lnet/minecraft/resources/ResourceLocation;ZZ)V
 accessible field net/minecraft/world/level/storage/loot/parameters/LootContextParamSets REGISTRY Lcom/google/common/collect/BiMap;
 accessible method net/minecraft/world/inventory/MenuType <init> (Lnet/minecraft/world/inventory/MenuType$MenuSupplier;Lnet/minecraft/world/flag/FeatureFlagSet;)V
-accessible class net/minecraft/world/inventory/MenuType$MenuSupplier
+transitive-accessible class net/minecraft/world/inventory/MenuType$MenuSupplier
 accessible method net/minecraft/client/renderer/blockentity/BlockEntityRenderers register (Lnet/minecraft/world/level/block/entity/BlockEntityType;Lnet/minecraft/client/renderer/blockentity/BlockEntityRendererProvider;)V
-accessible class net/minecraft/world/item/CreativeModeTab$TabVisibility
-accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
+transitive-accessible class net/minecraft/world/item/CreativeModeTab$TabVisibility
+transitive-accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
 
 # transitive AWs
 transitive-accessible	method	net/minecraft/data/BlockFamilies	familyBuilder	(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/data/BlockFamily$Builder;
@@ -29,7 +29,7 @@ transitive-accessible	class	net/minecraft/data/models/BlockModelGenerators$Block
 transitive-accessible	field	net/minecraft/data/loot/BlockLootSubProvider	HAS_SHEARS	Lnet/minecraft/world/level/storage/loot/predicates/LootItemCondition$Builder;
 transitive-accessible	method	net/minecraft/data/recipes/RecipeProvider	run	(Lnet/minecraft/data/CachedOutput;Lnet/minecraft/core/HolderLookup$Provider;)Ljava/util/concurrent/CompletableFuture;
 transitive-accessible	method	net/minecraft/data/recipes/RecipeProvider	buildAdvancement	(Lnet/minecraft/data/CachedOutput;Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/advancements/AdvancementHolder;)Ljava/util/concurrent/CompletableFuture;
-transitive-accessible	method	net/minecraft/data/recipes/RecipeProvider	buildRecipes	(Lnet/minecraft/data/recipes/RecipeOutput;)V
+# transitive-accessible	method	net/minecraft/data/recipes/RecipeProvider	buildRecipes	(Lnet/minecraft/data/recipes/RecipeOutput;)V
 transitive-accessible	method	net/minecraft/data/recipes/RecipeProvider	generateForEnabledBlockFamilies	(Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/flag/FeatureFlagSet;)V
 transitive-accessible	method	net/minecraft/data/recipes/RecipeProvider	oneToOneConversionRecipe	(Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;)V
 transitive-accessible	method	net/minecraft/data/recipes/RecipeProvider	oneToOneConversionRecipe	(Lnet/minecraft/data/recipes/RecipeOutput;Lnet/minecraft/world/level/ItemLike;Lnet/minecraft/world/level/ItemLike;Ljava/lang/String;I)V
@@ -263,7 +263,7 @@ transitive-accessible	method	net/minecraft/data/loot/BlockLootSubProvider	create
 transitive-accessible	method	net/minecraft/data/loot/BlockLootSubProvider	createCandleDrops	(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 transitive-accessible	method	net/minecraft/data/loot/BlockLootSubProvider	createPetalsDrops	(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 transitive-accessible	method	net/minecraft/data/loot/BlockLootSubProvider	createCandleCakeDrops	(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
-transitive-accessible	method	net/minecraft/data/loot/BlockLootSubProvider	generate	()V
+# transitive-accessible	method	net/minecraft/data/loot/BlockLootSubProvider	generate	()V
 transitive-accessible	method	net/minecraft/data/loot/BlockLootSubProvider	addNetherVinesDropTable	(Lnet/minecraft/world/level/block/Block;Lnet/minecraft/world/level/block/Block;)V
 transitive-accessible	method	net/minecraft/data/loot/BlockLootSubProvider	createDoorTable	(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/storage/loot/LootTable$Builder;
 transitive-accessible	method	net/minecraft/data/loot/BlockLootSubProvider	dropPottedContents	(Lnet/minecraft/world/level/block/Block;)V

@@ -1,7 +1,7 @@
 package io.github.blockneko11.sunshinecore.registry.forge;
 
 import io.github.blockneko11.sunshinecore.registry.Registrar;
-import io.github.blockneko11.sunshinecore.registry.RegistryHolder;
+import io.github.blockneko11.sunshinecore.registry.holder.RegistryHolder;
 import io.github.blockneko11.sunshinecore.util.forge.EventBusUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -15,7 +15,6 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("unchecked")
 public final class RegistrarImpl extends Registrar {
-
     private final Map<ResourceLocation, DeferredRegister<?>> registers = new LinkedHashMap<>();
     private final IEventBus modBus;
 
